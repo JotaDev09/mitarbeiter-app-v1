@@ -7,6 +7,7 @@ import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
 })
 export class LoginPage implements OnInit {
   loginContainer: boolean = false;
+  showPassword: boolean = false;
 
   constructor(private renderer: Renderer2, private el: ElementRef) {}
 
@@ -18,5 +19,9 @@ export class LoginPage implements OnInit {
     setInterval(() => {
       this.loginContainer = true;
     }, 6000);
+  }
+
+  toggleVisibility() {
+    this.showPassword = !this.showPassword;
   }
 }

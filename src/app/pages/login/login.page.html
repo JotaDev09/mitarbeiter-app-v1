@@ -1,4 +1,4 @@
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="login-content">
   <div class="container-intro">
     <img src="assets/img/gorris_logo.png" class="logo-transformed">
   </div>
@@ -6,14 +6,32 @@
     <div class="login-title">
       <h3>LogIn</h3>
     </div>
-    <div class="login-user-input">
-      <div class="login-user-title">
+    <div class="login-user-email">
+      <div class="login-email-title">
         <span>E-mail:</span>
       </div>
-      <input type="text">
+      <div class="input-container">
+        <input class="input-login" type="email">
+      </div>
       <div class="case-false">
         <span>Falsche e-mail</span>
       </div>
+    </div>
+    <div class="login-user-email">
+      <div class="login-email-title">
+        <span>Password:</span>
+      </div>
+      <div class="input-container">
+        <input class="input-login" type="password" [type]="showPassword ? 'text' : 'password'">
+        <mat-icon class="icon-view" (click)="toggleVisibility()">{{ showPassword ? 'visibility' :
+          'visibility_off'}}</mat-icon>
+      </div>
+      <div class="case-false">
+        <span>Falsche password</span>
+      </div>
+    </div>
+    <div class="login-button">
+      <button>Anmelden</button>
     </div>
   </div>
 
