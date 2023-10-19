@@ -1,0 +1,8 @@
+{
+  "name": "mitarbeiterApp",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
+  "type": "angular"
+}

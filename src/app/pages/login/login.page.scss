@@ -1,0 +1,79 @@
+/* Container for intro animation */
+.container-intro {
+  position: absolute;
+  width: -webkit-fill-available;
+  height: -webkit-fill-available;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  z-index: 2;
+  img {
+    width: 500px;
+    object-fit: cover;
+    transition: transform 1s;
+  }
+}
+
+/* app.animations.css */
+@keyframes introAnimation {
+  0% {
+    transform: scale(0.4) translate(0, 0);
+  }
+  75% {
+    transform: scale(0.4) translate(0, 0);
+  }
+  100% {
+    transform: scale(0.2) translate(-400%, -170%);
+  }
+}
+
+.container-intro img.logo-transformed {
+  width: 50%;
+  object-fit: cover;
+  transition: transform 2s;
+  animation: introAnimation 5s forwards;
+}
+
+/* login container */
+.container-login {
+  height: -webkit-fill-available;
+  width: 60%;
+  position: absolute;
+  z-index: 2;
+  margin-left: 20%;
+  margin-right: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+}
+
+.container-login {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+.login-title {
+  padding: 10px;
+  h3 {
+    color: #252525;
+    font-size: 35px;
+    line-height: 45px;
+    font-weight: 700;
+  }
+}
+
+.login-user-input {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 10px;
+}
+
+.case-false {
+}

@@ -1,0 +1,20 @@
+<ion-content [fullscreen]="true">
+  <div class="container-intro">
+    <img src="assets/img/gorris_logo.png" class="logo-transformed">
+  </div>
+  <div class="container-login" *ngIf="loginContainer">
+    <div class="login-title">
+      <h3>LogIn</h3>
+    </div>
+    <div class="login-user-input">
+      <div class="login-user-title">
+        <span>E-mail:</span>
+      </div>
+      <input type="text">
+      <div class="case-false">
+        <span>Falsche e-mail</span>
+      </div>
+    </div>
+  </div>
+
+</ion-content>
