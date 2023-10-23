@@ -1,8 +1,8 @@
 <ion-content [fullscreen]="true" class="login-content">
   <div class="container-intro">
-    <img src="assets/img/gorris_logo.png" class="logo-transformed">
+    <img src="assets/img/gorris_logo.png" class="logo-transformed" [@introAnimation]="animationState">
   </div>
-  <div class="container-login" *ngIf="loginContainer">
+  <form #emailForm="ngForm" (ngSubmit)="submitForm(emailForm)" class="container-login" *ngIf="loginContainer">
     <div class="login-title">
       <h3>LogIn</h3>
     </div>
@@ -11,28 +11,50 @@
         <span>E-mail:</span>
       </div>
       <div class="input-container">
-        <input class="input-login" type="email">
+        <input class="input-login" type="email" name="userEmail" required
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}" [(ngModel)]="userEmail">
+        <mat-icon>alternate_email</mat-icon>
       </div>
-      <div class="case-false">
-        <span>Falsche e-mail</span>
+      <div *ngIf="emailForm.submitted && emailForm.controls['userEmail'].errors">
+        <div class="case-false" *ngIf="emailForm.controls['userEmail'].errors?.['required']">
+          <span>Falsche E-mail</span>
+        </div>
+        <div class="case-false" *ngIf="emailForm.controls['userEmail'].errors?.['pattern']">
+          <span>E-Mail muss "@" enthalten</span>
+        </div>
       </div>
     </div>
     <div class="login-user-email">
       <div class="login-email-title">
-        <span>Password:</span>
+        <span>Passwort:</span>
       </div>
       <div class="input-container">
-        <input class="input-login" type="password" [type]="showPassword ? 'text' : 'password'">
-        <mat-icon class="icon-view" (click)="toggleVisibility()">{{ showPassword ? 'visibility' :
+        <input class="input-login" type="password" [type]="showPassword ? 'text' : 'password'"
+          [(ngModel)]="userPassword" name="userPassword" required>
+        <mat-icon class="icon-view" (click)="toggleVisibility()">{{ showPassword ?
+          'visibility' :
           'visibility_off'}}</mat-icon>
       </div>
-      <div class="case-false">
-        <span>Falsche password</span>
+      <div *ngIf="emailForm.submitted && emailForm.controls['userPassword'].errors">
+        <div class="case-false" *ngIf="emailForm.controls['userPassword'].errors?.['required']">
+          <span>Falsches Passwort</span>
+        </div>
       </div>
     </div>
-    <div class="login-button">
+    <div class="login-button" type="submit">
       <button>Anmelden</button>
     </div>
-  </div>
 
+    <div class="copyright">
+      <div class="gorris-rechte">
+        <span>© 2023 Krankentransport Gorris GmbH</span><a>|</a>
+        <span>Alle Rechte vorbehalten</span>
+      </div>
+      <div class="gorris-impressum">
+        <a routerLink="/impressum">Impressum</a><span>|</span>
+        <a href="/assets/docs/agb.pdf" target="_blank">AGB</a><span>|</span>
+        <a routerLink="/datenschutz">Datenschutzerklärung</a>
+      </div>
+    </div>
+  </form>
 </ion-content>

@@ -17,6 +17,20 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/login/login.module').then((m) => m.LoginPageModule),
   },
+  {
+    path: 'impressum',
+    loadChildren: () =>
+      import('./pages/impressum/impressum.module').then(
+        (m) => m.ImpressumPageModule
+      ),
+  },
+  {
+    path: 'datenschutz',
+    loadChildren: () =>
+      import('./pages/datenschutz/datenschutz.module').then(
+        (m) => m.DatenschutzPageModule
+      ),
+  },
 ];
 
 @NgModule({

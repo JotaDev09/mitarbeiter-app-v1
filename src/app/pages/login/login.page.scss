@@ -1,3 +1,6 @@
+.login-content {
+  font-family: "Poppins";
+}
 /* Container for intro animation */
 .container-intro {
   position: absolute;
@@ -9,30 +12,10 @@
   background-color: white;
   z-index: 2;
   img {
+    position: absolute;
     width: 500px;
     object-fit: cover;
-    transition: transform 1s;
   }
-}
-
-/* app.animations.css */
-@keyframes introAnimation {
-  0% {
-    transform: scale(0.4) translate(0, 0);
-  }
-  75% {
-    transform: scale(0.4) translate(0, 0);
-  }
-  100% {
-    transform: scale(0.2) translate(-400%, -170%);
-  }
-}
-
-.container-intro img.logo-transformed {
-  width: 50%;
-  object-fit: cover;
-  transition: transform 2s;
-  animation: introAnimation 5s forwards;
 }
 
 /* login container */
@@ -86,7 +69,7 @@
   align-items: center;
   margin-top: 10px;
   input {
-    background-color: transparent;
+    background-color: white !important;
     outline: none;
     width: 250px;
     border: none;
@@ -119,5 +102,53 @@ input:focus + .input-container {
     border-radius: 10px;
     background-color: #3c8f69;
     color: #eef011;
+    transition: opacity 0.3s;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+//copyright container
+.copyright {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  bottom: 20px;
+  gap: 10px;
+}
+
+.gorris-rechte {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  span {
+    color: black;
+    font-size: 16px;
+  }
+  a {
+    color: black;
+    font-size: 18px;
+  }
+}
+
+.gorris-impressum {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  a {
+    color: black;
+    font-size: 16px;
+    text-decoration: none;
+    cursor: pointer;
+    &:hover {
+      color: #3c8f69;
+      text-decoration: underline;
+    }
+  }
+  span {
+    color: black;
+    font-size: 18px;
   }
 }
