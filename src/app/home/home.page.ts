@@ -18,6 +18,7 @@ export class HomePage implements OnInit {
   driver: string = 'Fahrer';
   sani: string = 'Rettungssanitäter';
   data: any;
+  relax: string = 'Ruhetag';
 
   constructor(private router: Router, private dialog: MatDialog) {
     this.getDate();
@@ -119,13 +120,20 @@ export class HomePage implements OnInit {
     return text;
   }
 
-  viewDienst(day: any, wagen: string, driver: string, sani: string) {
+  viewDienst(
+    day: any,
+    wagen: string,
+    driver: string,
+    sani: string,
+    relax: string
+  ) {
     const dialogRef = this.dialog.open(ViewDienstComponent, {
       data: {
         day,
         wagen,
         driver,
         sani,
+        relax,
         isToday: this.isToday(day),
       },
     });
