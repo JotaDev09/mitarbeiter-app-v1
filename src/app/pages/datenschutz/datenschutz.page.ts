@@ -98,7 +98,7 @@ export class DatenschutzPage implements OnInit {
       address: this.address,
       telefon: this.telefon,
       fax: this.fax,
-      mail: 'E-Mail post@krankentransport-gorris.de',
+      mail: 'E-Mail',
     },
   ];
 
@@ -188,6 +188,62 @@ export class DatenschutzPage implements OnInit {
       rechteContTitle: 'Beschwerderecht',
       rechteContText:
         'Sie können sich gemäß Art. 77 DSGVO bei einer Aufsichtsbehörde beschweren, wenn Sie der Ansicht sind, dass die Verarbeitung der Sie betreffenden personenbezogenen Daten gegen datenschutzrechtliche Bestimmungen verstößt. In der Regel können Sie sich hierfür an die Aufsichtsbehörde Ihres üblichen Aufenthaltsortes oder Arbeitsplatzes oder unseres Unternehmenssitzes wenden.',
+    },
+  ];
+
+  datenContact = [
+    {
+      datenContactTitle: 'AUFSICHTSBEHÖRDE IM LAND BERLIN',
+      datenContactText:
+        'Berliner Beauftragte für Datenschutz und Informationsfreiheit',
+    },
+  ];
+
+  datenContactInfo = [
+    {
+      address: 'Friedrichstraße 219, 10969 Berlin',
+      telefon: 'Telefon +49 (0)30 138890',
+      homepage: 'Homepage:',
+      web: 'https://www.datenschutz-berlin.de/',
+      mail: 'E-Mail: mailbox@datenschutz-berlin.de',
+    },
+  ];
+
+  widerspruchrecht = [
+    {
+      title: 'WIDERSPRUCHSRECHT',
+      text: 'Sofern Ihre personenbezogenen Daten auf Grundlage von berechtigten Interessen gemäß Art. 6 Abs. 1 S. 1 lit. f DSGVO verarbeitet werden, haben Sie das Recht, gemäß Art. 21 DSGVO Widerspruch gegen die Verarbeitung Ihrer personenbezogenen Daten einzulegen, soweit dafür Gründe vorliegen, die sich aus Ihrer besonderen Situation ergeben oder sich der Widerspruch gegen Direktwerbung richtet. Im letzteren Fall haben Sie ein generelles Widerspruchsrecht, das ohne Angabe einer besonderen Situation von uns umgesetzt wird. Möchten Sie von Ihrem Widerrufs- oder Widerspruchsrecht Gebrauch machen, genügt eine Mitteilung an uns. Bitte schreiben Sie uns dann eine E-Mail.',
+    },
+    {
+      title: 'DATENSCHUTZ BEI BEWERBUNGEN UND IM BEWERBUNGSVERFAHREN',
+      text: 'Wir verarbeiten die personenbezogenen Daten von Bewerbern zum Zwecke der Abwicklung des Bewerbungsverfahrens. Die Verarbeitung kann auch auf elektronischem Wege erfolgen. Dies ist insbesondere dann der Fall, wenn ein Bewerber entsprechende Bewerbungsunterlagen auf dem elektronischen Wege, beispielsweise per E-Mail oder über ein auf der Internetseite befindliches Webformular, an uns übermittelt. Schließen wir einen Anstellungsvertrag mit einem Bewerber, werden die übermittelten Daten zum Zwecke der Abwicklung des Beschäftigungsverhältnisses unter Beachtung der gesetzlichen Vorschriften gespeichert. Wird von dem für die Verarbeitung Verantwortlichen kein Anstellungsvertrag mit dem Bewerber geschlossen, so werden die Bewerbungsunterlagen sechs Monate nach Bekanntgabe der Absageentscheidung automatisch gelöscht, sofern einer Löschung keine sonstigen berechtigten Interessen des für die Verarbeitung Verantwortlichen entgegenstehen. Sonstiges berechtigtes Interesse in diesem Sinne ist beispielsweise eine Beweispflicht in einem Verfahren nach dem Allgemeinen Gleichbehandlungsgesetz (AGG).',
+    },
+    {
+      title: 'DAUER, FÜR DIE DIE PERSONENBEZOGENEN DATEN GESPEICHERT WERDEN',
+      text: 'Das Kriterium für die Dauer der Speicherung von personenbezogenen Daten ist deren Zweckentfall und die jeweilige gesetzliche Aufbewahrungsfrist. Nach Ablauf der Frist werden die entsprechenden Daten gelöscht, sofern sie nicht mehr zur Vertragserfüllung oder Vertragsanbahnung erforderlich sind. Unter Umständen werden die personenbezogenen Daten auch erst nach Ablauf der Verjährungsfrist gelöscht. Die regelmäßige Verjährungsfrist beträgt drei Jahre. In Einzelfällen auch bis zu 30 Jahren',
+    },
+    {
+      title: 'BESTEHEN EINER AUTOMATISIERTEN ENTSCHEIDUNGSFINDUNG',
+      text: 'Als verantwortungsbewusstes Unternehmen verzichten wir auf eine automatische Entscheidungsfindung oder ein Profiling.',
+    },
+    {
+      title: 'DATENSICHERHEIT',
+      text: 'Wir verwenden innerhalb des Website-Besuchs das verbreitete SSL-Verfahren (Secure Socket Layer) zur Verschlüsselung. Ob eine einzelne Seite unseres Internetauftrittes verschlüsselt übertragen wird, erkennen Sie an der geschlossenen Darstellung des Schüssel- beziehungsweise Schloss-Symbols in der unteren Statusleiste Ihres Browsers. Wir bedienen uns im Übrigen geeigneter technischer und organisatorischer Sicherheitsmaßnahmen, um Ihre Daten gegen zufällige oder vorsätzliche Manipulationen, teilweisen oder vollständigen Verlust, Zerstörung oder gegen den unbefugten Zugriff Dritter zu schützen. Unsere Sicherheitsmaßnahmen werden entsprechend der technologischen Entwicklung fortlaufend verbessert.',
+    },
+    {
+      title: 'EU-STREITSCHLICHTUNG',
+      text: 'DIE EU stellt unter dem Link https://ec.europa.eu/info/index_de eine Online Streitschlichtungsstelle für Verbraucher zur Verfügung. Unsere E-Mail-Adresse finden Sie im Impressum. Die Nutzung der Online-Schlichtungsstelle stellt keine zwingende Voraussetzung für das Anrufen zuständiger ordentlicher Gerichte dar.',
+    },
+    {
+      title: 'INFORMATIONSPFLICHT nach §36 Abs.1 VSBG',
+      text: 'Zur Teilnahme an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle sind wir nicht verpflichtet und grundsätzlich nicht bereit.',
+    },
+    {
+      title: 'ÄNDERUNG DIESER DATENSCHUTZERKLÄRUNG',
+      text: 'Diese Datenschutzerklärung ist aktuell gültig. Durch die Weiterentwicklung unserer Website und Angebote darüber oder aufgrund geänderter gesetzlicher beziehungsweise behördlicher Vorgaben kann es notwendig werden, diese Datenschutzerklärung zu ändern. Die jeweils aktuelle Datenschutzerklärung kann jederzeit auf unser er Website von Ihnen abgerufen und ausgedruckt werden.',
+    },
+    {
+      title: 'Stand September 2020',
     },
   ];
 

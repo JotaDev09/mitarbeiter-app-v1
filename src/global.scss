@@ -28,3 +28,43 @@
 .mat-typography {
   font-family: "Poppins";
 }
+
+.toolbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100px;
+  position: relative;
+  background-color: white;
+  span {
+    color: black;
+    font-size: 30px;
+  }
+}
+
+.logo-cont {
+  height: 200px;
+  position: relative;
+  top: 50px;
+
+  img {
+    height: 100%;
+  }
+}
+
+.button-login {
+  width: 200px;
+  a {
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 20px;
+    color: #eef011;
+    padding: 10px 15px;
+    background-color: #3c8f69;
+    border-radius: 10px;
+    transition: opacity 0.3s;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}

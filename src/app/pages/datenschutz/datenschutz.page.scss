@@ -2,56 +2,16 @@
   font-family: "Poppins";
 }
 
-//privacy header
-.toolbar {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  height: 100px;
-  position: relative;
-  background-color: white;
-  span {
-    color: black;
-    font-size: 30px;
-  }
-}
-
-.logo-cont {
-  height: 200px;
-  position: relative;
-  top: 50px;
-
-  img {
-    height: 100%;
-  }
-}
-
-.button-login {
-  width: 200px;
-  a {
-    text-decoration: none;
-    cursor: pointer;
-    font-size: 20px;
-    color: #eef011;
-    padding: 10px 15px;
-    background-color: #3c8f69;
-    border-radius: 10px;
-    transition: opacity 0.3s;
-    &:hover {
-      opacity: 0.8;
-    }
-  }
-}
-
 //privacy content
 
 .privacy-container {
+  height: -webkit-fill-available;
   padding: 100px 300px 50px 300px;
-  text-align: justify;
-  font-family: "Poppins";
   display: flex;
   flex-direction: column;
   gap: 45px;
+  text-align: justify;
+  font-family: "Poppins";
 }
 
 .privacy-intro {
@@ -95,6 +55,12 @@
     font-size: 16px;
     margin-bottom: 5px;
   }
+  .web {
+    color: #3c8f69;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
 
 .privacy-containSub {
@@ -113,11 +79,14 @@
 
 .containSub-info {
   font-family: "Poppins";
-  text-align: start;
+  text-align: justify;
   font-size: 16px;
   gap: 10px;
   display: flex;
   flex-direction: column;
+  li {
+    text-align: start;
+  }
   h3 {
     font-weight: 700;
     text-decoration: underline;

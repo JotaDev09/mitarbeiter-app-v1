@@ -6,6 +6,7 @@ import {
   animate,
   transition,
 } from '@angular/animations';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -39,7 +40,11 @@ export class LoginPage implements OnInit {
   animationState: string = 'middle';
   animateIntro: boolean = false;
 
-  constructor(private renderer: Renderer2, private el: ElementRef) {}
+  constructor(
+    private renderer: Renderer2,
+    private el: ElementRef,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.startAnimation();
@@ -71,6 +76,7 @@ export class LoginPage implements OnInit {
   submitForm(form: any) {
     if (form.valid) {
       console.log(form.value);
+      this.router.navigate(['/home']);
     }
   }
 }
