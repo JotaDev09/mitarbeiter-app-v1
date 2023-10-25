@@ -1,10 +1,37 @@
 <section class="view-dienst">
+  <div class="closeComponent" (click)="closeViewDienst" (click)="closeViewDienst()">
+    <div></div>
+  </div>
 
-  <div class="info" [ngClass]="{'today': isToday}">
+  <div class="info" [ngClass]="{'today': isToday}" *ngIf="!editTag">
+    <span>{{data.dienstNumber}}</span>
     <span>{{data.day}}</span>
+    <span>{{data.dienst}}</span>
     <span>{{data.wagen}}</span>
     <span>{{data.driver}}</span>
     <span>{{data.sani}}</span>
-    <span>{{data.relax}}</span>
+    <!-- <span>{{data.relax}}</span> -->
+  </div>
+  <div class="info" [ngClass]="{'today': isToday}" *ngIf="editTag">
+    <div class="info-cont">
+      <span>Aktuell: {{data.day}}</span>
+      <input class="edit-date" type="date" [placeholder]="data.day" [min]="minDate">
+    </div>
+    <div class="info-cont">
+      <span>Aktuell: {{data.dienst}}</span>
+      <select class="edit-time" [(ngModel)]="selectedHour">
+        <option *ngFor="let hour of availableHours" [value]="hour">{{ hour }}</option>
+      </select>
+
+    </div>
+
+  </div>
+
+  <div class="button-edit" (click)="beantragenDienst()" *ngIf="editTag">
+    <a>Beantragen</a>
+  </div>
+
+  <div class="button-edit" (click)="changeDienst()" *ngIf="!editTag">
+    <a>wechseln Dienst</a>
   </div>
 </section>

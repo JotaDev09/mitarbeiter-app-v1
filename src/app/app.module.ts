@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ViewDienstComponent } from './view-dienst/view-dienst.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, ViewDienstComponent],
@@ -18,6 +19,7 @@ import { ViewDienstComponent } from './view-dienst/view-dienst.component';
     AppRoutingModule,
     MatIconModule,
     MatDialogModule,
+    FormsModule,
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

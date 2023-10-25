@@ -19,8 +19,10 @@
 
     <div class="dienst-container">
       <div *ngFor="let day of week; let i = index" class="day-container" [ngClass]="{'today': isToday(day)}"
-        (click)="viewDienst(day, wagen, driver, sani, relax)">
+        (click)="viewDienst(dienstNumber1, day, dienst1, wagen, driver, sani, relax)">
+        <span>{{dienstNumber1}}</span>
         <span>{{day}}</span>
+        <span *ngIf="i < 5">{{dienst1}}</span>
         <span *ngIf="i < 5">{{wagen}}</span>
         <span *ngIf="i < 5" class="nameKollegue">{{truncateName(driver, 10)}}</span>
         <span *ngIf="i < 5" class="nameKollegue">{{truncateName(sani, 12)}}</span>
@@ -29,8 +31,10 @@
     </div>
     <div class="dienst-container">
       <div *ngFor="let day of nextWeek; let i = index" class="day-container"
-        (click)="viewDienst(day, wagen, driver, sani, relax)">
+        (click)="viewDienst(dienstNumber2, day, dienst2, wagen, driver, sani, relax)">
+        <span>{{dienstNumber2}}</span>
         <span>{{day}}</span>
+        <span *ngIf="i === 0 || (i > 1 && i < 6)">{{dienst2}}</span>
         <span *ngIf="i === 0 || (i > 1 && i < 6)">{{wagen}}</span>
         <span *ngIf="i === 0 || (i > 1 && i < 6)" class="nameKollegue">{{truncateName(driver, 10)}}</span>
         <span *ngIf="i === 0 || (i > 1 && i < 6)" class="nameKollegue">{{truncateName(sani, 12)}}</span>

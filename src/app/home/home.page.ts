@@ -13,6 +13,10 @@ export class HomePage implements OnInit {
   currentGreeting: string = '';
   name: string = 'Man Mustermann';
   week: string[] = [];
+  dienstNumber1: any = ['Dienst 01'];
+  dienstNumber2: any = ['Dienst 02'];
+  dienst1: string = '06:00 - 14:00';
+  dienst2: string = '10:00 - 18:00';
   nextWeek: string[] = [];
   wagen: string = 'GO 335';
   driver: string = 'Fahrer';
@@ -121,7 +125,9 @@ export class HomePage implements OnInit {
   }
 
   viewDienst(
+    dienstNumber: string,
     day: any,
+    dienst: string,
     wagen: string,
     driver: string,
     sani: string,
@@ -129,7 +135,9 @@ export class HomePage implements OnInit {
   ) {
     const dialogRef = this.dialog.open(ViewDienstComponent, {
       data: {
+        dienstNumber,
         day,
+        dienst,
         wagen,
         driver,
         sani,
