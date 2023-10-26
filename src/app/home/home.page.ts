@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ViewDienstComponent } from '../view-dienst/view-dienst.component';
 import { MatDialog } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { SharedService } from '../shared.service';
 
 @Component({
   selector: 'app-home',
@@ -23,22 +25,21 @@ export class HomePage implements OnInit {
   sani: string = 'Rettungssanitäter';
   data: any;
   relax: string = 'Ruhetag';
+  showFiller = false;
 
-  constructor(private router: Router, private dialog: MatDialog) {
+  constructor(
+    private router: Router,
+    private dialog: MatDialog,
+    private matIcon: MatIconModule,
+    private sharedService: SharedService
+  ) {
     this.getDate();
     this.isToday('01/01/21');
     this.greetings();
+    this.sharedService.updateTitle('Dienstplan');
   }
 
   ngOnInit() {}
-
-  /**
-   * The function is used to sign out the user and redirect to login page
-   */
-  signOut() {
-    //implement sign out functionality here
-    this.router.navigate(['/login']);
-  }
 
   /**
    * The function is used to get the current week
@@ -144,10 +145,6 @@ export class HomePage implements OnInit {
         relax,
         isToday: this.isToday(day),
       },
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('Data recibida en ViewDienstComponent:', result);
     });
   }
 }

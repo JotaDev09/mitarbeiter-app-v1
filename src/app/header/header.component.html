@@ -1,0 +1,15 @@
+<section class="toolbar">
+  <div class="logo-cont">
+    <img src="/assets/img/gorris_logo.png" alt="">
+  </div>
+  <span class="pageTitle">{{pageTitle}}</span>
+  <div class="button-menu">
+    <button mat-button [matMenuTriggerFor]="menu" class="menu-header">Menu</button>
+  </div>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="toDienst()">Dienst</button>
+    <button mat-menu-item (click)="toHolidays()">Urlaubsantrag</button>
+    <button mat-menu-item>Information</button>
+    <button mat-menu-item class="button-login" (click)="signOut()"><a>Abmelden</a></button>
+  </mat-menu>
+</section>

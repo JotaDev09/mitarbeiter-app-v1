@@ -31,6 +31,10 @@ const routes: Routes = [
         (m) => m.DatenschutzPageModule
       ),
   },
+  {
+    path: 'holidays',
+    loadChildren: () => import('./pages/holidays/holidays.module').then( m => m.HolidaysPageModule)
+  },
 ];
 
 @NgModule({

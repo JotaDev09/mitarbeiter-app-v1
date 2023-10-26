@@ -1,0 +1,69 @@
+<ion-header [translucent]="true">
+  <app-header></app-header>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <section class="urlaubs-antrag-container">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Urlaubsantrag</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-item>
+                <ion-label position="floating">Von</ion-label>
+                <ion-datetime displayFormat="DD.MM.YYYY" placeholder="Von"></ion-datetime>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">Bis</ion-label>
+                <ion-datetime displayFormat="DD.MM.YYYY" placeholder="Bis"></ion-datetime>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">Anzahl Tage</ion-label>
+                <ion-input type="number" placeholder="Anzahl Tage"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">Kommentar</ion-label>
+                <ion-textarea placeholder="Kommentar"></ion-textarea>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">Vertretung</ion-label>
+                <ion-input type="text" placeholder="Vertretung"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">Vertretung Telefon</ion-label>
+                <ion-input type="text" placeholder="Vertretung Telefon"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">Vertretung E-Mail</ion-label>
+                <ion-input type="text" placeholder="Vertretung E-Mail"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">Vertretung Kommentar</ion-label>
+                <ion-textarea placeholder="Vertretung Kommentar"></ion-textarea>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">Urlaubstyp</ion-label>
+                <ion-select>
+                  <ion-select-option value="1">Urlaub</ion-select-option>
+                  <ion-select-option value="2">Krankheit</ion-select-option>
+                  <ion-select-option value="3">Sonderurlaub</ion-select-option>
+                </ion-select>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">Urlaubstage</ion-label>
+                <ion-input type="number" placeholder="Urlaubstage"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">Resturlaubstage</ion-label>
+                <ion-input type="number" placeholder="Resturlaubstage"></ion-input>
+              </ion-item>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </section>
+</ion-content>

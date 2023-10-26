@@ -36,10 +36,10 @@
   height: 100px;
   position: relative;
   background-color: white;
-  span {
-    color: black;
-    font-size: 30px;
-  }
+}
+.pageTitle {
+  color: black !important;
+  font-size: 30px !important;
 }
 
 .logo-cont {

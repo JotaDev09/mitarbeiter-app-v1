@@ -2,6 +2,9 @@
   <div class="closeComponent" (click)="closeViewDienst" (click)="closeViewDienst()">
     <div></div>
   </div>
+  <div class="edit-dienst-info" *ngIf="editTag">
+    <p>Bei Bedarf Zeitänderung vom Dienstplaner anfordern.</p>
+  </div>
 
   <div class="info" [ngClass]="{'today': isToday}" *ngIf="!editTag">
     <span>{{data.dienstNumber}}</span>
@@ -12,26 +15,27 @@
     <span>{{data.sani}}</span>
     <!-- <span>{{data.relax}}</span> -->
   </div>
+
   <div class="info" [ngClass]="{'today': isToday}" *ngIf="editTag">
     <div class="info-cont">
       <span>Aktuell: {{data.day}}</span>
-      <input class="edit-date" type="date" [placeholder]="data.day" [min]="minDate">
+      <input class="edit-date" type="date" [min]="minDate" [(ngModel)]="selectedDay">
     </div>
     <div class="info-cont">
       <span>Aktuell: {{data.dienst}}</span>
       <select class="edit-time" [(ngModel)]="selectedHour">
         <option *ngFor="let hour of availableHours" [value]="hour">{{ hour }}</option>
       </select>
+    </div>
+  </div>
 
+  <div class="button-container">
+    <div class="button-edit" (click)="beantragenDienst()" *ngIf="editTag">
+      <a>Beantragen</a>
     </div>
 
-  </div>
-
-  <div class="button-edit" (click)="beantragenDienst()" *ngIf="editTag">
-    <a>Beantragen</a>
-  </div>
-
-  <div class="button-edit" (click)="changeDienst()" *ngIf="!editTag">
-    <a>wechseln Dienst</a>
+    <div class="button-edit" (click)="changeDienst()" *ngIf="!editTag">
+      <a>Dienst wechseln</a>
+    </div>
   </div>
 </section>
