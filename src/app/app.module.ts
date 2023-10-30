@@ -10,7 +10,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ViewDienstComponent } from './view-dienst/view-dienst.component';
 import { FormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
-import { MatIcon } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 

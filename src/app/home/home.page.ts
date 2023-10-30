@@ -74,7 +74,7 @@ export class HomePage implements OnInit {
    */
   getNextWeek(today: Date) {
     for (let i = 0; i < 7; i++) {
-      today.setDate(today.getDate() + 1); // Avanza al siguiente día
+      today.setDate(today.getDate() + 1);
       const day = today.getDate().toString().padStart(2, '0');
       const month = (today.getMonth() + 1).toString().padStart(2, '0');
       const year = today.getFullYear().toString().slice(-2);
