@@ -39,6 +39,13 @@ export class HeaderComponent implements OnInit {
   }
 
   /**
+   * The function is used to navigate to the holidays page
+   */
+  toHolidaysResum() {
+    this.router.navigate(['/holidays-resum']);
+  }
+
+  /**
    * The function is used to sign out the user and redirect to login page
    */
   signOut() {

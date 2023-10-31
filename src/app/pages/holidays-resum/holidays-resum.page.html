@@ -1,0 +1,37 @@
+<ion-header [translucent]="true">
+  <app-header></app-header>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <section class="holidays-resum">
+    <div *ngFor="let yearGroup of getHolidaysFromLocalStorage()">
+      <div class="holidays-year">
+        <span>Urlaub Jahr {{yearGroup.year}}</span>
+      </div>
+      <div class="holidays-cont" *ngFor="let holidays of yearGroup.holidays">
+        <div class="holidays-name">
+          <span>{{holidays.name}}</span>
+          <span>{{holidays.lastName}}</span>
+        </div>
+        <div class="holidays-dates">
+          <div class="holidays">
+            <span>Urlaub von:</span>
+            <span>{{formatDate(holidays.holidaysFrom)}}</span>
+          </div>
+          <div class="holidays">
+            <span>Urlaub bis:</span>
+            <span>{{formatDate(holidays.holidaysTo)}}</span>
+          </div>
+        </div>
+        <div class="holidays-notes">
+          <span>Notizen:</span>
+          <span>{{holidays.notes}}</span>
+        </div>
+        <div class="holidays-request">
+          <span>Beantragt:</span>
+          <span>{{holidays.dateRequest}}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</ion-content>

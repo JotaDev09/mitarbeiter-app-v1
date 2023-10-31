@@ -35,6 +35,10 @@ const routes: Routes = [
     path: 'holidays',
     loadChildren: () => import('./pages/holidays/holidays.module').then( m => m.HolidaysPageModule)
   },
+  {
+    path: 'holidays-resum',
+    loadChildren: () => import('./pages/holidays-resum/holidays-resum.module').then( m => m.HolidaysResumPageModule)
+  },
 ];
 
 @NgModule({

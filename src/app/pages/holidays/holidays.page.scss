@@ -83,7 +83,7 @@
   .green {
     outline: none;
     background-color: white;
-    color: #3c8f69 !important;
+    // color: #3c8f69 !important;
     font-size: 18px;
     border: none;
   }
@@ -153,4 +153,25 @@
   &:hover {
     opacity: 0.8;
   }
+}
+
+.float-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 200px;
+  bottom: 200px;
+}
+
+.float-container-holidays {
+  width: 250px;
+  align-self: center;
+  font-size: 23px;
+  color: #eef011;
+  padding: 20px 20px;
+  background-color: #3c8f69;
+  border-radius: 10px;
+  text-align: center;
 }
