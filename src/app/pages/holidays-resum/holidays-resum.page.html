@@ -4,32 +4,72 @@
 
 <ion-content [fullscreen]="true">
   <section class="holidays-resum">
-    <div *ngFor="let yearGroup of getHolidaysFromLocalStorage()">
+    <div *ngFor="let yearGroup of getHolidaysFromLocalStorage(); let j = index">
       <div class="holidays-year">
         <span>Urlaub Jahr {{yearGroup.year}}</span>
       </div>
-      <div class="holidays-cont" *ngFor="let holidays of yearGroup.holidays">
-        <div class="holidays-name">
-          <span>{{holidays.name}}</span>
-          <span>{{holidays.lastName}}</span>
-        </div>
-        <div class="holidays-dates">
-          <div class="holidays">
-            <span>Urlaub von:</span>
-            <span>{{formatDate(holidays.holidaysFrom)}}</span>
+      <div class="holidays-cont" *ngFor="let holidays of yearGroup.holidays; let i = index">
+
+        <div class="holidays-info-cont">
+          <div class="holidays-name">
+            <span>{{holidays.name}}</span>
+            <span>{{holidays.lastName}}</span>
           </div>
-          <div class="holidays">
-            <span>Urlaub bis:</span>
-            <span>{{formatDate(holidays.holidaysTo)}}</span>
+          <div class="holidays-dates">
+            <div class="holidays">
+              <span>Urlaub von:</span>
+              <span class="from-to-days" *ngIf="!editHolidays">{{formatDate(holidays.holidaysFrom)}}</span>
+              <input type="date" placeholder="{{holidays.holidaysFrom}}" class="input-resum-holidays"
+                *ngIf="editHolidays" [attr.min]="optHolidays" [max]="maxOptionHolidays" name="holidaysFrom">
+            </div>
+            <div class="holidays">
+              <span>Urlaub bis:</span>
+              <span class="from-to-days" *ngIf="!editHolidays">{{formatDate(holidays.holidaysTo)}}</span>
+              <input type="date" placeholder="{{holidays.holidaysTo}}" class="input-resum-holidays" *ngIf="editHolidays"
+                [min]="editHolidaysFrom" [max]="maxOptionHolidays">
+            </div>
+          </div>
+          <div class="info" *ngIf="editHolidays">
+            <span>Resturlaub:</span>
+            <input type="text" name="stillHolidays" placeholder="{{holidays.stillHolidays}}" class="inputStillHol"
+              disabled="" [style.color]="holidays.stillHolidays <= 5 ? 'red' : '#3c8f69'"> Tage
+          </div>
+          <div class="holidays-notes">
+            <span>Notizen:</span>
+            <span class="notes" *ngIf="!editHolidays">{{holidays.notes? holidays.notes :
+              'Keine Notizen'}}</span>
+            <textarea class="texta-resum-holidays" [(value)]="holidays.notes" *ngIf="editHolidays"></textarea>
+          </div>
+          <div class="holidays-request">
+            <span>Beantragt:</span>
+            <span *ngIf="!editHolidays">{{holidays.dateRequest}}</span>
+            <input disabled="" type="text" name="dateRequest" placeholder="{{minDate}}" class="inputDays grey"
+              *ngIf="editHolidays">
           </div>
         </div>
-        <div class="holidays-notes">
-          <span>Notizen:</span>
-          <span>{{holidays.notes}}</span>
-        </div>
-        <div class="holidays-request">
-          <span>Beantragt:</span>
-          <span>{{holidays.dateRequest}}</span>
+
+        <div class="holidays-status-cont">
+          <div class="status-cont">
+            <img *ngIf="holidays.status" src="{{getStatusIcon(holidays.status)}}">
+          </div>
+
+          <div class="status-button">
+            <button class="button-status" (click)="editHolidaysButton(holidays.id)" *ngIf="!editHolidays">
+              Bearbeiten
+            </button>
+            <button class="button-status" (click)="requestHolidaysChange()"
+              *ngIf="editHolidays && currentEditingId === holidays.id">
+              Beantragen
+            </button>
+            <button class="button-status" (click)="requestHolidaysCancel()"
+              *ngIf="editHolidays && currentEditingId === holidays.id">
+              Abbrechen
+            </button>
+            <button class="button-status red" (click)="cancelHolidays(holidays.id)"
+              *ngIf="editHolidays && currentEditingId === holidays.id">
+              Absagen
+            </button>
+          </div>
         </div>
       </div>
     </div>

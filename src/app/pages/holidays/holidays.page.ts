@@ -8,25 +8,24 @@ import { Router } from '@angular/router';
   styleUrls: ['./holidays.page.scss'],
 })
 export class HolidaysPage implements OnInit {
-  today = new Date();
-  day = this.today.getDate();
-  month = this.today.getMonth() + 1;
-  year = new Date().getFullYear();
-  minDate = `${this.day}/${this.month}/${this.year}`;
-  nextYear = this.year + 1;
+  id = this.sharedService.getId();
+  minDate = this.sharedService.minDate;
+  year = this.sharedService.year;
+  nextYear = this.sharedService.year + 1;
   currentMonth = new Date().getMonth() + 1;
   showNextYearOption: boolean = false;
-  name: string = 'Man';
-  lastname: string = 'Mustermann';
+  name: string = this.sharedService.getUserLocalStorage().name;
+  lastname: string = this.sharedService.getUserLocalStorage().lastname;
   optHolidays: string = '';
   maxOptionHolidays: string = '';
-  actualYear = this.year;
+  actualYear = this.sharedService.year;
   proxYear: string = '';
   lastNameWorker: string = '';
   nameWorker: string = '';
   holidaysFrom: string = '';
   holidaysTo: string = '';
-  stillHolidays: number = 28;
+  stillHolidays: number =
+    this.sharedService.getUserLocalStorage().stillHolidays;
   notes: string = '';
   dateRequest: string = '';
   placeholderValue: string = '';
@@ -50,7 +49,7 @@ export class HolidaysPage implements OnInit {
       this.showNextYearOption = true;
       this.maxOptionHolidays = `${this.nextYear}-12-31`;
     }
-    this.maxOptionHolidays = `${this.year}-12-31`;
+    this.maxOptionHolidays = `${this.sharedService.year}-12-31`;
   }
 
   /**
@@ -77,7 +76,7 @@ export class HolidaysPage implements OnInit {
         .padStart(2, '0')}`;
     } else {
       this.minHolidaysTo = this.optHolidays;
-      this.maxOptionHolidays = `${this.year}-12-31`;
+      this.maxOptionHolidays = `${this.sharedService.year}-12-31`;
     }
   }
 
@@ -88,18 +87,20 @@ export class HolidaysPage implements OnInit {
   sendHolidays(holidaysForm: any) {
     if (holidaysForm.valid) {
       const holidayData = {
+        id: this.id,
         year: this.actualYear,
         lastName: this.lastname,
         name: this.name,
         holidaysFrom: this.holidaysFrom,
         holidaysTo: this.holidaysTo,
-        stillHolidays: this.stillHolidays,
         notes: this.notes,
-        dateRequest: this.minDate,
+        dateRequest: this.sharedService.minDate,
+        status: 'waiting',
       };
 
       console.log(holidayData);
-      this.saveHolidaysLocalStorage(holidayData);
+      this.sharedService.updateStillHolidaysLocalStorage(this.stillHolidays);
+      this.sharedService.saveHolidaysLocalStorage(holidayData);
       this.holidaysFrom = '';
       this.holidaysTo = '';
       this.notes = '';
@@ -113,17 +114,11 @@ export class HolidaysPage implements OnInit {
     }
   }
 
-  saveHolidaysLocalStorage(holidayData: any) {
-    const holidays = JSON.parse(localStorage.getItem('holidays') || '[]');
-    holidays.push(holidayData);
-    localStorage.setItem('holidays', JSON.stringify(holidays));
-  }
-
   /**
    * The user can only select the current day or a day after
    */
   habilityCalendarOption() {
-    this.optHolidays = this.today.toISOString().substring(0, 10);
+    this.optHolidays = this.sharedService.today.toISOString().substring(0, 10);
   }
 
   /**

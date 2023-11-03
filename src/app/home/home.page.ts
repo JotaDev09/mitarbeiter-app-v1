@@ -110,6 +110,7 @@ export class HomePage implements OnInit {
     } else {
       this.currentGreeting = this.greeting[2];
     }
+    this.name = this.sharedService.getUserLocalStorage().name;
   }
 
   /**

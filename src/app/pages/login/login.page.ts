@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   trigger,
   state,
@@ -7,6 +7,7 @@ import {
   transition,
 } from '@angular/animations';
 import { Router } from '@angular/router';
+import { SharedService } from 'src/app/shared.service';
 
 @Component({
   selector: 'app-login',
@@ -40,11 +41,7 @@ export class LoginPage implements OnInit {
   animationState: string = 'middle';
   animateIntro: boolean = false;
 
-  constructor(
-    private renderer: Renderer2,
-    private el: ElementRef,
-    private router: Router
-  ) {}
+  constructor(private router: Router, private sharedService: SharedService) {}
 
   ngOnInit() {
     this.startAnimation();
@@ -75,7 +72,17 @@ export class LoginPage implements OnInit {
    */
   submitForm(form: any) {
     if (form.valid) {
-      console.log(form.value);
+      const worker = {
+        id: this.sharedService.getId(),
+        name: this.userEmail,
+        lastname: '',
+        email: this.userEmail,
+        password: this.userPassword,
+        holidays: [],
+        dienst: [],
+        stillHolidays: 28,
+      };
+      this.sharedService.saveUserLocalStorage(worker);
       this.router.navigate(['/home']);
     }
   }
