@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { ViewDienstComponent } from '../view-dienst/view-dienst.component';
 import { MatDialog } from '@angular/material/dialog';
-import { MatIconModule } from '@angular/material/icon';
 import { SharedService } from '../shared.service';
 
 @Component({
@@ -27,12 +25,7 @@ export class HomePage implements OnInit {
   relax: string = 'Ruhetag';
   showFiller = false;
 
-  constructor(
-    private router: Router,
-    private dialog: MatDialog,
-    private matIcon: MatIconModule,
-    private sharedService: SharedService
-  ) {
+  constructor(private dialog: MatDialog, private sharedService: SharedService) {
     this.getDate();
     this.isToday('01/01/21');
     this.greetings();

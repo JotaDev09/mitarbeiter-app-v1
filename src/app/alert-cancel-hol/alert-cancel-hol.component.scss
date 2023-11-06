@@ -1,0 +1,84 @@
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  border-radius: 20px;
+}
+
+.mat-mdc-progress-bar {
+  --mdc-linear-progress-active-indicator-color: #3c8f69;
+}
+
+.cancel-holidays-container {
+  padding: 20px;
+  font-family: "Poppins";
+}
+
+.cancel-holidays-title {
+  font-size: 20px;
+  color: #3c8f69;
+}
+
+.cancel-holidays-frage {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 15px;
+  span {
+    font-size: 18px;
+    color: black;
+  }
+}
+
+.cancel-holidays-answer {
+  padding: 10px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+.cancel-holidays-no {
+  font-size: 18px;
+  color: black;
+  background-color: white;
+  padding: 3px;
+  &:hover {
+    font-size: 20px;
+    padding: 10px;
+    color: #eef011;
+    background-color: #3c8f69;
+    border-radius: 10px;
+  }
+}
+
+.cancel-holidays-yes {
+  font-size: 18px;
+  padding: 3px;
+  color: black;
+  background-color: white;
+  &:hover {
+    color: #eef011;
+    background-color: red;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 10px;
+  }
+}
+
+.holidays-cancel-cont {
+  display: flex;
+  gap: 10px;
+}
+
+.holidays-to-cancel {
+  display: flex;
+  gap: 10px;
+
+  a {
+    color: black;
+    text-decoration: none;
+    font-size: 18px;
+  }
+
+  span {
+    font-size: 18px;
+    color: #3c8f69;
+  }
+}

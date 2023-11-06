@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [AppComponent, ViewDienstComponent],
@@ -25,6 +26,7 @@ import { MatButtonModule } from '@angular/material/button';
     FormsModule,
     MatMenuModule,
     MatButtonModule,
+    MatProgressBarModule,
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

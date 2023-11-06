@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from 'src/app/shared.service';
+import { Holidays } from 'src/app/models/holidays';
+import { MatDialog } from '@angular/material/dialog';
+import { AlertCancelHolComponent } from 'src/app/alert-cancel-hol/alert-cancel-hol.component';
 
 @Component({
   selector: 'app-holidays-resum',
@@ -7,8 +10,9 @@ import { SharedService } from 'src/app/shared.service';
   styleUrls: ['./holidays-resum.page.scss'],
 })
 export class HolidaysResumPage implements OnInit {
-  holidays: any = [];
-  editHolidays: boolean = false;
+  holidays: Holidays[] = [];
+  holiday: any;
+  editHolidays: boolean = true;
   dateRequest: string = '';
   minDate = this.sharedService.minDate;
   editedHolidaysFrom: string = '';
@@ -22,10 +26,18 @@ export class HolidaysResumPage implements OnInit {
   holidaysFrom: string = '';
   holidaysTo: string = '';
   editHolidaysFrom: string = '';
+  newHolidaysFrom: string = '';
+  newHolidaysTo: string = '';
   currentEditIndex: number | null = null;
   holidayIndex: number | null = null;
   yearGroupIndex: number | null = null;
-  currentEditingId: string | null = null;
+  currentEditingId: string | 0 = 0;
+  stillHolidays = this.sharedService.getUserLocalStorage().stillHolidays;
+  isEditing: boolean = false;
+  tempHolidaysFrom: string | null = null;
+  tempHolidaysTo: string | null = null;
+  temNotes: string | null = null;
+  newDates: boolean = false;
 
   status = [
     { name: 'approved', icon: 'assets/icons/status-tick.png' },
@@ -33,7 +45,7 @@ export class HolidaysResumPage implements OnInit {
     { name: 'rejected', icon: 'assets/icons/status-cancel.png' },
   ];
 
-  constructor(private sharedService: SharedService) {
+  constructor(private sharedService: SharedService, private dialog: MatDialog) {
     this.sharedService.updateTitle('Dienstplan');
   }
 
@@ -55,6 +67,23 @@ export class HolidaysResumPage implements OnInit {
     this.maxOptionHolidays = `${this.sharedService.year}-12-31`;
   }
 
+  updateTempHolidaysFrom(event: any) {
+    this.tempHolidaysFrom = event.target.value;
+    console.log(this.tempHolidaysFrom);
+    this.newDates = true;
+  }
+
+  updateTempHolidaysTo(event: any) {
+    this.tempHolidaysTo = event.target.value;
+    console.log(this.tempHolidaysTo);
+    this.newDates = true;
+  }
+
+  updateTextArea(event: any) {
+    this.temNotes = event.target.value;
+    console.log(this.temNotes);
+  }
+
   getStatusIcon(status: any) {
     const statusObj = this.status.find((s) => s.name === status);
     return statusObj ? statusObj.icon : '';
@@ -65,7 +94,8 @@ export class HolidaysResumPage implements OnInit {
     if (userDataJSON) {
       const userData = JSON.parse(userDataJSON);
       const holidays = userData.holidays || [];
-      console.log(holidays);
+      this.holidays = holidays;
+
       const groupedHolidaysData = this.groupedHolidays(holidays);
       return groupedHolidaysData;
     }
@@ -80,9 +110,7 @@ export class HolidaysResumPage implements OnInit {
         if (!acc[year]) {
           acc[year] = [];
         }
-
         holiday.isEditing = false;
-
         acc[year].push(holiday);
         return acc;
       },
@@ -105,31 +133,61 @@ export class HolidaysResumPage implements OnInit {
     const day = date.getDate().toString().padStart(2, '0');
     const month = (date.getMonth() + 1).toString().padStart(2, '0');
     const year = date.getFullYear();
-
     return `${day}/${month}/${year}`;
   }
 
   // Modifica el método editHolidaysButton
   editHolidaysButton(id: string) {
-    console.log(id);
-    this.currentEditingId = id;
-    this.editHolidays = true;
+    const holiday = this.holidays.find((h) => h.id === id);
+    if (holiday) {
+      this.isEditing = true;
+      this.editHolidays = false;
+      this.currentEditingId = id;
+    }
   }
 
-  requestHolidaysChange() {
-    // this.holidays.holidaysFrom = this.editedHolidaysFrom;
-    // this.holidays.holidaysTo = this.editedHolidaysTo;
-    // const holidays = JSON.parse(localStorage.getItem('holidays') || '[]');
-    // holidays.push(holidayData);
-    // localStorage.setItem('holidays', JSON.stringify(holidays));
+  requestHolidaysChange(holiday: any) {
+    console.log(holiday);
+
+    if (holiday) {
+      // Asegúrate de que holiday sea una referencia válida
+      holiday.holidaysFrom = this.tempHolidaysFrom;
+      holiday.holidaysTo = this.tempHolidaysTo;
+      // holiday.notes = this.temNotes;
+      console.log(this.temNotes);
+
+      const user = JSON.parse(localStorage.getItem('user') || '{}');
+      user.holidays = user.holidays || [];
+
+      const index = user.holidays.findIndex((h: any) => h.id === holiday.id);
+
+      if (index !== -1) {
+        user.holidays[index] = holiday;
+        localStorage.setItem('user', JSON.stringify(user));
+        this.newDates = false;
+        this.requestHolidaysCancel(holiday.id);
+      }
+    }
   }
 
-  requestHolidaysCancel() {
-    this.editHolidays = false;
+  requestHolidaysCancel(id: string) {
+    const holiday = this.holidays.find((h) => h.id === id);
+    if (holiday) {
+      this.isEditing = false;
+      this.editHolidays = true;
+      this.currentEditingId = id;
+      this.newDates = false;
+    }
   }
 
-  cancelHolidays(id: string) {
-    this.currentEditingId = id;
-    this.editHolidays = false;
+  cancelHolidays(id: string, holidaysFrom: string, holidaysTo: string) {
+    const holiday = this.holidays.find((h) => h.id === id);
+    const dialogRef = this.dialog.open(AlertCancelHolComponent, {
+      data: {
+        id: holiday?.id,
+        holidaysFrom: holiday?.holidaysFrom,
+        holidaysTo: holiday?.holidaysTo,
+      },
+    });
   }
 }

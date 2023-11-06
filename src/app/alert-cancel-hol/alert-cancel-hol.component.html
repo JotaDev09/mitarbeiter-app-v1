@@ -1,0 +1,22 @@
+<mat-progress-bar mode="indeterminate" *ngIf="loadBar"></mat-progress-bar>
+<div class="cancel-holidays-container">
+  <h1 mat-dialog-title class="cancel-holidays-title">Urlaub absagen</h1>
+  <div mat-dialog-content class="cancel-holidays-frage">
+    <span>Bist Du sicher, dass Du den Urlaub absagen möchtest?</span>
+
+    <div class="holidays-cancel-cont">
+      <div class="holidays-to-cancel">
+        <a>Von:&nbsp;</a><span>{{formatDate(data.holidaysFrom)}}</span>
+      </div>
+      <div class="holidays-to-cancel">
+        <a>Bis:&nbsp;</a><span>{{formatDate(data.holidaysTo)}}</span>
+      </div>
+    </div>
+
+  </div>
+  <div mat-dialog-actions class="cancel-holidays-answer">
+    <button mat-button mat-dialog-close class="cancel-holidays-no" (click)="closeCancelHolidays()">Nein</button>
+    <button mat-button mat-dialog-close cdkFocusInitial class="cancel-holidays-yes" (click)="cancelHolidays()">Ja,
+      absagen</button>
+  </div>
+</div>

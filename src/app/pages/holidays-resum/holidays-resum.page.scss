@@ -121,7 +121,7 @@
 }
 
 .input-resum-holidays {
-  width: 165px;
+  width: 125px;
   outline: none;
   background-color: white;
   color: grey;
@@ -138,10 +138,11 @@
   background-color: transparent;
   width: 100%;
   height: auto;
-  min-height: 100px;
+  max-height: 100px;
   border: none;
   resize: none;
   outline: none;
+  color: grey;
 }
 
 .info {
@@ -158,13 +159,14 @@
   background-color: white;
   font-size: 18px;
   border: none;
+  color: #3c8f69;
 }
 
 .inputDays {
   width: 110px;
   outline: none;
   background-color: white;
-  color: grey;
+  color: black;
   font-size: 18px;
   border: none;
 }
