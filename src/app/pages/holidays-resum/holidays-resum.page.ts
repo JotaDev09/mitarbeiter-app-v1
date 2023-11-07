@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SharedService } from 'src/app/shared.service';
 import { Holidays } from 'src/app/models/holidays';
 import { MatDialog } from '@angular/material/dialog';
-import { AlertCancelHolComponent } from 'src/app/alert-cancel-hol/alert-cancel-hol.component';
+import { AlertCancelHolComponent } from 'src/app/dialogs/alert-cancel-hol/alert-cancel-hol.component';
 
 @Component({
   selector: 'app-holidays-resum',
@@ -46,7 +46,7 @@ export class HolidaysResumPage implements OnInit {
   ];
 
   constructor(private sharedService: SharedService, private dialog: MatDialog) {
-    this.sharedService.updateTitle('Dienstplan');
+    this.sharedService.updateTitle('Urlaubs Übersicht');
   }
 
   ngOnInit() {

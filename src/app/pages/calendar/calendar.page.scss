@@ -1,0 +1,89 @@
+.calendar-container {
+  height: -webkit-fill-available;
+  padding: 100px 300px 50px 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 45px;
+  text-align: justify;
+  font-family: "Poppins";
+}
+
+.wrapper-calendar {
+  margin: 1rem;
+  padding: 0.5rem;
+  border: solid 1px #eaeaea;
+  box-shadow: 0 0 10px #e4e4e4;
+}
+
+div {
+  text-align: center;
+  width: -webkit-fill-available;
+  height: -webkit-fill-available;
+}
+
+ol {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  padding: 0.25rem;
+  font-size: 1.5ch;
+  cursor: pointer;
+}
+li:hover {
+  font-weight: 600;
+}
+h2 {
+  margin-bottom: 4px;
+  padding: 0;
+}
+
+.first-day {
+  grid-column-start: var(--first-day-start, 0);
+}
+
+.day-name {
+  background: #eee;
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 2px;
+  padding: 4px;
+  text-align: center;
+}
+
+.header-calendar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+
+  h1 {
+    width: 100%;
+    font-size: 20px;
+    font-family: "Poppins";
+    color: #3c8f69;
+  }
+
+  button {
+    cursor: pointer;
+    background-color: white;
+    color: #3c8f69;
+    border: 0;
+  }
+}
+
+.day-container {
+  width: -webkit-fill-available;
+  height: 100px;
+  border: 1px solid #3c8f69;
+
+  span {
+    font-size: 16px;
+    color: #3c8f69;
+  }
+}

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ViewDienstComponent } from '../view-dienst/view-dienst.component';
+import { ViewDienstComponent } from '../dialogs/view-dienst/view-dienst.component';
 import { MatDialog } from '@angular/material/dialog';
 import { SharedService } from '../shared.service';
 

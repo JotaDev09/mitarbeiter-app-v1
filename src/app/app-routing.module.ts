@@ -33,11 +33,28 @@ const routes: Routes = [
   },
   {
     path: 'holidays',
-    loadChildren: () => import('./pages/holidays/holidays.module').then( m => m.HolidaysPageModule)
+    loadChildren: () =>
+      import('./pages/holidays/holidays.module').then(
+        (m) => m.HolidaysPageModule
+      ),
   },
   {
     path: 'holidays-resum',
-    loadChildren: () => import('./pages/holidays-resum/holidays-resum.module').then( m => m.HolidaysResumPageModule)
+    loadChildren: () =>
+      import('./pages/holidays-resum/holidays-resum.module').then(
+        (m) => m.HolidaysResumPageModule
+      ),
+  },
+  {
+    path: 'information',
+    loadChildren: () =>
+      import('./pages/information/information.module').then(
+        (m) => m.InformationPageModule
+      ),
+  },
+  {
+    path: 'calendar',
+    loadChildren: () => import('./pages/calendar/calendar.module').then( m => m.CalendarPageModule)
   },
 ];
 

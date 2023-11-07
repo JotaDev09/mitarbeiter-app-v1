@@ -52,4 +52,18 @@ export class HeaderComponent implements OnInit {
     //implement sign out functionality here
     this.router.navigate(['/login']);
   }
+
+  /**
+   * The function is used to navigate to the information page
+   */
+  toInformation() {
+    this.router.navigate(['/information']);
+  }
+
+  /**
+   * The function is used to navigate to the calendar page
+   */
+  toCalendar() {
+    this.router.navigate(['/calendar']);
+  }
 }
