@@ -4,28 +4,13 @@
 
 <ion-content [fullscreen]="true">
   <section class="calendar-container">
-    <div class="wrapper-calendar">
-      <div class="header-calendar">
-        <div>
-          <button (click)="changeMonth(-1)" class="btn-prev">
-            <mat-icon>chevron_left</mat-icon>
-          </button>
-        </div>
-        <h1>{{dateSelect | date:'MMMM, yyyy'}}</h1>
-        <div>
-          <button (click)="changeMonth(1)" class="btn-next">
-            <mat-icon>chevron_right</mat-icon>
-          </button>
-        </div>
-      </div>
-      <ol>
-        <li *ngFor="let day of week" class="day-name">{{day | slice:0:3}}</li>
 
-        <li (click)="clickDay(day)" [style.gridColumnStart]="first ? day?.indexWeek : 'auto'"
-          *ngFor="let day of monthSelect;let first = first" class="day-container">
-          <span>{{day?.value}}</span>
-        </li>
-      </ol>
-    </div>
+    <full-calendar [options]="calendarOptions" class="wrapper-calendar">
+      <ng-template #eventContent let-arg class="day-container">
+        <b>{{arg.timetex}}</b>
+        <i>{{arg.event.title}}</i>
+      </ng-template>
+    </full-calendar>
+
   </section>
 </ion-content>

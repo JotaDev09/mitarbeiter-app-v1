@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
+import { Holidays } from './models/holidays';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +12,7 @@ export class SharedService {
   month = this.today.getMonth() + 1;
   year = new Date().getFullYear();
   minDate = `${this.day}/${this.month}/${this.year}`;
+  holidays: Holidays[] = [];
 
   constructor() {}
 
@@ -68,5 +70,44 @@ export class SharedService {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     user.stillHolidays = stillHolidays;
     localStorage.setItem('user', JSON.stringify(user));
+  }
+
+  getHolidaysFromLocalStorage() {
+    const userDataJSON = localStorage.getItem('user');
+    if (userDataJSON) {
+      const userData = JSON.parse(userDataJSON);
+      const holidays = userData.holidays || [];
+      this.holidays = holidays;
+
+      const groupedHolidaysData = this.groupedHolidays(holidays);
+      return groupedHolidaysData;
+    }
+    return [];
+  }
+
+  groupedHolidays(holidays: any[]) {
+    const groupedHolidays: { [year: string]: any[] } = holidays.reduce(
+      (acc: { [year: string]: any[] }, holiday: any) => {
+        const year = holiday.year.toString();
+
+        if (!acc[year]) {
+          acc[year] = [];
+        }
+        holiday.isEditing = false;
+        acc[year].push(holiday);
+        return acc;
+      },
+      {}
+    );
+
+    return Object.keys(groupedHolidays).map((year) => ({
+      year: year,
+      holidays: groupedHolidays[year].sort((a: any, b: any) => {
+        return (
+          new Date(a.holidaysFrom).getTime() -
+          new Date(b.holidaysFrom).getTime()
+        );
+      }),
+    }));
   }
 }

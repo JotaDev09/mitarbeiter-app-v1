@@ -1,83 +1,55 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { CalendarOptions } from '@fullcalendar/core';
+import dayGridPlugin from '@fullcalendar/daygrid';
 import { SharedService } from 'src/app/shared.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.page.html',
   styleUrls: ['./calendar.page.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class CalendarPage implements OnInit {
-  monthSelect: any[] = [];
-  dateSelect: any;
-  dateValue: any;
-
-  week: any = [
-    'Montag',
-    'Dienstag',
-    'Mittwoch',
-    'Donnerstag',
-    'Freitag',
-    'Samstag',
-    'Sonntag',
-  ];
-
-  constructor(private sharedService: SharedService, private router: Router) {
+  holidaysData: any[] = [];
+  constructor(private sharedService: SharedService) {
     this.sharedService.updateTitle('Kalender');
   }
 
-  ngOnInit(): void {
-    this.getDaysFromDate(11, 2023);
+  ngOnInit() {
+    this.holidaysData = this.sharedService.getHolidaysFromLocalStorage();
+    console.log(this.holidaysData);
+    console.log(this.eventsData);
   }
 
-  getDaysFromDate(month: any, year: any) {
-    const startDate = new Date(year, month - 1, 1);
-    const endDate = new Date(year, month, 0);
-    this.dateSelect = startDate;
-
-    const diffDays =
-      (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24);
-    const numberDays = Math.round(diffDays);
-
-    const arrayDays = [...Array(numberDays)].map((_, index) => {
-      const day = index + 1;
-      const dayObject = new Date(year, month - 1, day);
-      return {
-        name: this.week[dayObject.getDay()],
-        value: day,
-        indexWeek: dayObject.getDay(),
-      };
-    });
-
-    this.monthSelect = arrayDays;
-  }
-
-  changeMonth(flag: any) {
-    const currentYear = this.dateSelect.getFullYear();
-    const currentMonth = this.dateSelect.getMonth();
-    const newDate = new Date(currentYear, currentMonth + flag, 1);
-    this.getDaysFromDate(newDate.getMonth() + 1, newDate.getFullYear());
-  }
-
-  clickDay(day: any) {
-    const monthYear = this.dateSelect.format('YYYY-MM');
-    const parse = `${monthYear}-${day.value}`;
-    const objectDate = new Date(parse);
-
-    // If you need to format the date as a string, you can use the following:
-    this.dateValue = {
-      value: objectDate,
-      formatted: this.formatDate(objectDate),
+  eventsData = this.holidaysData.map((holidays) => {
+    return {
+      title: 'Urlaub',
+      start: holidays.holidaysFrom,
+      end: holidays.holidaysTo,
+      display: 'background',
     };
-  }
+  });
 
-  formatDate(date: Date) {
-    const options: Intl.DateTimeFormatOptions = {
+  calendarOptions: CalendarOptions = {
+    locale: 'de',
+    plugins: [dayGridPlugin],
+    initialView: 'dayGridMonth',
+    weekends: true,
+    headerToolbar: {
+      left: 'prev next',
+      center: 'title',
+      right: 'today',
+    },
+    buttonText: {
+      today: 'Heute',
+      month: 'Monat',
+      week: 'Woche',
+    },
+    firstDay: 1,
+    dayHeaderFormat: {
       weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    };
-    return date.toLocaleDateString(undefined, options);
-  }
+    },
+
+    events: this.eventsData,
+  };
 }

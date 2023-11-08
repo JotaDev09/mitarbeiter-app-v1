@@ -6,6 +6,7 @@ import { IonicModule } from '@ionic/angular';
 import { MatIconModule } from '@angular/material/icon';
 
 import { CalendarPageRoutingModule } from './calendar-routing.module';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 import { CalendarPage } from './calendar.page';
 import { HeaderModule } from 'src/app/header/header.module';
@@ -18,6 +19,7 @@ import { HeaderModule } from 'src/app/header/header.module';
     CalendarPageRoutingModule,
     HeaderModule,
     MatIconModule,
+    FullCalendarModule,
   ],
   declarations: [CalendarPage],
 })

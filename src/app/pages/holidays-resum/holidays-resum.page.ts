@@ -11,6 +11,7 @@ import { AlertCancelHolComponent } from 'src/app/dialogs/alert-cancel-hol/alert-
 })
 export class HolidaysResumPage implements OnInit {
   holidays: Holidays[] = [];
+  holidaysData: any[] = [];
   holiday: any;
   editHolidays: boolean = true;
   dateRequest: string = '';
@@ -50,7 +51,7 @@ export class HolidaysResumPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getHolidaysFromLocalStorage();
+    this.holidaysData = this.sharedService.getHolidaysFromLocalStorage();
     this.habilityCalendarOption();
     this.habilityNextYearOption();
   }
@@ -87,19 +88,6 @@ export class HolidaysResumPage implements OnInit {
   getStatusIcon(status: any) {
     const statusObj = this.status.find((s) => s.name === status);
     return statusObj ? statusObj.icon : '';
-  }
-
-  getHolidaysFromLocalStorage() {
-    const userDataJSON = localStorage.getItem('user');
-    if (userDataJSON) {
-      const userData = JSON.parse(userDataJSON);
-      const holidays = userData.holidays || [];
-      this.holidays = holidays;
-
-      const groupedHolidaysData = this.groupedHolidays(holidays);
-      return groupedHolidaysData;
-    }
-    return [];
   }
 
   groupedHolidays(holidays: any[]) {
