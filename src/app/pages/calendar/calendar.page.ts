@@ -11,24 +11,24 @@ import { SharedService } from 'src/app/shared.service';
 })
 export class CalendarPage implements OnInit {
   holidaysData: any[] = [];
+  eventsData: any[] = [];
+
   constructor(private sharedService: SharedService) {
     this.sharedService.updateTitle('Kalender');
   }
 
   ngOnInit() {
     this.holidaysData = this.sharedService.getHolidaysFromLocalStorage();
-    console.log(this.holidaysData);
-    console.log(this.eventsData);
-  }
 
-  eventsData = this.holidaysData.map((holidays) => {
-    return {
-      title: 'Urlaub',
-      start: holidays.holidaysFrom,
-      end: holidays.holidaysTo,
-      display: 'background',
-    };
-  });
+    this.eventsData = this.holidaysData[0].holidays.map((holidays: any) => {
+      return {
+        title: 'Urlaub',
+        start: holidays.holidaysFrom,
+        end: holidays.holidaysTo,
+        display: 'background',
+      };
+    });
+  }
 
   calendarOptions: CalendarOptions = {
     locale: 'de',
@@ -50,6 +50,11 @@ export class CalendarPage implements OnInit {
       weekday: 'long',
     },
 
-    events: this.eventsData,
+    eventSources: [
+      (fetchInfo, successCallback, failureCallback) => {
+        const events = [...this.eventsData];
+        successCallback(events);
+      },
+    ],
   };
 }

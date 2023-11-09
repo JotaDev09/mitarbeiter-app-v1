@@ -51,45 +51,32 @@ export class HolidaysResumPage implements OnInit {
   }
 
   ngOnInit() {
-    this.holidaysData = this.sharedService.getHolidaysFromLocalStorage();
+    this.getHolidaysFromLocalStorage();
     this.habilityCalendarOption();
     this.habilityNextYearOption();
   }
 
-  habilityCalendarOption() {
-    this.optHolidays = this.sharedService.today.toISOString().substring(0, 10);
-  }
-
-  habilityNextYearOption() {
-    if (this.currentMonth >= 10) {
-      this.showNextYearOption = true;
-      this.maxOptionHolidays = `${this.nextYear}-12-31`;
+  /**
+   * The function getHolidaysFromLocalStorage() is a function that gets the holidays from the local storage
+   * @returns groupedHolidaysData
+   */
+  getHolidaysFromLocalStorage() {
+    const userDataJSON = localStorage.getItem('user');
+    if (userDataJSON) {
+      const userData = JSON.parse(userDataJSON);
+      const holidays = userData.holidays || [];
+      this.holidays = holidays;
+      const groupedHolidaysData = this.groupedHolidays(holidays);
+      return groupedHolidaysData;
     }
-    this.maxOptionHolidays = `${this.sharedService.year}-12-31`;
+    return [];
   }
 
-  updateTempHolidaysFrom(event: any) {
-    this.tempHolidaysFrom = event.target.value;
-    console.log(this.tempHolidaysFrom);
-    this.newDates = true;
-  }
-
-  updateTempHolidaysTo(event: any) {
-    this.tempHolidaysTo = event.target.value;
-    console.log(this.tempHolidaysTo);
-    this.newDates = true;
-  }
-
-  updateTextArea(event: any) {
-    this.temNotes = event.target.value;
-    console.log(this.temNotes);
-  }
-
-  getStatusIcon(status: any) {
-    const statusObj = this.status.find((s) => s.name === status);
-    return statusObj ? statusObj.icon : '';
-  }
-
+  /**
+   * The function groupedHolidays() is a function that groups the holidays by year
+   * @param holidays The holidays to be grouped
+   * @returns the grouped holidays
+   */
   groupedHolidays(holidays: any[]) {
     const groupedHolidays: { [year: string]: any[] } = holidays.reduce(
       (acc: { [year: string]: any[] }, holiday: any) => {
@@ -116,6 +103,67 @@ export class HolidaysResumPage implements OnInit {
     }));
   }
 
+  /**
+   * The function habilityCalendarOption() is a function that allows the user to select the current day
+   */
+  habilityCalendarOption() {
+    this.optHolidays = this.sharedService.today.toISOString().substring(0, 10);
+  }
+
+  /**
+   * The function habilitateNextYearOption() is a function that allows the user to select the next year
+   * @param id The id of the holiday to be deleted
+   */
+  habilityNextYearOption() {
+    if (this.currentMonth >= 10) {
+      this.showNextYearOption = true;
+      this.maxOptionHolidays = `${this.nextYear}-12-31`;
+    }
+    this.maxOptionHolidays = `${this.sharedService.year}-12-31`;
+  }
+
+  /**
+   * The function updateHolidaysFrom() is a function that updates the holidays "from"
+   * @param event The event to be updated
+   */
+  updateTempHolidaysFrom(event: any) {
+    this.tempHolidaysFrom = event.target.value;
+    this.newDates = true;
+  }
+
+  /**
+   * The function updateHolidaysTo() is a function that updates the holidays "to"
+   * @param event The event to be updated
+   */
+  updateTempHolidaysTo(event: any) {
+    this.tempHolidaysTo = event.target.value;
+    console.log(this.tempHolidaysTo);
+    this.newDates = true;
+  }
+
+  /**
+   * The function updateTextArea() is a function that updates the text area
+   * @param event The event to be updated
+   */
+  updateTextArea(event: any) {
+    this.temNotes = event.target.value;
+    console.log(this.temNotes);
+  }
+
+  /**
+   * The function getStatusIcon() is a function that gets the status icon
+   * @param id The id of the holiday to be edited
+   */
+  getStatusIcon(status: any) {
+    const statusObj = this.status.find((s) => s.name === status);
+    return statusObj ? statusObj.icon : '';
+  }
+
+  /**
+   * The function formatDate() is a function that formats the date
+   * @param dateString The date to be formatted
+   * @returns the formatted date
+   */
   formatDate(dateString: string): string {
     const date = new Date(dateString);
     const day = date.getDate().toString().padStart(2, '0');
@@ -124,7 +172,9 @@ export class HolidaysResumPage implements OnInit {
     return `${day}/${month}/${year}`;
   }
 
-  // Modifica el método editHolidaysButton
+  /**
+   * The function editHolidaysButton() is a function that allows the user to edit the holidays
+   */
   editHolidaysButton(id: string) {
     const holiday = this.holidays.find((h) => h.id === id);
     if (holiday) {
@@ -134,16 +184,16 @@ export class HolidaysResumPage implements OnInit {
     }
   }
 
+  /**
+   * The function requestHolidaysChange() is a function that allows the user to request a change in the holidays
+   * @param holiday The holiday to be changed
+   */
   requestHolidaysChange(holiday: any) {
-    console.log(holiday);
-
     if (holiday) {
-      // Asegúrate de que holiday sea una referencia válida
       holiday.holidaysFrom = this.tempHolidaysFrom;
       holiday.holidaysTo = this.tempHolidaysTo;
       // holiday.notes = this.temNotes;
-      console.log(this.temNotes);
-
+      // console.log(this.temNotes);
       const user = JSON.parse(localStorage.getItem('user') || '{}');
       user.holidays = user.holidays || [];
 
@@ -158,6 +208,10 @@ export class HolidaysResumPage implements OnInit {
     }
   }
 
+  /**
+   * The function requestHolidaysCancel() is a function that allows the user to cancel the holidays editing
+   * @param id The id of the holiday to be canceled
+   */
   requestHolidaysCancel(id: string) {
     const holiday = this.holidays.find((h) => h.id === id);
     if (holiday) {
@@ -168,6 +222,10 @@ export class HolidaysResumPage implements OnInit {
     }
   }
 
+  /**
+   * The function cancelHolidays() is a function that allows the user to cancel the holidays
+   * @param id The id of the holiday to be deleted
+   */
   cancelHolidays(id: string, holidaysFrom: string, holidaysTo: string) {
     const holiday = this.holidays.find((h) => h.id === id);
     const dialogRef = this.dialog.open(AlertCancelHolComponent, {

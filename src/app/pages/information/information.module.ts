@@ -8,6 +8,7 @@ import { InformationPageRoutingModule } from './information-routing.module';
 
 import { InformationPage } from './information.page';
 import { HeaderModule } from 'src/app/header/header.module';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { HeaderModule } from 'src/app/header/header.module';
     IonicModule,
     InformationPageRoutingModule,
     HeaderModule,
+    MatExpansionModule,
   ],
   declarations: [InformationPage],
 })

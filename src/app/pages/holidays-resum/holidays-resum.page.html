@@ -4,7 +4,7 @@
 
 <ion-content [fullscreen]="true">
   <section class="holidays-resum">
-    <div *ngFor="let yearGroup of holidaysData; let j = index">
+    <div *ngFor="let yearGroup of getHolidaysFromLocalStorage(); let j = index">
       <div class="holidays-year">
         <span>Urlaub Jahr {{yearGroup.year}}</span>
       </div>

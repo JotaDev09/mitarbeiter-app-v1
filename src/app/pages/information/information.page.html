@@ -3,9 +3,35 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">information</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <section class="information-container">
+    <mat-accordion>
+      <mat-expansion-panel hideToggle *ngFor="let info of information">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{info.informationTitle}}
+          </mat-panel-title>
+          <mat-panel-description>
+            {{info.informationSubTitle}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="container-info">
+          <p class="description size-17" [innerHTML]="info.informationDescription"></p>
+          <div class="cont-date">
+            <p class="date">{{info.informationDate}}</p>
+            <p class="time">{{info.informationTime}}</p>
+          </div>
+          <p class="where">{{info.informationWhere}}</p>
+          <p class="subText size-17">{{info.informationSubText}}</p>
+          <p class="finish size-17">{{info.informationFinish}}</p>
+          <p class="foot size-17" [innerHTML]="info.informationFoot"></p>
+        </div>
+        <div class="foto-container">
+          <img src="{{info.foto0}}" alt="">
+          <img src="{{info.foto1}}" alt="">
+          <img src="{{info.foto2}}" alt="">
+          <img src="{{info.foto3}}" alt="">
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </section>
 </ion-content>

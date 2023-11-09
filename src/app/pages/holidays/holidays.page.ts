@@ -86,6 +86,7 @@ export class HolidaysPage implements OnInit {
    */
   sendHolidays(holidaysForm: any) {
     if (holidaysForm.valid) {
+      const usedDays = this.calculateRemainingHolidays();
       const holidayData = {
         id: this.id,
         year: this.actualYear,
@@ -96,9 +97,9 @@ export class HolidaysPage implements OnInit {
         notes: this.notes,
         dateRequest: this.sharedService.minDate,
         status: 'waiting',
+        holidaysused: usedDays,
       };
 
-      console.log(holidayData);
       this.sharedService.updateStillHolidaysLocalStorage(this.stillHolidays);
       this.sharedService.saveHolidaysLocalStorage(holidayData);
       this.holidaysFrom = '';
@@ -132,12 +133,20 @@ export class HolidaysPage implements OnInit {
         (endDate - startDate) / (1000 * 60 * 60 * 24)
       );
 
-      const adjustedDaysDifference =
-        daysDifference - Math.floor(daysDifference / 7) * 2;
+      let usedDays = 0;
 
-      this.stillHolidays = 28 - adjustedDaysDifference;
-      console.log(adjustedDaysDifference);
+      for (let i = 0; i <= daysDifference; i++) {
+        const currentDate = new Date(startDate + i * 24 * 60 * 60 * 1000);
+        const dayOfWeek = currentDate.getDay();
+
+        if (dayOfWeek >= 1 && dayOfWeek <= 5) {
+          usedDays++;
+        }
+      }
+      this.stillHolidays = 28 - usedDays;
+      return usedDays;
     }
+    return 0;
   }
 
   /**
