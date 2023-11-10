@@ -23,10 +23,9 @@ export class InformationPage implements OnInit {
       informationTitle: 'Weihnachtsfeier',
       informationSubTitle: 'Einladung zur Weihnachtsfeier',
       informationDescription: `Liebe Kolleginnen und Kollegen, der Firmen
-        <span class="style-gorris">${this.ktGorris}</span> ,
+        <span class="style-gorris">${this.ktGorris}</span>,
         <span class="style-atb">${this.ATB}</span> &
-        <span class="style-adg">${this.ADG}</span>
-        , gerne möchten wir Euch hiermit herzlich zu unserer gemeinsamem Weihnachtsfeier einladen.  Wir würden uns sehr freuen, Euch`,
+        <span class="style-adg">${this.ADG}</span>, gerne möchten wir Euch hiermit herzlich zu unserer gemeinsamem Weihnachtsfeier einladen.  Wir würden uns sehr freuen, Euch`,
       informationDate: 'am 21. Dezember 2023,',
       informationTime: 'um 17.00 Uhr',
       informationWhere:
@@ -36,7 +35,7 @@ export class InformationPage implements OnInit {
         'Zusätzlich haben wir für Euch drei kleine Bowling-Bahnen und zwei Shuffleboards reserviert.',
       informationFoot: `Wir freuen uns auf Euch!
         <span class="style-gorris">${this.RRichter}</span> &
-        <span class="style-gorris">${this.OGorris}</span>,,
+        <span class="style-gorris">${this.OGorris}</span>,
         <span class="style-atb">${this.MRack}</span>,
         <span class="style-adg">${this.BCangiano}</span> &
         <span class="style-adg">${this.UTrispel}</span>.`,

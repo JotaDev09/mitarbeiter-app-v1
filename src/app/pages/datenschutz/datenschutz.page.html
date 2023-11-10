@@ -1,98 +1,96 @@
-<main class="privacy-content">
-  <ion-header [translucent]="true">
-    <section class="toolbar">
-      <div class="logo-cont">
-        <img src="/assets/img/gorris_logo.png" alt="">
-      </div>
-      <span>Datenschutz</span>
-      <div class="button-login" routerLink="/login">
-        <a>Login</a>
-      </div>
-    </section>
-  </ion-header>
+<ion-header [translucent]="true">
+  <section class="toolbar">
+    <div class="logo-cont">
+      <img src="/assets/img/gorris_logo.png" alt="">
+    </div>
+    <span>Datenschutz</span>
+    <div class="button-login" routerLink="/login">
+      <a>Login</a>
+    </div>
+  </section>
+</ion-header>
 
-  <ion-content [fullscreen]="true">
-    <section class="privacy-container">
-      <div class="privacy-intro">
-        <span>Wir freuen uns über Ihren Besuch auf unserer Website und Ihrem Interesse an unserem Unternehmen. Der
-          Schutz
-          Ihrer persönlichen Daten ist für uns wichtig und wir nehmen den Schutz dieser Daten sehr ernst. Wir halten uns
-          daher an die gültigen Datenschutzbestimmungen in all unseren geschäftlichen Prozessen. Unsere
-          Datenschutzerklärung erstreckt sich nicht auf die Webseiten anderer Anbieter, mit denen wir ggfs. verlinkt
-          sind.
-          Mit dem Besuch unserer Website willigen Sie in die Nutzung Ihrer personenbezogenen Daten ein und erklären sich
-          mit der nachfolgenden Datenschutzerklärung einverstanden.</span>
-      </div>
+<ion-content [fullscreen]="true">
+  <section class="privacy-container">
+    <div class="privacy-intro">
+      <span>Wir freuen uns über Ihren Besuch auf unserer Website und Ihrem Interesse an unserem Unternehmen. Der
+        Schutz
+        Ihrer persönlichen Daten ist für uns wichtig und wir nehmen den Schutz dieser Daten sehr ernst. Wir halten uns
+        daher an die gültigen Datenschutzbestimmungen in all unseren geschäftlichen Prozessen. Unsere
+        Datenschutzerklärung erstreckt sich nicht auf die Webseiten anderer Anbieter, mit denen wir ggfs. verlinkt
+        sind.
+        Mit dem Besuch unserer Website willigen Sie in die Nutzung Ihrer personenbezogenen Daten ein und erklären sich
+        mit der nachfolgenden Datenschutzerklärung einverstanden.</span>
+    </div>
 
-      <div class="privacy-contain" *ngFor="let contain of privacyContain">
-        <h3>{{contain.privacyContTitle}}</h3>
-        <span>{{contain.privacyContText}}</span>
-      </div>
+    <div class="privacy-contain" *ngFor="let contain of privacyContain">
+      <h3>{{contain.privacyContTitle}}</h3>
+      <span>{{contain.privacyContText}}</span>
+    </div>
 
-      <div class="privacy-contact" *ngFor="let daten of privacyContact; let i = index">
-        <h4>{{daten.privacyContactTitle}}</h4>
-        <span>{{daten.privacyContactText}}</span><br>
-        <div class="privacy-info" *ngFor="let daten of privacyContactInfo">
-          <a *ngIf="i >= 0">{{daten.name}}</a>
-          <a>{{daten.address}}</a>
-          <a>{{daten.telefon}}</a>
-          <a>{{daten.fax}}</a>
-          <span *ngIf="i === 0">{{daten.mail}} &nbsp; <a class="web"
-              href="mailto:post@krankentransport-gorris.de">post@krankentransport-gorris.de</a></span>
-          <span *ngIf="i === 1">{{daten.mail}} &nbsp; <a class="web"
-              href="mailto:datenschutz@krankentransport-gorris.de">datenschutz@krankentransport-gorris.de</a></span>
-        </div>
+    <div class="privacy-contact" *ngFor="let daten of privacyContact; let i = index">
+      <h4>{{daten.privacyContactTitle}}</h4>
+      <span>{{daten.privacyContactText}}</span><br>
+      <div class="privacy-info" *ngFor="let daten of privacyContactInfo">
+        <a *ngIf="i >= 0">{{daten.name}}</a>
+        <a>{{daten.address}}</a>
+        <a>{{daten.telefon}}</a>
+        <a>{{daten.fax}}</a>
+        <span *ngIf="i === 0">{{daten.mail}} &nbsp; <a class="web"
+            href="mailto:post@krankentransport-gorris.de">post@krankentransport-gorris.de</a></span>
+        <span *ngIf="i === 1">{{daten.mail}} &nbsp; <a class="web"
+            href="mailto:datenschutz@krankentransport-gorris.de">datenschutz@krankentransport-gorris.de</a></span>
       </div>
+    </div>
 
-      <div class="privacy-containSub" *ngFor="let contain of privacyDaten; let i = index; let isFirst = first">
-        <h3>{{contain.privacyDatenTitle}}</h3>
-        <span>{{contain.privacyDatenText}}</span>
-        <span *ngIf="isFirst">{{contain.privacyDatenSubtext}}</span>
-        <div class="containSub-info" *ngIf="i === 1">
-          <li>{{contain.info1}}</li>
-          <li>{{contain.info2}}</li>
-          <li>{{contain.info3}}</li>
-          <li>{{contain.info4}}</li>
-          <li>{{contain.info5}}</li>
-          <div>{{contain.vearbeitung}}</div>
-          <li>{{contain.info6}}</li>
-          <li>{{contain.info7}}</li>
-          <li>{{contain.info8}}</li>
-          <div>{{contain.rechtsgrundlage}}</div>
-        </div>
-        <div class="containSub-info" *ngIf="i === 2">
-          <li>{{contain.info1}}</li>
-          <li>{{contain.info2}}</li>
-          <li>{{contain.info3}}</li>
-        </div>
+    <div class="privacy-containSub" *ngFor="let contain of privacyDaten; let i = index; let isFirst = first">
+      <h3>{{contain.privacyDatenTitle}}</h3>
+      <span>{{contain.privacyDatenText}}</span>
+      <span *ngIf="isFirst">{{contain.privacyDatenSubtext}}</span>
+      <div class="containSub-info" *ngIf="i === 1">
+        <li>{{contain.info1}}</li>
+        <li>{{contain.info2}}</li>
+        <li>{{contain.info3}}</li>
+        <li>{{contain.info4}}</li>
+        <li>{{contain.info5}}</li>
+        <div>{{contain.vearbeitung}}</div>
+        <li>{{contain.info6}}</li>
+        <li>{{contain.info7}}</li>
+        <li>{{contain.info8}}</li>
+        <div>{{contain.rechtsgrundlage}}</div>
       </div>
-
-      <div class="containSub-info" *ngFor="let rechte of containRechte">
-        <h3>{{rechte.rechteTitle}}</h3>
-        <span>{{rechte.rechteText}}</span>
+      <div class="containSub-info" *ngIf="i === 2">
+        <li>{{contain.info1}}</li>
+        <li>{{contain.info2}}</li>
+        <li>{{contain.info3}}</li>
       </div>
+    </div>
 
-      <div class="privacy-contain" *ngFor="let contain of RechteContain">
-        <h3>{{contain.rechteContTitle}}</h3>
-        <span>{{contain.rechteContText}}</span>
+    <div class="containSub-info" *ngFor="let rechte of containRechte">
+      <h3>{{rechte.rechteTitle}}</h3>
+      <span>{{rechte.rechteText}}</span>
+    </div>
+
+    <div class="privacy-contain" *ngFor="let contain of RechteContain">
+      <h3>{{contain.rechteContTitle}}</h3>
+      <span>{{contain.rechteContText}}</span>
+    </div>
+
+    <div class="privacy-contact" *ngFor="let daten of datenContact">
+      <h4>{{daten.datenContactTitle}}</h4>
+      <span>{{daten.datenContactText}}</span><br>
+      <div class="privacy-info" *ngFor="let daten of datenContactInfo">
+        <a>{{daten.address}}</a>
+        <a>{{daten.telefon}}</a>
+        <span>{{daten.homepage}}&nbsp; <a class="web" href="mailto:{{daten.web}}">{{daten.web}}</a></span>
+        <a>{{daten.mail}}</a>
       </div>
+    </div>
 
-      <div class="privacy-contact" *ngFor="let daten of datenContact">
-        <h4>{{daten.datenContactTitle}}</h4>
-        <span>{{daten.datenContactText}}</span><br>
-        <div class="privacy-info" *ngFor="let daten of datenContactInfo">
-          <a>{{daten.address}}</a>
-          <a>{{daten.telefon}}</a>
-          <span>{{daten.homepage}}&nbsp; <a class="web" href="mailto:{{daten.web}}">{{daten.web}}</a></span>
-          <a>{{daten.mail}}</a>
-        </div>
-      </div>
+    <div class="containSub-info" *ngFor="let info of widerspruchrecht">
+      <h3>{{info.title}}</h3>
+      <span>{{info.text}}</span>
+    </div>
+  </section>
 
-      <div class="containSub-info" *ngFor="let info of widerspruchrecht">
-        <h3>{{info.title}}</h3>
-        <span>{{info.text}}</span>
-      </div>
-    </section>
-
-  </ion-content>
-</main>
+</ion-content>

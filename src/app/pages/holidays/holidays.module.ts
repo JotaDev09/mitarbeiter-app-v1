@@ -8,6 +8,7 @@ import { HolidaysPageRoutingModule } from './holidays-routing.module';
 
 import { HolidaysPage } from './holidays.page';
 import { HeaderModule } from 'src/app/header/header.module';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { HeaderModule } from 'src/app/header/header.module';
     IonicModule,
     HolidaysPageRoutingModule,
     HeaderModule,
+    MatSelectModule,
   ],
   declarations: [HolidaysPage],
 })

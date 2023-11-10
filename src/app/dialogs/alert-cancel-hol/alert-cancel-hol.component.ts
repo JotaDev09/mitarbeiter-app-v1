@@ -55,9 +55,13 @@ export class AlertCancelHolComponent implements OnInit {
       const indexToRemove = holidays.findIndex(
         (holiday: any) => holiday.id === id
       );
+      console.log(indexToRemove);
       if (indexToRemove !== -1) {
+        const canceledHolidays = holidays[indexToRemove];
+        userData.stillHolidays += canceledHolidays.holidaysused;
         holidays.splice(indexToRemove, 1);
         userData.holidays = holidays;
+
         localStorage.setItem('user', JSON.stringify(userData));
       }
       setTimeout(() => {

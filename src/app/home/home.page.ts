@@ -30,6 +30,7 @@ export class HomePage implements OnInit {
     this.isToday('01/01/21');
     this.greetings();
     this.sharedService.updateTitle('Dienstplan');
+    console.log(this.sharedService.getUserLocalStorage());
   }
 
   ngOnInit() {}

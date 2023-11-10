@@ -188,25 +188,25 @@ export class HolidaysResumPage implements OnInit {
    * The function requestHolidaysChange() is a function that allows the user to request a change in the holidays
    * @param holiday The holiday to be changed
    */
-  requestHolidaysChange(holiday: any) {
-    if (holiday) {
-      holiday.holidaysFrom = this.tempHolidaysFrom;
-      holiday.holidaysTo = this.tempHolidaysTo;
-      // holiday.notes = this.temNotes;
-      // console.log(this.temNotes);
-      const user = JSON.parse(localStorage.getItem('user') || '{}');
-      user.holidays = user.holidays || [];
+  // requestHolidaysChange(holiday: any) {
+  //   if (holiday) {
+  //     holiday.holidaysFrom = this.tempHolidaysFrom;
+  //     holiday.holidaysTo = this.tempHolidaysTo;
+  //     // holiday.notes = this.temNotes;
+  //     // console.log(this.temNotes);
+  //     const user = JSON.parse(localStorage.getItem('user') || '{}');
+  //     user.holidays = user.holidays || [];
 
-      const index = user.holidays.findIndex((h: any) => h.id === holiday.id);
+  //     const index = user.holidays.findIndex((h: any) => h.id === holiday.id);
 
-      if (index !== -1) {
-        user.holidays[index] = holiday;
-        localStorage.setItem('user', JSON.stringify(user));
-        this.newDates = false;
-        this.requestHolidaysCancel(holiday.id);
-      }
-    }
-  }
+  //     if (index !== -1) {
+  //       user.holidays[index] = holiday;
+  //       localStorage.setItem('user', JSON.stringify(user));
+  //       this.newDates = false;
+  //       this.requestHolidaysCancel(holiday.id);
+  //     }
+  //   }
+  // }
 
   /**
    * The function requestHolidaysCancel() is a function that allows the user to cancel the holidays editing

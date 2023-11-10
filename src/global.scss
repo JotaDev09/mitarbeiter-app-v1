@@ -36,13 +36,20 @@
   height: 100px;
   position: relative;
   background-color: white;
+
+  span {
+    color: #3c8f69;
+    font-size: 18px;
+  }
 }
+
 .pageTitle {
   color: black !important;
   font-size: 30px !important;
 }
 
 .logo-cont {
+  width: 200px;
   height: 200px;
   position: relative;
   top: 50px;
@@ -54,6 +61,9 @@
 
 .button-login {
   width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   a {
     text-decoration: none;
     cursor: pointer;
@@ -66,5 +76,15 @@
     &:hover {
       opacity: 0.8;
     }
+  }
+}
+
+@media (width < 1500px) {
+  .toolbar {
+    height: 75px;
+  }
+  .logo-cont {
+    height: 160px;
+    top: 40px;
   }
 }

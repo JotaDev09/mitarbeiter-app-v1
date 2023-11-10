@@ -66,4 +66,11 @@
   color: #eef011;
   font-size: 18px;
   font-weight: 600px;
+  border: 2px solid #eef011;
+}
+
+@media (width < 1500px) {
+  .home-container {
+    padding: 10px 100px 25px 100px;
+  }
 }

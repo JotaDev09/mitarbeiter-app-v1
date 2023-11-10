@@ -33,6 +33,9 @@
     color: #3c8f69;
   }
 }
+.day-title {
+  font-size: 15px !important;
+}
 
 .fc-theme-standard td,
 .fc-theme-standard th {
@@ -89,5 +92,11 @@
     font-size: 20px;
     color: #eef011;
     font-weight: 600;
+  }
+}
+
+@media (width < 1500px) {
+  .calendar-container {
+    padding: 80px 100px 25px 100px;
   }
 }

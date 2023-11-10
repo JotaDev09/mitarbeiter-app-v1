@@ -5,14 +5,17 @@
 //impressum content
 
 .impressum-container {
+  width: -webkit-fill-available;
   height: -webkit-fill-available;
-  padding: 100px 300px 50px 300px;
+  padding: 50px 300px 50px 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
   gap: 45px;
   text-align: justify;
   font-family: "Poppins";
+  overflow: scroll;
 }
 
 .impressum-contain {

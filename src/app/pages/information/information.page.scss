@@ -63,8 +63,11 @@
 }
 
 .foto-container {
+  width: -webkit-fill-available;
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
   gap: 20px;
 
   img {
@@ -86,4 +89,16 @@
   font-size: 20px;
   color: rgba(243, 230, 21, 1);
   -webkit-text-stroke: 0.5px rgba(23, 66, 139, 1);
+}
+
+@media (width < 1500px) {
+  .information-container {
+    padding: 100px 100px 50px 100px;
+  }
+
+  .foto-container {
+    img {
+      width: 280px;
+    }
+  }
 }

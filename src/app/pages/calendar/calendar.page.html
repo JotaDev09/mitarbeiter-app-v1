@@ -8,7 +8,8 @@
     <full-calendar [options]="calendarOptions" class="wrapper-calendar">
       <ng-template #eventContent let-arg class="day-container">
         <b>{{arg.timetex}}</b>
-        <i>{{arg.event.title}}</i>
+        <i class="day-title">{{arg.event.title}}</i>
+        <i class="day-title">{{arg.event.time}}</i>
       </ng-template>
     </full-calendar>
 

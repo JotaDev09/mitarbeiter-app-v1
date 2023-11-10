@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { CalendarOptions } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { SharedService } from 'src/app/shared.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-calendar',
@@ -18,16 +19,38 @@ export class CalendarPage implements OnInit {
   }
 
   ngOnInit() {
-    this.holidaysData = this.sharedService.getHolidaysFromLocalStorage();
+    this.loadHolidaysData();
+  }
 
-    this.eventsData = this.holidaysData[0].holidays.map((holidays: any) => {
-      return {
-        title: 'Urlaub',
-        start: holidays.holidaysFrom,
-        end: holidays.holidaysTo,
-        display: 'background',
-      };
-    });
+  loadHolidaysData() {
+    this.holidaysData = this.sharedService.getHolidaysFromLocalStorage();
+    if (this.holidaysData && this.holidaysData.length > 0) {
+      this.eventsData = [];
+      for (let i = 0; i < this.holidaysData.length; i++) {
+        const userHolidays = this.holidaysData[i].holidays;
+        this.eventsData = this.eventsData.concat(
+          userHolidays.map((holidays: any) => {
+            const endDate = new Date(holidays.holidaysTo);
+            endDate.setDate(endDate.getDate() + 1);
+            return {
+              title: 'Urlaub',
+              start: holidays.holidaysFrom,
+              end: moment(endDate).format('YYYY-MM-DD'),
+              display: 'background',
+            };
+          })
+        );
+      }
+      this.initializeCalendar();
+    }
+  }
+
+  initializeCalendar() {
+    this.calendarOptions.eventSources = [
+      (fetchInfo, successCallback, failureCallback) => {
+        successCallback(this.eventsData);
+      },
+    ];
   }
 
   calendarOptions: CalendarOptions = {
@@ -49,11 +72,12 @@ export class CalendarPage implements OnInit {
     dayHeaderFormat: {
       weekday: 'long',
     },
-
-    eventSources: [
-      (fetchInfo, successCallback, failureCallback) => {
-        const events = [...this.eventsData];
-        successCallback(events);
+    events: [
+      {
+        title: '17:00 Weihnachtsfeier',
+        start: '2023-12-02T17:00:00',
+        allDay: false,
+        time: '17:00',
       },
     ],
   };
