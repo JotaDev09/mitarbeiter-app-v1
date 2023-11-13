@@ -23,9 +23,19 @@
     </div>
     <div class="info-cont">
       <span>Aktuell: {{data.dienst}}</span>
-      <select class="edit-time" [(ngModel)]="selectedHour">
-        <option *ngFor="let hour of availableHours" [value]="hour">{{ hour }}</option>
-      </select>
+      <div class="new-dienst-hour">
+        <span>Ab:</span>
+        <select class="edit-time" [(ngModel)]="selectedFromHour">
+          <option *ngFor="let hour of availableHours" [value]="hour">{{ hour }}</option>
+        </select>
+      </div>
+      <div class="new-dienst-hour">
+        <span>Spätesten:</span>
+        <select class="edit-time" [(ngModel)]="selectedmaximalHour">
+          <option *ngFor="let hour of availableHours" [value]="hour">{{ hour }}</option>
+        </select>
+      </div>
+
     </div>
   </div>
 
@@ -34,7 +44,7 @@
       <a>Beantragen</a>
     </div>
 
-    <div class="button-edit" (click)="changeDienst()" *ngIf="!editTag">
+    <div class="button-edit" (click)="changeDienst(data.day)" *ngIf="!editTag">
       <a>Dienst wechseln</a>
     </div>
   </div>

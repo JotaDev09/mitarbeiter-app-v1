@@ -2,6 +2,7 @@ import { Component, OnInit, Inject, ViewEncapsulation } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatDialog } from '@angular/material/dialog';
 import { DatePipe } from '@angular/common';
+import { AlertEditDienstComponent } from '../alert-edit-dienst/alert-edit-dienst.component';
 
 @Component({
   selector: 'app-view-dienst',
@@ -15,18 +16,21 @@ export class ViewDienstComponent implements OnInit {
 
   editTag: boolean = false;
   availableHours: string[] = [
-    '06:00 - 14:00',
-    '06:30 - 14:30',
-    '07:00 - 15:00',
-    '08:00 - 16:00',
-    '09:00 - 17:00',
-    '10:00 - 18:00',
-    '12:00 - 20:00',
-    '14:00 - 22:00',
-    '22:00 - 06:00',
+    '06:00',
+    '06:30',
+    '07:00',
+    '08:00',
+    '09:00',
+    '10:00',
+    '12:00',
+    '14:00',
+    '22:00',
   ];
-  selectedHour: string = '06:00 - 14:00';
+  selectedFromHour: string = '06:00';
+  selectedmaximalHour: string = '06:00';
   selectedDay: string = '01/01/21';
+  today = new Date();
+  requestFromTwoDays = this.today.setDate(this.today.getDate() + 2);
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -61,8 +65,23 @@ export class ViewDienstComponent implements OnInit {
   /**
    * The function is used to open the view to change the dienst
    */
-  changeDienst() {
-    this.editTag = true;
+  changeDienst(selectedDay: string) {
+    if (selectedDay) {
+      const selectedDate = new Date(
+        parseInt(selectedDay.slice(6), 10) + 2000,
+        parseInt(selectedDay.slice(3, 5), 10) - 1,
+        parseInt(selectedDay.slice(0, 2), 10)
+      );
+
+      const twoDaysAhead = new Date(this.today);
+      twoDaysAhead.setDate(this.today.getDate() + 0);
+
+      if (selectedDate < twoDaysAhead) {
+        this.dialog.open(AlertEditDienstComponent, {});
+      } else {
+        this.editTag = true;
+      }
+    }
   }
 
   /**
@@ -79,7 +98,8 @@ export class ViewDienstComponent implements OnInit {
         day: this.data.day,
         newDay: formattedNewDay,
         dienst: this.data.dienst,
-        newDienst: this.selectedHour,
+        newFromHour: this.selectedFromHour,
+        newMaxHour: this.selectedmaximalHour,
       };
       console.log(changeDienst);
     }

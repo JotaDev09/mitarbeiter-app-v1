@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 20px;
 }
 
 .holidaysInYear {
@@ -179,6 +180,28 @@
   color: black;
   font-size: 18px;
   border: none;
+}
+
+.legend-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: fit-content;
+  width: fit-content;
+  padding: 10px;
+  border: 1px solid #3c8f69;
+  border-radius: 10px;
+  gap: 15px;
+}
+
+.legend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  img {
+    width: 30px;
+  }
 }
 
 @media (width < 1500px) {

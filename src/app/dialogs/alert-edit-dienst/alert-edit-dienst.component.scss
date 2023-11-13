@@ -1,0 +1,41 @@
+.edit-alert-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.alert-edit-cont {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: center;
+  font-size: 18px;
+
+  a {
+    text-decoration: none;
+    color: #3c8f69;
+    border: none;
+  }
+}
+
+.closeComponent {
+  width: -webkit-fill-available;
+  display: flex;
+  justify-content: flex-end;
+  div {
+    background-image: url("/assets/icons/close.svg");
+    background-size: cover;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    opacity: 0.5;
+    &:hover {
+      background-color: #eef011;
+      transition: 0.5s;
+      border-radius: 20px;
+      padding: 10px;
+      opacity: 1;
+    }
+  }
+}

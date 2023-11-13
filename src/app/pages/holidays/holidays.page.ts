@@ -119,7 +119,10 @@ export class HolidaysPage implements OnInit {
    * The user can only select the current day or a day after
    */
   habilityCalendarOption() {
-    this.optHolidays = this.sharedService.today.toISOString().substring(0, 10);
+    const today = this.sharedService.today;
+    const sevenDaysAhead = new Date(today);
+    sevenDaysAhead.setDate(today.getDate() + 10);
+    this.optHolidays = sevenDaysAhead.toISOString().substring(0, 10);
   }
 
   /**

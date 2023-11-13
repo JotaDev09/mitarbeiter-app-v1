@@ -11,14 +11,7 @@ import { AlertCancelHolComponent } from 'src/app/dialogs/alert-cancel-hol/alert-
 })
 export class HolidaysResumPage implements OnInit {
   holidays: Holidays[] = [];
-  holidaysData: any[] = [];
-  holiday: any;
   editHolidays: boolean = true;
-  dateRequest: string = '';
-  minDate = this.sharedService.minDate;
-  editedHolidaysFrom: string = '';
-  editedHolidaysTo: string = '';
-  i: any;
   optHolidays: string = '';
   maxOptionHolidays: string = '';
   currentMonth = new Date().getMonth() + 1;
@@ -26,24 +19,22 @@ export class HolidaysResumPage implements OnInit {
   nextYear = this.sharedService.year + 1;
   holidaysFrom: string = '';
   holidaysTo: string = '';
-  editHolidaysFrom: string = '';
-  newHolidaysFrom: string = '';
-  newHolidaysTo: string = '';
-  currentEditIndex: number | null = null;
-  holidayIndex: number | null = null;
-  yearGroupIndex: number | null = null;
   currentEditingId: string | 0 = 0;
-  stillHolidays = this.sharedService.getUserLocalStorage().stillHolidays;
   isEditing: boolean = false;
   tempHolidaysFrom: string | null = null;
   tempHolidaysTo: string | null = null;
-  temNotes: string | null = null;
   newDates: boolean = false;
 
   status = [
     { name: 'approved', icon: 'assets/icons/status-tick.png' },
     { name: 'waiting', icon: '/assets/icons/status-wait.png' },
     { name: 'rejected', icon: 'assets/icons/status-cancel.png' },
+  ];
+
+  legend = [
+    { name: 'Genehmigen', icon: 'assets/icons/status-tick.png' },
+    { name: 'Im Prozess', icon: '/assets/icons/status-wait.png' },
+    { name: 'Storniert', icon: 'assets/icons/status-cancel.png' },
   ];
 
   constructor(private sharedService: SharedService, private dialog: MatDialog) {
@@ -123,34 +114,6 @@ export class HolidaysResumPage implements OnInit {
   }
 
   /**
-   * The function updateHolidaysFrom() is a function that updates the holidays "from"
-   * @param event The event to be updated
-   */
-  updateTempHolidaysFrom(event: any) {
-    this.tempHolidaysFrom = event.target.value;
-    this.newDates = true;
-  }
-
-  /**
-   * The function updateHolidaysTo() is a function that updates the holidays "to"
-   * @param event The event to be updated
-   */
-  updateTempHolidaysTo(event: any) {
-    this.tempHolidaysTo = event.target.value;
-    console.log(this.tempHolidaysTo);
-    this.newDates = true;
-  }
-
-  /**
-   * The function updateTextArea() is a function that updates the text area
-   * @param event The event to be updated
-   */
-  updateTextArea(event: any) {
-    this.temNotes = event.target.value;
-    console.log(this.temNotes);
-  }
-
-  /**
    * The function getStatusIcon() is a function that gets the status icon
    * @param id The id of the holiday to be edited
    */
@@ -183,30 +146,6 @@ export class HolidaysResumPage implements OnInit {
       this.currentEditingId = id;
     }
   }
-
-  /**
-   * The function requestHolidaysChange() is a function that allows the user to request a change in the holidays
-   * @param holiday The holiday to be changed
-   */
-  // requestHolidaysChange(holiday: any) {
-  //   if (holiday) {
-  //     holiday.holidaysFrom = this.tempHolidaysFrom;
-  //     holiday.holidaysTo = this.tempHolidaysTo;
-  //     // holiday.notes = this.temNotes;
-  //     // console.log(this.temNotes);
-  //     const user = JSON.parse(localStorage.getItem('user') || '{}');
-  //     user.holidays = user.holidays || [];
-
-  //     const index = user.holidays.findIndex((h: any) => h.id === holiday.id);
-
-  //     if (index !== -1) {
-  //       user.holidays[index] = holiday;
-  //       localStorage.setItem('user', JSON.stringify(user));
-  //       this.newDates = false;
-  //       this.requestHolidaysCancel(holiday.id);
-  //     }
-  //   }
-  // }
 
   /**
    * The function requestHolidaysCancel() is a function that allows the user to cancel the holidays editing
