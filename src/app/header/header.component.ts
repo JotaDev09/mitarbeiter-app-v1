@@ -66,4 +66,11 @@ export class HeaderComponent implements OnInit {
   toCalendar() {
     this.router.navigate(['/calendar']);
   }
+
+  /**
+   * The function is used to navigate to the profil page
+   */
+  toProfil() {
+    this.router.navigate(['/profil']);
+  }
 }

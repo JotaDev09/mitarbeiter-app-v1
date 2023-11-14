@@ -32,12 +32,37 @@ export class CalendarPage implements OnInit {
           userHolidays.map((holidays: any) => {
             const endDate = new Date(holidays.holidaysTo);
             endDate.setDate(endDate.getDate() + 1);
-            return {
-              title: 'Urlaub',
-              start: holidays.holidaysFrom,
-              end: moment(endDate).format('YYYY-MM-DD'),
-              display: 'background',
-            };
+            const status = holidays.status;
+            if (status === 'waiting') {
+              return {
+                title: 'Urlaub beantragt',
+                start: holidays.holidaysFrom,
+                end: moment(endDate).format('YYYY-MM-DD'),
+                display: 'background',
+                backgroundColor: '#eef011',
+                color: '#3c8f69',
+              };
+            } else if (status === 'approved') {
+              return {
+                title: 'Urlaub genehmigt',
+                start: holidays.holidaysFrom,
+                end: moment(endDate).format('YYYY-MM-DD'),
+                display: 'background',
+                backgroundColor: '#3c8f69',
+                color: '#eef011',
+              };
+            } else if (status === 'rejected') {
+              return {
+                title: 'Urlaub storniert',
+                start: holidays.holidaysFrom,
+                end: moment(endDate).format('YYYY-MM-DD'),
+                display: 'background',
+                backgroundColor: '#f44336',
+                color: '#eef011',
+              };
+            } else {
+              return null;
+            }
           })
         );
       }
@@ -78,7 +103,14 @@ export class CalendarPage implements OnInit {
         start: '2023-12-02T17:00:00',
         allDay: false,
         time: '17:00',
+        backgroundColor: '#3c8f69',
       },
     ],
+    // eventMouseEnter: function (info) {
+    //   info.el.style.opacity = '1';
+    // },
+    // eventMouseLeave: function (info) {
+    //   info.el.style.opacity = '0.6';
+    // },
   };
 }

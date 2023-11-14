@@ -33,7 +33,60 @@ export class HomePage implements OnInit {
     console.log(this.sharedService.getUserLocalStorage());
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    setTimeout(() => {
+      this.checkAmbulanceLicense();
+      this.checkDriverLicense();
+    }, 1000);
+  }
+
+  checkAmbulanceLicense() {
+    const userData = this.sharedService.getUserLocalStorage();
+
+    if (userData) {
+      const ambulanceExpirationDate = new Date(userData.ambulanceLicense);
+      const today = new Date();
+      const timeDiff = ambulanceExpirationDate.getTime() - today.getTime();
+      const diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+      const diffMonths = Math.floor(diffDays / 30);
+      const remainingDays = diffDays % 30;
+
+      if (diffDays <= 30) {
+        alert(
+          `Dein P-Schein läuft in ${diffDays} Tagen ab! Bitte verlängert ihn so schnell wie möglich!`
+        );
+      } else if (diffMonths <= 2) {
+        alert(
+          `Dein P-Schein läuft in ${diffMonths} Monate und ${remainingDays} Tage ab!`
+        );
+      }
+    }
+  }
+
+  checkDriverLicense() {
+    const userData = this.sharedService.getUserLocalStorage();
+
+    if (userData) {
+      const driverLicenseExpirationDate = new Date(userData.driverLicense);
+      const today = new Date();
+      const timeDiff = driverLicenseExpirationDate.getTime() - today.getTime();
+      const diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+      const diffMonths = Math.floor(diffDays / 30);
+      const remainingDays = diffDays % 30;
+
+      if (diffDays <= 30) {
+        alert(
+          `Dein Führerschein läuft in ${diffDays} Tagen ab! Bitte verlängert ihn so schnell wie möglich!`
+        );
+      } else if (diffMonths <= 2) {
+        alert(
+          `Dein Führerschein läuft in ${diffMonths} Monate und ${remainingDays} Tage ab!`
+        );
+      }
+    }
+  }
 
   /**
    * The function is used to get the current week

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
 import { Holidays } from './models/holidays';
+import { User } from './models/user';
 
 @Injectable({
   providedIn: 'root',
@@ -69,6 +70,35 @@ export class SharedService {
   updateStillHolidaysLocalStorage(stillHolidays: number) {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     user.stillHolidays = stillHolidays;
+    localStorage.setItem('user', JSON.stringify(user));
+  }
+
+  updateInfoLocalStorage(worker: any) {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    if (worker.name !== undefined) {
+      user.name = worker.name;
+    }
+    if (worker.lastname !== undefined) {
+      user.lastname = worker.lastname;
+    }
+    if (worker.phone !== undefined) {
+      user.phone = worker.phone;
+    }
+    if (worker.email !== undefined) {
+      user.email = worker.email;
+    }
+    if (worker.address !== undefined) {
+      user.address = worker.address;
+    }
+    if (worker.stadt !== undefined) {
+      user.stadt = worker.stadt;
+    }
+    if (worker.driverLicense !== undefined) {
+      user.driverLicense = worker.driverLicense;
+    }
+    if (worker.ambulanceLicense !== undefined) {
+      user.ambulanceLicense = worker.ambulanceLicense;
+    }
     localStorage.setItem('user', JSON.stringify(user));
   }
 

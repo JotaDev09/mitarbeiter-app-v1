@@ -1,0 +1,91 @@
+<ion-header [translucent]="true">
+  <app-header></app-header>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <section class="profil-container">
+    <div class="profil">
+      <div class="profil-info" *ngFor="let info of user">
+        <div class="profil-info-name" *ngIf="!editInfo">
+          <div class="edit-cont" (click)="editInfoUser()">
+            <span>Edit</span>
+          </div>
+          <div class="info-name">
+            <a>Name:</a>
+            <span>{{info?.name}}</span>
+          </div>
+          <div class="info-name">
+            <a>Nachname:</a>
+            <span>{{info?.lastname}}</span>
+          </div>
+          <div class="info-name">
+            <a>Email:</a>
+            <span>{{info?.email}}</span>
+          </div>
+          <div class="info-name">
+            <a>Handynummer:</a>
+            <span>{{info?.phone}}</span>
+          </div>
+          <div class="info-name">
+            <a>Adresse:</a>
+            <span>{{info?.address}}</span>
+          </div>
+          <div class="info-name">
+            <a>Pz, Stadt:</a>
+            <span>{{info?.stadt}}</span>
+          </div>
+          <div class="info-name">
+            <a>Führerschein Ablaufdatum:</a>
+            <span>{{formatDate(info?.driverLicense)}}</span>
+          </div>
+          <div class="info-name">
+            <a>P-Schein Ablaufdatum:</a>
+            <span>{{formatDate(info?.ambulanceLicense)}}</span>
+          </div>
+        </div>
+
+        <form #infoForm="ngForm" (ngSubmit)="saveInfo(infoForm)" *ngIf="editInfo">
+          <div class="profil-info-name">
+            <button class="edit-cont" type="submit">
+              <span>Save</span>
+            </button>
+            <div class="info-name">
+              <a>Name:</a>
+              <input placeholder="{{info?.name}}" [(ngModel)]="userName" type="name" name="userName">
+            </div>
+            <div class="info-name">
+              <a>Nachname:</a>
+              <input placeholder="{{info?.lastname}}" [(ngModel)]="userLastname" type="lastname" name="userLastname">
+            </div>
+            <div class="info-name">
+              <a>Email:</a>
+              <input placeholder="{{info?.email}}" [(ngModel)]="userEmail" type="email" name="userEmail">
+            </div>
+            <div class="info-name">
+              <a>Handynummer:</a>
+              <input placeholder="+49 {{info?.phone}}" [(ngModel)]="userPhone" type="phone" name="userPhone">
+            </div>
+            <div class="info-name">
+              <a>Adresse:</a>
+              <input placeholder="{{info?.address}}" [(ngModel)]="userAddress" type="address" name="userAddress">
+            </div>
+            <div class="info-name">
+              <a>Pz, Stadt:</a>
+              <input placeholder="{{info?.stadt}}" [(ngModel)]="userStadt" type="stadt" name="userStadt">
+            </div>
+            <div class="info-name">
+              <a>Führerschein Ablaufdatum:</a>
+              <input placeholder="{{info?.driverLicense}}" [(ngModel)]="userDriverLicense" type="date"
+                name="userDriverLicense">
+            </div>
+            <div class="info-name">
+              <a>P-Schein Ablaufdatum:</a>
+              <input placeholder="{{info?.ambulanceLicense}}" [(ngModel)]="userAmbulanceLicense" type="date"
+                name="userAmbulanceLicense">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</ion-content>

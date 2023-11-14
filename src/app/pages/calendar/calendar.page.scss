@@ -33,8 +33,10 @@
     color: #3c8f69;
   }
 }
+
 .day-title {
   font-size: 15px !important;
+  opacity: 1;
 }
 
 .fc-theme-standard td,
@@ -79,8 +81,8 @@
   display: flex;
 
   i {
-    font-size: 30px;
-    color: #3c8f69;
+    font-size: 30px !important;
+    // color: #3c8f69;
     font-weight: 600;
     opacity: 1;
   }
@@ -93,6 +95,11 @@
     color: #eef011;
     font-weight: 600;
   }
+}
+
+.fc-daygrid-dot-event.fc-event-mirror,
+.fc-daygrid-dot-event:hover {
+  background: none;
 }
 
 @media (width < 1500px) {

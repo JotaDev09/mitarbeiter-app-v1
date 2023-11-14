@@ -81,6 +81,11 @@ export class LoginPage implements OnInit {
         holidays: [],
         dienst: [],
         stillHolidays: 28,
+        phone: '',
+        address: '',
+        stadt: '',
+        driverLicense: '',
+        ambulanceLicense: '',
       };
       this.sharedService.saveUserLocalStorage(worker);
       this.router.navigate(['/home']);
