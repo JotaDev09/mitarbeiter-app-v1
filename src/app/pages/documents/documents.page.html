@@ -1,0 +1,71 @@
+<ion-header [translucent]="true">
+  <app-header></app-header>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <section class="documents-container">
+    <mat-accordion class="example-headers-align">
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title class="dokumente-title">
+            Lohnabrechnung
+          </mat-panel-title>
+          <mat-panel-description class="dokumente-description">
+            Dokument herunterladen
+            <mat-icon>request_quote</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title class="dokumente-title">
+            Führerschein
+          </mat-panel-title>
+          <mat-panel-description class="dokumente-description">
+            Dokument hochladen
+            <mat-icon>badge</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="input-files">
+          <div class="input-file">
+            <input type="file" accept=".pdf, .jpeg, .jpg" (change)="onFilesSelectedLicense($event)" multiple
+              id="licenseInput">
+            <label for="licenseInput" class="custom-input">Dateien auswählen</label>
+          </div>
+          <div class="files-imagess-cont">
+            <div *ngFor="let license of user.carLicenses" class="files-images">
+              <img [src]="getCompleteImagePath(license.name)" alt="">
+            </div>
+          </div>
+        </div>
+
+      </mat-expansion-panel>
+
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title class="dokumente-title">
+            Krankbescheinigung
+          </mat-panel-title>
+          <mat-panel-description class="dokumente-description">
+            Dokument hochladen
+            <mat-icon>description</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="input-files">
+          <div class="input-file">
+            <input type="file" accept=".pdf, .jpeg, .jpg" (change)="onFilesSelectedCertificate($event)" multiple
+              id="certificateInput">
+            <label for="certificateInput" class="custom-input">Dateien auswählen</label>
+          </div>
+          <div class="files-imagess-cont">
+            <div *ngFor="let certificate of user.sickCertificate" class="files-images">
+              <img [src]="getCompleteImagePath(certificate.name)" alt="">
+            </div>
+          </div>
+        </div>
+      </mat-expansion-panel>
+
+    </mat-accordion>
+  </section>
+</ion-content>

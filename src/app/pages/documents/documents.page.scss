@@ -1,0 +1,71 @@
+.documents-container {
+  height: -webkit-fill-available;
+  padding: 100px 300px 50px 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 45px;
+  text-align: justify;
+  font-family: "Poppins";
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.example-headers-align .mat-mdc-form-field + .mat-mdc-form-field {
+  margin-left: 8px;
+}
+
+.mat-expansion-panel {
+  width: 1000px;
+}
+
+.dokumente-title {
+  color: #3c8f69 !important;
+  font-size: 18px !important;
+}
+
+.dokumente-description {
+  color: black !important;
+  font-size: 17px !important;
+}
+
+.input-files {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.custom-input {
+  display: inline-block;
+  padding: 10px 15px;
+  background-color: #3c8f69;
+  color: #eef011;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.files-imagess-cont {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.files-images {
+  width: 200px;
+}

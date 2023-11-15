@@ -73,35 +73,70 @@ export class SharedService {
     localStorage.setItem('user', JSON.stringify(user));
   }
 
+  /**
+   * Updates the user info from the local storage
+   * @param worker The worker to be updated
+   */
   updateInfoLocalStorage(worker: any) {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
-    if (worker.name !== undefined) {
-      user.name = worker.name;
+
+    const propertiesToUpdate = [
+      'name',
+      'lastname',
+      'phone',
+      'email',
+      'address',
+      'stadt',
+      'driverLicense',
+      'ambulanceLicense',
+    ];
+
+    propertiesToUpdate.forEach((property) => {
+      if (worker[property] !== undefined) {
+        user[property] = worker[property];
+      }
+    });
+
+    if (worker.carLicenses !== undefined) {
+      const uniqueFiles = this.getUniqueFiles([
+        ...(user.carLicenses || []),
+        ...(worker.carLicenses || []),
+      ]);
+
+      user.carLicenses = uniqueFiles;
     }
-    if (worker.lastname !== undefined) {
-      user.lastname = worker.lastname;
+
+    if (worker.sickCertificate !== undefined) {
+      const uniqueFiles = this.getUniqueFiles([
+        ...(user.sickCertificate || []),
+        ...(worker.sickCertificate || []),
+      ]);
+
+      user.sickCertificate = uniqueFiles;
     }
-    if (worker.phone !== undefined) {
-      user.phone = worker.phone;
-    }
-    if (worker.email !== undefined) {
-      user.email = worker.email;
-    }
-    if (worker.address !== undefined) {
-      user.address = worker.address;
-    }
-    if (worker.stadt !== undefined) {
-      user.stadt = worker.stadt;
-    }
-    if (worker.driverLicense !== undefined) {
-      user.driverLicense = worker.driverLicense;
-    }
-    if (worker.ambulanceLicense !== undefined) {
-      user.ambulanceLicense = worker.ambulanceLicense;
-    }
+
     localStorage.setItem('user', JSON.stringify(user));
+    return user;
   }
 
+  /**
+   * The function getUniqueFiles() is a function that gets the unique files
+   * @param files the files to be checked
+   * @returns the unique files
+   */
+  private getUniqueFiles(files: any[]): any[] {
+    if (!Array.isArray(files) || !files.every((file) => file && file.name)) {
+      return [];
+    }
+    const fileSet = new Set(files.map((file) => file.name));
+
+    return Array.from(fileSet).map((fileName) => ({ name: fileName }));
+  }
+
+  /**
+   * The function getHolidaysFromLocalStorage() is a function that gets the holidays from the local storage
+   * @returns the holidays
+   */
   getHolidaysFromLocalStorage() {
     const userDataJSON = localStorage.getItem('user');
     if (userDataJSON) {
@@ -115,6 +150,11 @@ export class SharedService {
     return [];
   }
 
+  /**
+   * The function groupedHolidays() is a function that groups the holidays by year
+   * @param holidays the holidays to be grouped
+   * @returns the grouped holidays
+   */
   groupedHolidays(holidays: any[]) {
     const groupedHolidays: { [year: string]: any[] } = holidays.reduce(
       (acc: { [year: string]: any[] }, holiday: any) => {

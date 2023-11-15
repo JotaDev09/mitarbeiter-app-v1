@@ -73,4 +73,11 @@ export class HeaderComponent implements OnInit {
   toProfil() {
     this.router.navigate(['/profil']);
   }
+
+  /**
+   * The function is used to navigate to the documents page
+   */
+  toDocument() {
+    this.router.navigate(['/documents']);
+  }
 }

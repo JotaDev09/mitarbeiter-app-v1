@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ViewDienstComponent } from '../dialogs/view-dienst/view-dienst.component';
 import { MatDialog } from '@angular/material/dialog';
 import { SharedService } from '../shared.service';
+import { AlertLicenseComponent } from '../dialogs/alert-license/alert-license.component';
 
 @Component({
   selector: 'app-home',
@@ -40,52 +41,37 @@ export class HomePage implements OnInit {
     }, 1000);
   }
 
-  checkAmbulanceLicense() {
+  checkLicense(type: string, licenseDateKey: string, titleKey: string) {
     const userData = this.sharedService.getUserLocalStorage();
 
     if (userData) {
-      const ambulanceExpirationDate = new Date(userData.ambulanceLicense);
+      const expirationDate = new Date(userData[licenseDateKey]);
       const today = new Date();
-      const timeDiff = ambulanceExpirationDate.getTime() - today.getTime();
+      const timeDiff = expirationDate.getTime() - today.getTime();
       const diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
 
       const diffMonths = Math.floor(diffDays / 30);
       const remainingDays = diffDays % 30;
 
-      if (diffDays <= 30) {
-        alert(
-          `Dein P-Schein läuft in ${diffDays} Tagen ab! Bitte verlängert ihn so schnell wie möglich!`
-        );
-      } else if (diffMonths <= 2) {
-        alert(
-          `Dein P-Schein läuft in ${diffMonths} Monate und ${remainingDays} Tage ab!`
-        );
+      if (diffDays <= 30 || diffMonths <= 2) {
+        this.dialog.open(AlertLicenseComponent, {
+          data: {
+            message:
+              diffDays <= 30
+                ? `Dein ${type} läuft in ${diffDays} Tagen ab! Bitte verlängert ihn so schnell wie möglich!`
+                : `Dein ${type} läuft in ${diffMonths} Monate und ${remainingDays} Tage ab!`,
+          },
+        });
       }
     }
   }
 
+  checkAmbulanceLicense() {
+    this.checkLicense('P-Schein', 'ambulanceLicense', 'ambulanceTitle');
+  }
+
   checkDriverLicense() {
-    const userData = this.sharedService.getUserLocalStorage();
-
-    if (userData) {
-      const driverLicenseExpirationDate = new Date(userData.driverLicense);
-      const today = new Date();
-      const timeDiff = driverLicenseExpirationDate.getTime() - today.getTime();
-      const diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
-
-      const diffMonths = Math.floor(diffDays / 30);
-      const remainingDays = diffDays % 30;
-
-      if (diffDays <= 30) {
-        alert(
-          `Dein Führerschein läuft in ${diffDays} Tagen ab! Bitte verlängert ihn so schnell wie möglich!`
-        );
-      } else if (diffMonths <= 2) {
-        alert(
-          `Dein Führerschein läuft in ${diffMonths} Monate und ${remainingDays} Tage ab!`
-        );
-      }
-    }
+    this.checkLicense('Führerschein', 'driverLicense', 'driverTitle');
   }
 
   /**

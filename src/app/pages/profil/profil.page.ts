@@ -19,6 +19,7 @@ export class ProfilPage implements OnInit {
   userStadt: string = '';
   userDriverLicense: string = '';
   userAmbulanceLicense: string = '';
+  sickCertificate: string = '';
 
   constructor(private sharedService: SharedService) {
     this.sharedService.updateTitle('Profil');
@@ -64,6 +65,7 @@ export class ProfilPage implements OnInit {
         stadt: this.userStadt,
         driverLicense: this.userDriverLicense,
         ambulanceLicense: this.userAmbulanceLicense,
+        sickCertificate: this.sickCertificate,
       };
       this.sharedService.updateInfoLocalStorage(worker);
       console.log(worker);

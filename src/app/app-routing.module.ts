@@ -54,11 +54,22 @@ const routes: Routes = [
   },
   {
     path: 'calendar',
-    loadChildren: () => import('./pages/calendar/calendar.module').then( m => m.CalendarPageModule)
+    loadChildren: () =>
+      import('./pages/calendar/calendar.module').then(
+        (m) => m.CalendarPageModule
+      ),
   },
   {
     path: 'profil',
-    loadChildren: () => import('./pages/profil/profil.module').then( m => m.ProfilPageModule)
+    loadChildren: () =>
+      import('./pages/profil/profil.module').then((m) => m.ProfilPageModule),
+  },
+  {
+    path: 'documents',
+    loadChildren: () =>
+      import('./pages/documents/documents.module').then(
+        (m) => m.DocumentsPageModule
+      ),
   },
 ];
 

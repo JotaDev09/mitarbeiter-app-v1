@@ -86,6 +86,9 @@ export class LoginPage implements OnInit {
         stadt: '',
         driverLicense: '',
         ambulanceLicense: '',
+        carLicenses: [],
+        payrolls: [],
+        sickCertificate: [],
       };
       this.sharedService.saveUserLocalStorage(worker);
       this.router.navigate(['/home']);

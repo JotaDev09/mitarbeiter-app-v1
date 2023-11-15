@@ -1,0 +1,39 @@
+.alert-license-container {
+  padding: 20px 40px 40px 40px;
+  width: 300px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  span {
+    color: #3c8f69;
+    font-family: "Poppins";
+    font-size: 20px;
+  }
+}
+
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  border-radius: 20px;
+}
+
+.closeComponent {
+  width: -webkit-fill-available;
+  display: flex;
+  justify-content: flex-end;
+  div {
+    background-image: url("/assets/icons/close.svg");
+    background-size: cover;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    opacity: 0.5;
+    &:hover {
+      background-color: #eef011;
+      transition: 0.5s;
+      border-radius: 20px;
+      padding: 10px;
+      opacity: 1;
+    }
+  }
+}

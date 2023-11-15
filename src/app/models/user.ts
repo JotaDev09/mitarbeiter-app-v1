@@ -14,4 +14,7 @@ export interface User {
   stadt: string;
   driverLicense: string;
   ambulanceLicense: string;
+  carLicenses: [];
+  payrolls: [];
+  sickCertificate: [];
 }

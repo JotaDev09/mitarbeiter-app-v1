@@ -106,11 +106,5 @@ export class CalendarPage implements OnInit {
         backgroundColor: '#3c8f69',
       },
     ],
-    // eventMouseEnter: function (info) {
-    //   info.el.style.opacity = '1';
-    // },
-    // eventMouseLeave: function (info) {
-    //   info.el.style.opacity = '0.6';
-    // },
   };
 }
