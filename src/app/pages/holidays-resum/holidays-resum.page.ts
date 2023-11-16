@@ -24,10 +24,11 @@ export class HolidaysResumPage implements OnInit {
   tempHolidaysFrom: string | null = null;
   tempHolidaysTo: string | null = null;
   newDates: boolean = false;
+  ifHolidays: boolean = false;
 
   status = [
     { name: 'approved', icon: 'assets/icons/status-tick.png' },
-    { name: 'waiting', icon: '/assets/icons/status-wait.png' },
+    { name: 'requested', icon: '/assets/icons/status-wait.png' },
     { name: 'rejected', icon: 'assets/icons/status-cancel.png' },
   ];
 
@@ -78,6 +79,7 @@ export class HolidaysResumPage implements OnInit {
         }
         holiday.isEditing = false;
         acc[year].push(holiday);
+        this.ifHolidays = true;
         return acc;
       },
       {}
@@ -173,6 +175,12 @@ export class HolidaysResumPage implements OnInit {
         holidaysFrom: holiday?.holidaysFrom,
         holidaysTo: holiday?.holidaysTo,
       },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (this.holidays && this.holidays.length === 0) {
+        this.ifHolidays = false;
+      }
     });
   }
 }

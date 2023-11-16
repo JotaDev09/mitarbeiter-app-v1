@@ -96,7 +96,7 @@ export class HolidaysPage implements OnInit {
         holidaysTo: this.holidaysTo,
         notes: this.notes,
         dateRequest: this.sharedService.minDate,
-        status: 'rejected',
+        status: 'requested',
         holidaysused: usedDays,
       };
 

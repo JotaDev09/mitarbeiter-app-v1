@@ -56,7 +56,7 @@
         </div>
       </div>
     </div>
-    <div class="legend-container">
+    <div class="legend-container" *ngIf="ifHolidays">
       <div class="legend" *ngFor="let icon of legend">
         <span>{{icon.name}}</span>
         <img src="{{icon.icon}}" alt="">
