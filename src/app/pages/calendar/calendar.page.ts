@@ -29,41 +29,43 @@ export class CalendarPage implements OnInit {
       for (let i = 0; i < this.holidaysData.length; i++) {
         const userHolidays = this.holidaysData[i].holidays;
         this.eventsData = this.eventsData.concat(
-          userHolidays.map((holidays: any) => {
-            const endDate = new Date(holidays.holidaysTo);
-            endDate.setDate(endDate.getDate() + 1);
-            const status = holidays.status;
-            if (status === 'waiting') {
-              return {
-                title: 'Urlaub beantragt',
-                start: holidays.holidaysFrom,
-                end: moment(endDate).format('YYYY-MM-DD'),
-                display: 'background',
-                backgroundColor: '#eef011',
-                color: '#3c8f69',
-              };
-            } else if (status === 'approved') {
-              return {
-                title: 'Urlaub genehmigt',
-                start: holidays.holidaysFrom,
-                end: moment(endDate).format('YYYY-MM-DD'),
-                display: 'background',
-                backgroundColor: '#3c8f69',
-                color: '#eef011',
-              };
-            } else if (status === 'rejected') {
-              return {
-                title: 'Urlaub storniert',
-                start: holidays.holidaysFrom,
-                end: moment(endDate).format('YYYY-MM-DD'),
-                display: 'background',
-                backgroundColor: '#f44336',
-                color: '#eef011',
-              };
-            } else {
-              return null;
-            }
-          })
+          userHolidays
+            .map((holidays: any) => {
+              const endDate = new Date(holidays.holidaysTo);
+              endDate.setDate(endDate.getDate() + 1);
+              const status = holidays.status;
+              if (status === 'waiting') {
+                return {
+                  title: 'Urlaub beantragt',
+                  start: holidays.holidaysFrom,
+                  end: moment(endDate).format('YYYY-MM-DD'),
+                  display: 'background',
+                  backgroundColor: '#eef011',
+                  color: '#3c8f69',
+                };
+              } else if (status === 'approved') {
+                return {
+                  title: 'Urlaub genehmigt',
+                  start: holidays.holidaysFrom,
+                  end: moment(endDate).format('YYYY-MM-DD'),
+                  display: 'background',
+                  backgroundColor: '#3c8f69',
+                  color: '#eef011',
+                };
+              } else if (status === 'rejected') {
+                return {
+                  title: 'Urlaub storniert',
+                  start: holidays.holidaysFrom,
+                  end: moment(endDate).format('YYYY-MM-DD'),
+                  display: 'background',
+                  backgroundColor: '#f44336',
+                  color: '#eef011',
+                };
+              } else {
+                return null;
+              }
+            })
+            .filter((event: any) => event !== null)
         );
       }
       this.initializeCalendar();
