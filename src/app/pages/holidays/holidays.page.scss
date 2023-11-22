@@ -176,6 +176,33 @@
   text-align: center;
 }
 
+.infoNextYear {
+  span {
+    font-size: 18px;
+
+    a {
+      color: #3c8f69;
+      font-size: 20px;
+    }
+  }
+}
+
+.mat-mdc-form-field-subscript-wrapper {
+  display: none !important;
+}
+
+.mdc-text-field--filled {
+  --mdc-filled-text-field-active-indicator-height: 0px !important;
+}
+
+.mat-mdc-form-field-focus-overlay {
+  background-color: transparent !important;
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: transparent !important;
+}
+
 @media (width < 1500px) {
   .holidays-container {
     padding: 80px 100px 25px 100px;

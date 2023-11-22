@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { SharedService } from 'src/app/shared.service';
 import { Router } from '@angular/router';
 
@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
   selector: 'app-holidays',
   templateUrl: './holidays.page.html',
   styleUrls: ['./holidays.page.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class HolidaysPage implements OnInit {
   id = this.sharedService.getId();
@@ -31,6 +32,7 @@ export class HolidaysPage implements OnInit {
   placeholderValue: string = '';
   minHolidaysTo: string = '';
   floatContainer: boolean = false;
+  infoNextYear: boolean = false;
 
   constructor(private sharedService: SharedService, private router: Router) {
     this.sharedService.updateTitle('UrlaubsAntrag');
@@ -45,11 +47,20 @@ export class HolidaysPage implements OnInit {
    * Check if the current month is greater than 10 (October)
    */
   habilityNextYearOption() {
+    // if (this.currentMonth >= 10) {
+    //   this.showNextYearOption = true;
+    //   this.maxOptionHolidays = `${this.nextYear}-12-31`;
+    // } else {
+    // this.maxOptionHolidays = `${this.sharedService.year}-12-31`;
+    // }
     if (this.currentMonth >= 10) {
-      this.showNextYearOption = true;
       this.maxOptionHolidays = `${this.nextYear}-12-31`;
+      this.infoNextYear = true;
+      console.log(this.maxOptionHolidays);
+    } else {
+      this.maxOptionHolidays = `${this.sharedService.year}-12-31`;
+      console.log(this.maxOptionHolidays);
     }
-    this.maxOptionHolidays = `${this.sharedService.year}-12-31`;
   }
 
   /**
@@ -122,6 +133,7 @@ export class HolidaysPage implements OnInit {
     const today = this.sharedService.today;
     const sevenDaysAhead = new Date(today);
     sevenDaysAhead.setDate(today.getDate() + 10);
+
     this.optHolidays = sevenDaysAhead.toISOString().substring(0, 10);
   }
 
@@ -146,7 +158,7 @@ export class HolidaysPage implements OnInit {
           usedDays++;
         }
       }
-      this.stillHolidays = 28 - usedDays;
+      this.stillHolidays = this.stillHolidays - usedDays;
       return usedDays;
     }
     return 0;
