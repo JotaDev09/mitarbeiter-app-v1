@@ -22,6 +22,9 @@ export class CalendarPage implements OnInit {
     this.loadHolidaysData();
   }
 
+  /**
+   * The function loadHolidaysData() is a function that gets the holidays from the local storage
+   */
   loadHolidaysData() {
     this.holidaysData = this.sharedService.getHolidaysFromLocalStorage();
     if (this.holidaysData && this.holidaysData.length > 0) {
@@ -34,33 +37,12 @@ export class CalendarPage implements OnInit {
               const endDate = new Date(holidays.holidaysTo);
               endDate.setDate(endDate.getDate() + 1);
               const status = holidays.status;
-              if (status === 'waiting') {
-                return {
-                  title: 'Urlaub beantragt',
-                  start: holidays.holidaysFrom,
-                  end: moment(endDate).format('YYYY-MM-DD'),
-                  display: 'background',
-                  backgroundColor: '#eef011',
-                  color: '#3c8f69',
-                };
+              if (status === 'requested') {
+                return this.requested(holidays, endDate);
               } else if (status === 'approved') {
-                return {
-                  title: 'Urlaub genehmigt',
-                  start: holidays.holidaysFrom,
-                  end: moment(endDate).format('YYYY-MM-DD'),
-                  display: 'background',
-                  backgroundColor: '#3c8f69',
-                  color: '#eef011',
-                };
+                return this.approved(holidays, endDate);
               } else if (status === 'rejected') {
-                return {
-                  title: 'Urlaub storniert',
-                  start: holidays.holidaysFrom,
-                  end: moment(endDate).format('YYYY-MM-DD'),
-                  display: 'background',
-                  backgroundColor: '#f44336',
-                  color: '#eef011',
-                };
+                return this.rejected(holidays, endDate);
               } else {
                 return null;
               }
@@ -72,14 +54,70 @@ export class CalendarPage implements OnInit {
     }
   }
 
+  /**
+   * The function requested() is a function that returns the requested holidays
+   * @param holidays the data of the holidays
+   * @param endDate the end date of the holidays
+   * @returns the requested holidays
+   */
+  requested(holidays: any, endDate: Date) {
+    return {
+      title: 'Urlaub beantragt',
+      start: holidays.holidaysFrom,
+      end: moment(endDate).format('YYYY-MM-DD'),
+      display: 'background',
+      backgroundColor: '#eef011',
+      color: '#3c8f69',
+    };
+  }
+
+  /**
+   * The function approved() is a function that returns the approved holidays
+   * @param holidays the data of the holidays
+   * @param endDate the end date of the holidays
+   * @returns the approved holidays
+   */
+  approved(holidays: any, endDate: Date) {
+    return {
+      title: 'Urlaub genehmigt',
+      start: holidays.holidaysFrom,
+      end: moment(endDate).format('YYYY-MM-DD'),
+      display: 'background',
+      backgroundColor: '#3c8f69',
+      color: '#eef011',
+    };
+  }
+
+  /**
+   * The function rejected() is a function that returns the rejected holidays
+   * @param holidays the data of the holidays
+   * @param endDate the end date of the holidays
+   * @returns the rejected holidays
+   */
+  rejected(holidays: any, endDate: Date) {
+    return {
+      title: 'Urlaub storniert',
+      start: holidays.holidaysFrom,
+      end: moment(endDate).format('YYYY-MM-DD'),
+      display: 'background',
+      backgroundColor: '#f44336',
+      color: '#eef011',
+    };
+  }
+  /**
+   * The function initializeCalendar() is a function that initialize the calendar with the events
+   */
   initializeCalendar() {
     this.calendarOptions.eventSources = [
-      (fetchInfo, successCallback, failureCallback) => {
+      (fetchInfo, successCallback) => {
         successCallback(this.eventsData);
       },
     ];
   }
 
+  /**
+   * The fullcalendar options
+   */
   calendarOptions: CalendarOptions = {
     locale: 'de',
     plugins: [dayGridPlugin],
