@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatButtonModule } from '@angular/material/button';
 import { HeaderModule } from '../header/header.module';
 import { HomePageRoutingModule } from './home-routing.module';
+import { MatIconModule } from '@angular/material/icon';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 @NgModule({
   imports: [
@@ -14,9 +14,9 @@ import { HomePageRoutingModule } from './home-routing.module';
     FormsModule,
     IonicModule,
     HomePageRoutingModule,
-    MatMenuModule,
-    MatButtonModule,
     HeaderModule,
+    FullCalendarModule,
+    MatIconModule,
   ],
   declarations: [HomePage],
 })

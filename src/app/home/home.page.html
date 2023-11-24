@@ -9,28 +9,49 @@
       <span class="name">{{name}}</span>
     </div>
 
-    <div class="dienst-container">
-      <div *ngFor="let day of week; let i = index" class="day-container" [ngClass]="{'today': isToday(day)}"
-        (click)="viewDienst(dienstNumber1, day, dienst1, wagen, driver, sani, relax)">
-        <span>{{dienstNumber1}}</span>
-        <span>{{day}}</span>
-        <span *ngIf="i < 5">{{dienst1}}</span>
-        <span *ngIf="i < 5">{{wagen}}</span>
-        <span *ngIf="i < 5" class="nameKollegue">{{truncateName(driver, 10)}}</span>
-        <span *ngIf="i < 5" class="nameKollegue">{{truncateName(sani, 12)}}</span>
-        <span *ngIf="i >= 5">{{relax}}</span>
+    <div class="main-container">
+      <full-calendar [options]="calendarOptions" class="wrapper-calendar container">
+        <ng-template #eventContent let-arg class="day-container">
+          <i class="day-title">{{arg.event.title}}</i>
+        </ng-template>
+      </full-calendar>
+
+      <div class="dienst-today">
+        <div class="today-title container">
+          <h2>Dienst heute {{today}}</h2>
+          <span>06:00-14:00</span>
+        </div>
+        <div class="today-title container">
+          <h2>Dienst morgen {{tomorrow}}</h2>
+          <span>06:00-14:00</span>
+        </div>
       </div>
-    </div>
-    <div class="dienst-container">
-      <div *ngFor="let day of nextWeek; let i = index" class="day-container"
-        (click)="viewDienst(dienstNumber2, day, dienst2, wagen, driver, sani, relax)">
-        <span>{{dienstNumber2}}</span>
-        <span>{{day}}</span>
-        <span *ngIf="i === 0 || (i > 1 && i < 6)">{{dienst2}}</span>
-        <span *ngIf="i === 0 || (i > 1 && i < 6)">{{wagen}}</span>
-        <span *ngIf="i === 0 || (i > 1 && i < 6)" class="nameKollegue">{{truncateName(driver, 10)}}</span>
-        <span *ngIf="i === 0 || (i > 1 && i < 6)" class="nameKollegue">{{truncateName(sani, 12)}}</span>
-        <span *ngIf="i === 1 || i === 6">{{relax}}</span>
+
+      <div class="driver-license ">
+        <div class="car-license container" *ngIf="noCarLicense"
+          [ngClass]="{'expiration-one-month': isCarLicenseExpirationOneMonth, 'expiration-three-months': isCarLicenseExpirationThreeMonths}">
+          <h2>Führerschein Ablaufsdatum</h2>
+          <span>{{carLicense}}</span>
+        </div>
+        <div class="car-license container" *ngIf="noAmbulanceLicense"
+          [ngClass]="{'expiration-one-month': isAmbulanceLicenseExpirationOneMonth, 'expiration-three-months': isAmbulanceLicenseExpirationThreeMonths}">
+          <h2>P-Schein Ablaufsdatum</h2>
+          <span>{{ambulanceLicense}}</span>
+        </div>
+
+
+      </div>
+
+      <div class="post-container">
+        <div class="post-main container">
+          <div class="post-title ">
+            <mat-icon>mail</mat-icon>
+            <a>Posteingang</a>
+          </div>
+          <div class="post-alert">
+            <span>Du hast keine neue Nachricht</span>
+          </div>
+        </div>
       </div>
     </div>
 

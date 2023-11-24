@@ -71,6 +71,10 @@ const routes: Routes = [
         (m) => m.DocumentsPageModule
       ),
   },
+  {
+    path: 'dienstplan',
+    loadChildren: () => import('./pages/dienstplan/dienstplan.module').then( m => m.DienstplanPageModule)
+  },
 ];
 
 @NgModule({

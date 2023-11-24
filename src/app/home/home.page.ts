@@ -1,46 +1,83 @@
-import { Component, OnInit } from '@angular/core';
-import { ViewDienstComponent } from '../dialogs/view-dienst/view-dienst.component';
-import { MatDialog } from '@angular/material/dialog';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { SharedService } from '../shared.service';
-import { AlertLicenseComponent } from '../dialogs/alert-license/alert-license.component';
+import { AlertLicenseComponent } from 'src/app/dialogs/alert-license/alert-license.component';
+import { MatDialog } from '@angular/material/dialog';
+import { CalendarOptions } from '@fullcalendar/core';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import * as moment from 'moment';
+import 'moment/locale/de';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class HomePage implements OnInit {
   greeting: string[] = ['Guten Morgen', 'Guten Tag', 'Guten Abend'];
   currentGreeting: string = '';
   name: string = 'Man Mustermann';
-  week: string[] = [];
-  dienstNumber1: any = ['Dienst 01'];
-  dienstNumber2: any = ['Dienst 02'];
-  dienst1: string = '06:00 - 14:00';
-  dienst2: string = '10:00 - 18:00';
-  nextWeek: string[] = [];
-  wagen: string = 'GO 335';
-  driver: string = 'Fahrer';
-  sani: string = 'Rettungssanitäter';
-  data: any;
-  relax: string = 'Ruhetag';
-  showFiller = false;
+  today = this.formatDate(new Date());
+  tomorrow = this.formatDate(this.getTomorrow());
+  userData = this.sharedService.getUserLocalStorage();
+  carLicense = '';
+  ambulanceLicense = '';
+  noCarLicense: boolean = true;
+  noAmbulanceLicense: boolean = true;
+  isCarLicenseExpirationOneMonth: boolean = false;
+  isCarLicenseExpirationThreeMonths: boolean = false;
+  isAmbulanceLicenseExpirationOneMonth: boolean = false;
+  isAmbulanceLicenseExpirationThreeMonths: boolean = false;
 
   constructor(private dialog: MatDialog, private sharedService: SharedService) {
-    this.getDate();
-    this.isToday('01/01/21');
     this.greetings();
-    this.sharedService.updateTitle('Dienstplan');
-    console.log(this.sharedService.getUserLocalStorage());
+    this.sharedService.updateTitle('Startseite');
+    this.licenseDates();
   }
 
-  ngOnInit() {
-    setTimeout(() => {
-      this.checkAmbulanceLicense();
-      this.checkDriverLicense();
-    }, 1000);
+  ngOnInit(): void {
+    // setTimeout(() => {
+    //   this.checkAmbulanceLicense();
+    //   this.checkDriverLicense();
+    // }, 1000);
   }
 
+  calendarOptions: CalendarOptions = {
+    locale: 'de',
+    plugins: [dayGridPlugin],
+    initialView: 'dayGridMonth',
+    weekends: true,
+    headerToolbar: {
+      left: '',
+      center: 'title',
+      right: '',
+    },
+    firstDay: 1,
+    dayHeaderFormat: {
+      weekday: 'short',
+    },
+  };
+
+  /**
+   * The function is used to gets the datum of the ambulance license
+   */
+  checkAmbulanceLicense() {
+    this.checkLicense('P-Schein', 'ambulanceLicense', 'ambulanceTitle');
+  }
+
+  /**
+   * The function is used to gets the datum of the driver license
+   */
+  checkDriverLicense() {
+    this.checkLicense('Führerschein', 'driverLicense', 'driverTitle');
+  }
+
+  /**
+   * The function is used to check the expiration date of the license
+   * @param type The type of the license
+   * @param licenseDateKey The key of the license date
+   * @param titleKey The key of the title
+   */
   checkLicense(type: string, licenseDateKey: string, titleKey: string) {
     const userData = this.sharedService.getUserLocalStorage();
 
@@ -66,75 +103,57 @@ export class HomePage implements OnInit {
     }
   }
 
-  checkAmbulanceLicense() {
-    this.checkLicense('P-Schein', 'ambulanceLicense', 'ambulanceTitle');
-  }
-
-  checkDriverLicense() {
-    this.checkLicense('Führerschein', 'driverLicense', 'driverTitle');
-  }
-
   /**
-   * The function is used to get the current week
+   * The function is used to get the license dates
    */
-  getDate() {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    today.setDate(today.getDate() - today.getDay() + 1);
+  licenseDates() {
+    const userData = this.sharedService.getUserLocalStorage();
+    moment.locale('de');
 
-    this.getCurrentWeek(today);
-    this.getNextWeek(today);
-  }
+    if (userData) {
+      const today = moment();
+      const carLicenseDate = moment(userData.driverLicense);
+      const ambulanceLicenseDate = moment(userData.ambulanceLicense);
 
-  /**
-   * Get the current week
-   * @param today Date
-   */
-  getCurrentWeek(today: Date) {
-    for (let i = 0; i < 7; i++) {
-      const day = String(today.getDate()).padStart(2, '0');
-      const month = String(today.getMonth() + 1).padStart(2, '0');
-      const year = String(today.getFullYear()).slice(2);
+      this.carLicense = carLicenseDate.format('LL');
+      if (this.carLicense === 'Invalid date') {
+        this.noCarLicense = false;
+      }
 
-      this.week.push(`${day}/${month}/${year}`);
-      today.setDate(today.getDate() + 1);
+      this.ambulanceLicense = ambulanceLicenseDate.format('LL');
+      if (this.ambulanceLicense === 'Invalid date') {
+        this.noAmbulanceLicense = false;
+      }
+
+      this.changeColorAdvice(today, carLicenseDate, ambulanceLicenseDate);
     }
   }
 
   /**
-   * Get the next week
-   * @param today Date
+   * The function is used to change the color of the advice
+   * @param today The current date
+   * @param carLicenseDate The date of the car license
+   * @param ambulanceLicenseDate The date of the ambulance license
    */
-  getNextWeek(today: Date) {
-    const currentDayOfWeek = today.getDay();
-    const daysUntilNextMonday =
-      1 - currentDayOfWeek + (currentDayOfWeek === 0 ? 7 : 0);
+  changeColorAdvice(
+    today: moment.Moment,
+    carLicenseDate: moment.Moment,
+    ambulanceLicenseDate: moment.Moment
+  ) {
+    const oneMonthLater = today.clone().add(1, 'month');
+    const threeMonthsLater = today.clone().add(3, 'month');
 
-    today.setDate(today.getDate() + daysUntilNextMonday);
+    this.isCarLicenseExpirationOneMonth =
+      carLicenseDate.isBefore(oneMonthLater);
+    this.isCarLicenseExpirationThreeMonths = carLicenseDate.isBetween(
+      oneMonthLater,
+      threeMonthsLater
+    );
 
-    for (let i = 0; i < 7; i++) {
-      const day = today.getDate().toString().padStart(2, '0');
-      const month = (today.getMonth() + 1).toString().padStart(2, '0');
-      const year = today.getFullYear().toString().slice(-2);
-
-      this.nextWeek.push(`${day}/${month}/${year}`);
-      today.setDate(today.getDate() + 1);
-    }
-  }
-
-  /**
-   * The function is used to check the date of the day
-   * @param date
-   * @returns boolean
-   */
-  isToday(date: string): boolean {
-    const today = new Date();
-    const day = today.getDate().toString().padStart(2, '0');
-    const month = (today.getMonth() + 1).toString().padStart(2, '0');
-    const year = today.getFullYear().toString().slice(-2);
-    const todayFormatted = `${day}/${month}/${year}`;
-
-    return date === todayFormatted;
+    this.isAmbulanceLicenseExpirationOneMonth =
+      ambulanceLicenseDate.isBefore(oneMonthLater);
+    this.isAmbulanceLicenseExpirationThreeMonths =
+      ambulanceLicenseDate.isBetween(oneMonthLater, threeMonthsLater);
   }
 
   /**
@@ -153,38 +172,42 @@ export class HomePage implements OnInit {
   }
 
   /**
-   * The function is used to truncate the name when it is too long
-   * @param text is the name
-   * @param maxLength is the max length of the name
-   * @returns shortened name
+   * The function is used to get the date of tomorrow
+   * @returns Date
    */
-  truncateName(text: string, maxLength: number): string {
-    if (text.length > maxLength) {
-      return text.slice(0, maxLength) + '...';
-    }
-    return text;
+  private getTomorrow(): Date {
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    return tomorrow;
   }
 
-  viewDienst(
-    dienstNumber: string,
-    day: any,
-    dienst: string,
-    wagen: string,
-    driver: string,
-    sani: string,
-    relax: string
-  ) {
-    const dialogRef = this.dialog.open(ViewDienstComponent, {
-      data: {
-        dienstNumber,
-        day,
-        dienst,
-        wagen,
-        driver,
-        sani,
-        relax,
-        isToday: this.isToday(day),
-      },
-    });
+  /**
+   * The function is used to format the date
+   * @param date The date to be formatted
+   * @returns string
+   */
+  private formatDate(date: Date): string {
+    const months = [
+      'Januar',
+      'Februar',
+      'März',
+      'April',
+      'Mai',
+      'Juni',
+      'July',
+      'August',
+      'September',
+      'Oktober',
+      'November',
+      'Dezember',
+    ];
+
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = date.getMonth();
+    const monthName = months[month];
+    const year = date.getFullYear().toString();
+
+    return `${day}, ${monthName} ${year}`;
   }
 }

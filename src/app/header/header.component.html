@@ -7,6 +7,7 @@
     <button mat-button [matMenuTriggerFor]="menu" class="menu-header">Menu</button>
   </div>
   <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="toHome()">Home</button>
     <button mat-menu-item (click)="toDienst()">Dienstplan</button>
     <button mat-menu-item (click)="toCalendar()">Kalender</button>
     <button mat-menu-item (click)="toHolidays()">Urlaubsantrag</button>

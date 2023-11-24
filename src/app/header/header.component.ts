@@ -27,8 +27,14 @@ export class HeaderComponent implements OnInit {
   /**
    * The function is used to navigate to the home page
    */
-  toDienst() {
+  toHome() {
     this.router.navigate(['/home']);
+  }
+  /**
+   * The function is used to navigate to the home page
+   */
+  toDienst() {
+    this.router.navigate(['/dienstplan']);
   }
 
   /**
