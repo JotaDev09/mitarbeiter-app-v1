@@ -19,6 +19,7 @@
   gap: 20px;
   width: -webkit-fill-available;
   height: fit-content;
+  background-color: white;
 }
 
 .form-year {
@@ -202,6 +203,38 @@
 
 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
   background-color: transparent !important;
+}
+
+.mat-mdc-raised-button:not(:disabled) {
+  background-color: #3c8f69 !important;
+}
+
+.mat-calendar-body-selected {
+  background-color: #3c8f69 !important;
+}
+
+.mat-calendar-body-in-range::before {
+  background: #dcefe3 !important;
+}
+
+.mat-calendar-body-cell-content.mat-focus-indicator {
+  &:hover {
+    background-color: #dcefe3 !important;
+  }
+}
+
+.mat-calendar-body-today:not(.mat-calendar-body-selected):not(
+    .mat-calendar-body-comparison-identical
+  ) {
+  border-color: #3c8f69 !important;
+}
+
+.mat-calendar-body-cell::before,
+.mat-calendar-body-cell::after,
+.mat-calendar-body-cell-preview {
+  &:hover {
+    background-color: #dcefe3 !important;
+  }
 }
 
 @media (width < 1500px) {

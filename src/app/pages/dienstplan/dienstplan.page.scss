@@ -1,6 +1,6 @@
 .dienst-container {
   height: -webkit-fill-available;
-  padding: 25px 200px 50px 200px;
+  padding: 100px 200px 50px 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,6 +16,7 @@
   border-radius: 10px;
   border: 1px solid #3c8f69;
   justify-content: center;
+  background-color: white;
 }
 
 .day-container {
