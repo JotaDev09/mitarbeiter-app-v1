@@ -17,4 +17,6 @@ export interface User {
   carLicenses: [];
   payrolls: [];
   sickCertificate: [];
+  insuranceName: string;
+  insuranceNumber: string;
 }

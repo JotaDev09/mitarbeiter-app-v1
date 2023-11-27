@@ -88,6 +88,8 @@ export class SharedService {
       'stadt',
       'driverLicense',
       'ambulanceLicense',
+      'insuranceName',
+      'insuranceNumber',
     ];
 
     propertiesToUpdate.forEach((property) => {

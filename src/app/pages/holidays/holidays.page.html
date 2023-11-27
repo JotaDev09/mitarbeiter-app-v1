@@ -100,7 +100,7 @@
       <div class="info-container">
         <mat-form-field class="example-form-field info">
           <mat-label>Datumsbereich auswählen</mat-label>
-          <mat-date-range-input [rangePicker]="rangePicker" [min]="optHolidays">
+          <mat-date-range-input [rangePicker]="rangePicker" [min]="optHolidays" [max]="maxOptionHolidays">
             <input matStartDate placeholder="Startdatum" [(ngModel)]="holidaysFrom" name="holidaysFrom"
               (change)="calculateRemainingHolidays()" [disabled]="stillHolidays === 0">
             <input matEndDate placeholder="Enddatum" [(ngModel)]="holidaysTo" name="holidaysTo"
@@ -111,7 +111,7 @@
           <mat-date-range-picker #rangePicker>
             <mat-date-range-picker-actions>
               <button mat-button matDateRangePickerCancel>Abbrechen</button>
-              <button mat-raised-button color="primary" matDateRangePickerApply>Einsetzen</button>
+              <button mat-raised-button class="primary" matDateRangePickerApply>Einsetzen</button>
             </mat-date-range-picker-actions>
           </mat-date-range-picker>
         </mat-form-field>

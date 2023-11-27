@@ -8,7 +8,7 @@
       <div class="profil-info" *ngFor="let info of user">
         <div class="profil-info-name" *ngIf="!editInfo">
           <div class="edit-cont" (click)="editInfoUser()">
-            <span>Edit</span>
+            <span>Bearbeiten</span>
           </div>
           <div class="info-name">
             <a>Name:</a>
@@ -19,6 +19,14 @@
             <span>{{info?.lastname}}</span>
           </div>
           <div class="info-name">
+            <a>Adresse:</a>
+            <span>{{info?.address}}</span>
+          </div>
+          <div class="info-name">
+            <a>Pz, Stadt:</a>
+            <span>{{info?.stadt}}</span>
+          </div>
+          <div class="info-name">
             <a>Email:</a>
             <span>{{info?.email}}</span>
           </div>
@@ -26,13 +34,45 @@
             <a>Handynummer:</a>
             <span>{{info?.phone}}</span>
           </div>
-          <div class="info-name">
-            <a>Adresse:</a>
-            <span>{{info?.address}}</span>
+        </div>
+
+        <form #infoForm="ngForm" (ngSubmit)="saveInfo(infoForm)" *ngIf="editInfo">
+          <div class="profil-info-name">
+            <button class="edit-cont" type="submit">
+              <span>Speichern</span>
+            </button>
+            <div class="info-name">
+              <a>Name:</a>
+              <input placeholder="{{info?.name}}" [(ngModel)]="userName" type="name" name="userName">
+            </div>
+            <div class="info-name">
+              <a>Nachname:</a>
+              <input placeholder="{{info?.lastname}}" [(ngModel)]="userLastname" type="lastname" name="userLastname">
+            </div>
+            <div class="info-name">
+              <a>Adresse:</a>
+              <input placeholder="{{info?.address}}" [(ngModel)]="userAddress" type="address" name="userAddress">
+            </div>
+            <div class="info-name">
+              <a>Pz, Stadt:</a>
+              <input placeholder="{{info?.stadt}}" [(ngModel)]="userStadt" type="stadt" name="userStadt">
+            </div>
+            <div class="info-name">
+              <a>Email:</a>
+              <input placeholder="{{info?.email}}" [(ngModel)]="userEmail" type="email" name="userEmail">
+            </div>
+            <div class="info-name">
+              <a>Handynummer:</a>
+              <input placeholder="+49 {{info?.phone}}" [(ngModel)]="userPhone" type="phone" name="userPhone">
+            </div>
           </div>
-          <div class="info-name">
-            <a>Pz, Stadt:</a>
-            <span>{{info?.stadt}}</span>
+        </form>
+      </div>
+
+      <div class="profil-info" *ngFor="let info of user">
+        <div class="profil-info-name" *ngIf="!editLicensesInfo">
+          <div class="edit-cont" (click)="editLicensesUser()">
+            <span>Bearbeiten</span>
           </div>
           <div class="info-name">
             <a>Führerschein Ablaufdatum:</a>
@@ -44,35 +84,11 @@
           </div>
         </div>
 
-        <form #infoForm="ngForm" (ngSubmit)="saveInfo(infoForm)" *ngIf="editInfo">
+        <form #licensesForm="ngForm" (ngSubmit)="saveLicenses(licensesForm)" *ngIf="editLicensesInfo">
           <div class="profil-info-name">
             <button class="edit-cont" type="submit">
-              <span>Save</span>
+              <span>Speichern</span>
             </button>
-            <div class="info-name">
-              <a>Name:</a>
-              <input placeholder="{{info?.name}}" [(ngModel)]="userName" type="name" name="userName">
-            </div>
-            <div class="info-name">
-              <a>Nachname:</a>
-              <input placeholder="{{info?.lastname}}" [(ngModel)]="userLastname" type="lastname" name="userLastname">
-            </div>
-            <div class="info-name">
-              <a>Email:</a>
-              <input placeholder="{{info?.email}}" [(ngModel)]="userEmail" type="email" name="userEmail">
-            </div>
-            <div class="info-name">
-              <a>Handynummer:</a>
-              <input placeholder="+49 {{info?.phone}}" [(ngModel)]="userPhone" type="phone" name="userPhone">
-            </div>
-            <div class="info-name">
-              <a>Adresse:</a>
-              <input placeholder="{{info?.address}}" [(ngModel)]="userAddress" type="address" name="userAddress">
-            </div>
-            <div class="info-name">
-              <a>Pz, Stadt:</a>
-              <input placeholder="{{info?.stadt}}" [(ngModel)]="userStadt" type="stadt" name="userStadt">
-            </div>
             <div class="info-name">
               <a>Führerschein Ablaufdatum:</a>
               <input placeholder="{{info?.driverLicense}}" [(ngModel)]="userDriverLicense" type="date"
@@ -82,6 +98,40 @@
               <a>P-Schein Ablaufdatum:</a>
               <input placeholder="{{info?.ambulanceLicense}}" [(ngModel)]="userAmbulanceLicense" type="date"
                 name="userAmbulanceLicense" class="input-date">
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="profil-info" *ngFor="let info of user">
+        <div class="profil-info-name" *ngIf="!editInsuranceInfo">
+          <div class="edit-cont" (click)="editInsuranceUser()">
+            <span>Bearbeiten</span>
+          </div>
+          <div class="info-name">
+            <a>Krankenkasse:</a>
+            <span>{{info?.insuranceName}}</span>
+          </div>
+          <div class="info-name">
+            <a>Versicherungsnummer:</a>
+            <span>{{info?.insuranceNumber}}</span>
+          </div>
+        </div>
+
+        <form #insuranceForm="ngForm" (ngSubmit)="saveInsurance(insuranceForm)" *ngIf="editInsuranceInfo">
+          <div class="profil-info-name">
+            <button class="edit-cont" type="submit">
+              <span>Speichern</span>
+            </button>
+            <div class="info-name">
+              <a>Krankenkasse:</a>
+              <input placeholder="{{info?.insuranceName}}" [(ngModel)]="userInsuranceName" type="name"
+                name="userInsuranceName" class="">
+            </div>
+            <div class="info-name">
+              <a>Versicherungsnummer:</a>
+              <input placeholder="{{info?.insuranceNumber}}" [(ngModel)]="userInsuranceNumber" type="string"
+                name="userInsuranceNumber" class="">
             </div>
           </div>
         </form>

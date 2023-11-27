@@ -11,6 +11,8 @@ import { NgForm } from '@angular/forms';
 export class ProfilPage implements OnInit {
   user: User[] = [];
   editInfo: boolean = false;
+  editLicensesInfo: boolean = false;
+  editInsuranceInfo: boolean = false;
   userName: string = '';
   userLastname: string = '';
   userPhone: string = '';
@@ -19,6 +21,8 @@ export class ProfilPage implements OnInit {
   userStadt: string = '';
   userDriverLicense: string = '';
   userAmbulanceLicense: string = '';
+  userInsuranceName: string = '';
+  userInsuranceNumber: string = '';
   sickCertificate: string = '';
 
   constructor(private sharedService: SharedService) {
@@ -51,6 +55,20 @@ export class ProfilPage implements OnInit {
   }
 
   /**
+   * The function editLicensesUser() is a function that allows the user to edit his licenses
+   */
+  editLicensesUser() {
+    this.editLicensesInfo = true;
+  }
+
+  /**
+   * The function editLicensesUser() is a function that allows the user to edit his licenses
+   */
+  editInsuranceUser() {
+    this.editInsuranceInfo = true;
+  }
+
+  /**
    * The function saveInfo() is a function that saves the new user info in the local storage
    * @param form NgForm
    */
@@ -63,13 +81,44 @@ export class ProfilPage implements OnInit {
         email: this.userEmail,
         address: this.userAddress,
         stadt: this.userStadt,
-        driverLicense: this.userDriverLicense,
-        ambulanceLicense: this.userAmbulanceLicense,
-        sickCertificate: this.sickCertificate,
       };
       this.sharedService.updateInfoLocalStorage(worker);
       console.log(worker);
       this.editInfo = false;
+      this.getInfoFromUser();
+    }
+  }
+
+  /**
+   * The function saveLicenses() is a function that saves the new user his licenses in the local storage
+   * @param form NgForm
+   */
+  saveLicenses(form: NgForm) {
+    if (form.valid) {
+      const worker = {
+        driverLicense: this.userDriverLicense,
+        ambulanceLicense: this.userAmbulanceLicense,
+      };
+      this.sharedService.updateInfoLocalStorage(worker);
+      console.log(worker);
+      this.editLicensesInfo = false;
+      this.getInfoFromUser();
+    }
+  }
+
+  /**
+   * The function saveLicenses() is a function that saves the new user his licenses in the local storage
+   * @param form NgForm
+   */
+  saveInsurance(form: NgForm) {
+    if (form.valid) {
+      const worker = {
+        insuranceName: this.userInsuranceName,
+        insuranceNumber: this.userInsuranceNumber,
+      };
+      this.sharedService.updateInfoLocalStorage(worker);
+      console.log(worker);
+      this.editInsuranceInfo = false;
       this.getInfoFromUser();
     }
   }

@@ -10,10 +10,17 @@
   background-color: #f0f9f4;
 }
 
+.profil {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
 .profil-info {
   border: 1px solid #3c8f69;
   border-radius: 15px;
   padding: 20px;
+  background-color: white;
 }
 
 .profil-info-name {

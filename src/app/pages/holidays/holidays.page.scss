@@ -189,6 +189,10 @@
   }
 }
 
+.example-form-field {
+  padding: 0px !important;
+}
+
 .mat-mdc-form-field-subscript-wrapper {
   display: none !important;
 }
@@ -203,6 +207,11 @@
 
 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
   background-color: transparent !important;
+}
+
+.primary {
+  background-color: #3c8f69 !important;
+  color: white !important;
 }
 
 .mat-mdc-raised-button:not(:disabled) {
@@ -235,6 +244,13 @@
   &:hover {
     background-color: #dcefe3 !important;
   }
+}
+
+.mat-calendar-body-cell:not(.mat-calendar-body-disabled):hover
+  > .mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(
+    .mat-calendar-body-comparison-identical
+  ) {
+  background-color: #dcefe3 !important;
 }
 
 @media (width < 1500px) {

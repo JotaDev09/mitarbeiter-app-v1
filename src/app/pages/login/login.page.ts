@@ -89,6 +89,8 @@ export class LoginPage implements OnInit {
         carLicenses: [],
         payrolls: [],
         sickCertificate: [],
+        insuranceName: '',
+        insuranceNumber: '',
       };
       this.sharedService.saveUserLocalStorage(worker);
       this.router.navigate(['/home']);
