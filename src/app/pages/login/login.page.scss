@@ -109,6 +109,42 @@ input:focus + .input-container {
   }
 }
 
+.remember-me-cont {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  .check-remember {
+    &:hover {
+      background-color: none !important;
+    }
+  }
+
+  span {
+    font-size: 16px;
+  }
+}
+.mat-accent {
+  --mat-option-selected-state-label-text-color: transparent !important;
+}
+
+.mdc-checkbox
+  .mdc-checkbox__native-control:enabled:checked
+  ~ .mdc-checkbox__background,
+.mdc-checkbox
+  .mdc-checkbox__native-control:enabled:indeterminate
+  ~ .mdc-checkbox__background,
+.mdc-checkbox
+  .mdc-checkbox__native-control[data-indeterminate="true"]:enabled
+  ~ .mdc-checkbox__background {
+  border-color: #3c8f69 !important;
+  background-color: #3c8f69 !important;
+}
+
+.mdc-checkbox:active {
+  background-color: none !important;
+}
+
 //copyright container
 .copyright {
   display: flex;

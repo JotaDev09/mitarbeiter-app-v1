@@ -181,4 +181,24 @@ export class SharedService {
       }),
     }));
   }
+
+  /**
+   * The function setRememberMe() is a function that sets the remember me
+   * @param rememberMe the remember me to be set
+   */
+  setRememberMe(rememberMe: boolean) {
+    localStorage.setItem('rememberMe', JSON.stringify(rememberMe));
+  }
+
+  /**
+   * The function getRememberMe() is a function that gets the remember me
+   * @returns the remember me
+   */
+  getRememberMe() {
+    const rememberMe = localStorage.getItem('rememberMe');
+    if (rememberMe) {
+      return JSON.parse(rememberMe);
+    }
+    return false;
+  }
 }

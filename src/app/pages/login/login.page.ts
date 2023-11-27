@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {
   trigger,
   state,
@@ -32,6 +32,7 @@ import { SharedService } from 'src/app/shared.service';
       transition('middle => top-left', animate('2000ms ease-out')),
     ]),
   ],
+  encapsulation: ViewEncapsulation.None,
 })
 export class LoginPage implements OnInit {
   loginContainer: boolean = false;
@@ -40,6 +41,7 @@ export class LoginPage implements OnInit {
   userPassword: string = '';
   animationState: string = 'middle';
   animateIntro: boolean = false;
+  rememberMe: boolean = false;
 
   constructor(private router: Router, private sharedService: SharedService) {}
 
@@ -95,5 +97,12 @@ export class LoginPage implements OnInit {
       this.sharedService.saveUserLocalStorage(worker);
       this.router.navigate(['/home']);
     }
+  }
+
+  /**
+   * This method will toggle the remember me
+   */
+  toggleRememberMe() {
+    this.sharedService.setRememberMe(!this.sharedService.getRememberMe());
   }
 }
