@@ -90,6 +90,9 @@ export class SharedService {
       'ambulanceLicense',
       'insuranceName',
       'insuranceNumber',
+      'bankOwner',
+      'bankNumber',
+      'bankBic',
     ];
 
     propertiesToUpdate.forEach((property) => {

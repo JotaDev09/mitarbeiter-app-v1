@@ -12,11 +12,11 @@
       </div>
       <div class="input-container">
         <input class="input-login" type="email" name="userEmail" required
-          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}" [(ngModel)]="userEmail">
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}" [(ngModel)]="userEmail" (click)="hideEmailError()">
         <mat-icon>alternate_email</mat-icon>
       </div>
-      <div *ngIf="emailForm.submitted && emailForm.controls['userEmail'].errors">
-        <div class="case-false" *ngIf="emailForm.controls['userEmail'].errors?.['required']">
+      <div *ngIf="emailForm.submitted && emailForm.controls['userEmail'].errors || errorEmail">
+        <div class="case-false" *ngIf="emailForm.controls['userEmail'].errors?.['required'] || errorEmail">
           <span>Falsche E-mail</span>
         </div>
         <div class="case-false" *ngIf="emailForm.controls['userEmail'].errors?.['pattern']">
@@ -30,13 +30,13 @@
       </div>
       <div class="input-container">
         <input class="input-login" type="password" [type]="showPassword ? 'text' : 'password'"
-          [(ngModel)]="userPassword" name="userPassword" required>
+          [(ngModel)]="userPassword" name="userPassword" required (click)="hidePasswordError()">
         <mat-icon class="icon-view" (click)="toggleVisibility()">{{ showPassword ?
           'visibility' :
           'visibility_off'}}</mat-icon>
       </div>
-      <div *ngIf="emailForm.submitted && emailForm.controls['userPassword'].errors">
-        <div class="case-false" *ngIf="emailForm.controls['userPassword'].errors?.['required']">
+      <div *ngIf="emailForm.submitted && emailForm.controls['userPassword'].errors || errorPassword">
+        <div class="case-false" *ngIf="emailForm.controls['userPassword'].errors?.['required'] || errorPassword">
           <span>Falsches Passwort</span>
         </div>
       </div>

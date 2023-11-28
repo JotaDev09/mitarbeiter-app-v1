@@ -29,6 +29,19 @@
   gap: 15px;
 }
 
+.info-head {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.info-title {
+  font-size: 18px;
+  color: #3c8f69;
+  font-weight: 500;
+}
+
 .info-name {
   width: 500px;
   display: flex;
@@ -36,12 +49,14 @@
   align-items: center;
   gap: 30px;
   border-bottom: 1px solid #3c8f69;
+  margin-left: 10px;
+  margin-right: 10px;
 
   a {
     color: #3c8f69;
     text-decoration: none;
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 400;
     padding: 5px;
   }
 
@@ -77,4 +92,27 @@
 ::-webkit-calendar-picker-indicator {
   filter: invert(1);
   cursor: pointer;
+}
+
+.select-insurance {
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  color: black;
+  border: none;
+  font-family: "Poppins";
+  font-size: 16px;
+  option {
+    outline: none;
+    border: none;
+  }
+}
+
+select:focus-visible {
+  outline: none;
+  border: none;
+}
+
+mat-icon {
+  color: #3c8f69;
 }

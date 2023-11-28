@@ -19,4 +19,7 @@ export interface User {
   sickCertificate: [];
   insuranceName: string;
   insuranceNumber: string;
+  bankOwner: string;
+  bankNumber: string;
+  bankBic: string;
 }

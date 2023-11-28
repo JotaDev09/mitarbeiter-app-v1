@@ -8,6 +8,7 @@ import { ProfilPageRoutingModule } from './profil-routing.module';
 
 import { ProfilPage } from './profil.page';
 import { HeaderModule } from 'src/app/header/header.module';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { HeaderModule } from 'src/app/header/header.module';
     IonicModule,
     ProfilPageRoutingModule,
     HeaderModule,
+    MatIconModule,
   ],
   declarations: [ProfilPage],
 })

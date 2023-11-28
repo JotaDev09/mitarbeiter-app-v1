@@ -42,6 +42,8 @@ export class LoginPage implements OnInit {
   animationState: string = 'middle';
   animateIntro: boolean = false;
   rememberMe: boolean = false;
+  errorPassword: boolean = false;
+  errorEmail: boolean = false;
 
   constructor(private router: Router, private sharedService: SharedService) {}
 
@@ -73,29 +75,49 @@ export class LoginPage implements OnInit {
    * @param form
    */
   submitForm(form: any) {
-    if (form.valid) {
-      const worker = {
-        id: this.sharedService.getId(),
-        name: this.userEmail,
-        lastname: '',
-        email: this.userEmail,
-        password: this.userPassword,
-        holidays: [],
-        dienst: [],
-        stillHolidays: 28,
-        phone: '',
-        address: '',
-        stadt: '',
-        driverLicense: '',
-        ambulanceLicense: '',
-        carLicenses: [],
-        payrolls: [],
-        sickCertificate: [],
-        insuranceName: '',
-        insuranceNumber: '',
-      };
-      this.sharedService.saveUserLocalStorage(worker);
-      this.router.navigate(['/home']);
+    const user = this.sharedService.getUserLocalStorage();
+    if (user) {
+      if (
+        user.email === this.userEmail &&
+        user.password === this.userPassword
+      ) {
+        this.router.navigate(['/home']);
+        // } else if (user.email !== this.userEmail) {
+        //   this.errorEmail = true;
+      } else if (
+        user.email === this.userEmail &&
+        user.password !== this.userPassword
+      ) {
+        this.errorPassword = true;
+      } else {
+        if (form.valid) {
+          const worker = {
+            id: this.sharedService.getId(),
+            name: this.userEmail,
+            lastname: '',
+            email: this.userEmail,
+            password: this.userPassword,
+            holidays: [],
+            dienst: [],
+            stillHolidays: 28,
+            phone: '',
+            address: '',
+            stadt: '',
+            driverLicense: '',
+            ambulanceLicense: '',
+            carLicenses: [],
+            payrolls: [],
+            sickCertificate: [],
+            insuranceName: '',
+            insuranceNumber: '',
+            bankOwner: '',
+            bankNumber: '',
+            bankBic: '',
+          };
+          this.sharedService.saveUserLocalStorage(worker);
+          this.router.navigate(['/home']);
+        }
+      }
     }
   }
 
@@ -104,5 +126,19 @@ export class LoginPage implements OnInit {
    */
   toggleRememberMe() {
     this.sharedService.setRememberMe(!this.sharedService.getRememberMe());
+  }
+
+  /**
+   * This method will hide the password error
+   */
+  hidePasswordError() {
+    this.errorPassword = false;
+  }
+
+  /**
+   * This method will hide the email error
+   */
+  hideEmailError() {
+    this.errorEmail = false;
   }
 }

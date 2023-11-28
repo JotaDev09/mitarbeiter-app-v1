@@ -124,6 +124,8 @@ input:focus + .input-container {
     font-size: 16px;
   }
 }
+
+//check box remember-me styles
 .mat-accent {
   --mat-option-selected-state-label-text-color: transparent !important;
 }
@@ -143,6 +145,16 @@ input:focus + .input-container {
 
 .mdc-checkbox:active {
   background-color: none !important;
+}
+
+.mdc-checkbox
+  .mdc-checkbox__native-control:focus:checked
+  ~ .mdc-checkbox__ripple {
+  background-color: #3c8f69 !important;
+}
+
+.mdc-checkbox .mdc-checkbox__native-control:focus ~ .mdc-checkbox__ripple {
+  background-color: transparent !important;
 }
 
 //copyright container

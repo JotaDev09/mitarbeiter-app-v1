@@ -24,6 +24,86 @@ export class ProfilPage implements OnInit {
   userInsuranceName: string = '';
   userInsuranceNumber: string = '';
   sickCertificate: string = '';
+  editBankInfo: boolean = false;
+  userBankOwner: string = '';
+  userBankNumber: string = '';
+  userBankBic: string = '';
+
+  krankenkassen = [
+    { name: 'AOK Baden-Württemberg' },
+    { name: 'AOK Bayern' },
+    { name: 'AOK Bremen/Bremerhaven' },
+    { name: 'AOK Hessen' },
+    { name: 'AOK Niedersachsen' },
+    { name: 'AOK Nordost' },
+    { name: 'AOK NORDWEST' },
+    { name: 'AOK PLUS' },
+    { name: 'AOK Rheinland -Pfalz/Saarland' },
+    { name: 'AOK Rheinland/Hamburg' },
+    { name: 'AOK Sachsen-Anhalt' },
+    { name: 'Audi BKK' },
+    { name: 'BAHN-BKK' },
+    { name: 'BERGISCHE Krankenkasse' },
+    { name: 'Bertelsmann BKK' },
+    { name: 'BKK Akzo Nobel Bayern' },
+    { name: 'BKK Diakonie' },
+    { name: 'BKK DürkoppAdler' },
+    { name: 'BKK EUREGIO' },
+    { name: 'BKK exklusiv' },
+    { name: 'BKK Faber-Castell & Partner' },
+    { name: 'BKK firmus' },
+    { name: 'BKK Freudenberg' },
+    { name: 'BKK GILDEMEISTER SEIDENSTICKER' },
+    { name: 'BKK Herkules' },
+    { name: 'BKK Linde' },
+    { name: 'bkk melitta hmr' },
+    { name: 'BKK PFAFF' },
+    { name: 'BKK Pfalz' },
+    { name: 'BKK ProVita' },
+    { name: 'BKK Public' },
+    { name: 'BKK SBH' },
+    { name: 'BKK Scheufelen' },
+    { name: 'BKK Technoform' },
+    { name: 'BKK Textilgruppe Hof' },
+    { name: 'BKK VBU' },
+    { name: 'BKK VDN' },
+    { name: 'BKK VerbundPlus' },
+    { name: 'BKK WERRA-MEISSNER' },
+    { name: 'BKK Wirtschaft & Finanzen' },
+    { name: 'BKK ZF & Partner' },
+    { name: 'BKK24' },
+    { name: 'BOSCH BKK' },
+    { name: 'Continentale Betriebskrankenkasse' },
+    { name: 'Debeka BKK' },
+    { name: 'energie-BKK' },
+    { name: 'Heimat Krankenkasse' },
+    { name: 'mhplus BKK' },
+    { name: 'Mobil Krankenkasse' },
+    { name: 'Novitas BKK' },
+    { name: 'pronova BKK' },
+    { name: 'R+V Betriebskrankenkasse' },
+    { name: 'Salus BKK' },
+    { name: 'SBK' },
+    { name: 'SECURVITA Krankenkasse' },
+    { name: 'SKD BKK' },
+    { name: 'TUI BKK' },
+    { name: 'VIACTIV Krankenkasse' },
+    { name: 'vivida bkk' },
+    { name: 'WMF BKK' },
+    { name: 'BARMER' },
+    { name: 'DAK-Gesundheit' },
+    { name: 'HEK-Hanseatische Krankenkasse' },
+    { name: 'hkk – Handelskrankenkasse' },
+    { name: 'KKH Kaufmännische Krankenkasse' },
+    { name: 'KNAPPSCHAFT' },
+    { name: 'Techniker Krankenkasse (TK)' },
+    { name: 'BIG direkt gesund' },
+    { name: 'IKK – Die Innovationskasse' },
+    { name: 'IKK Brandenburg und Berlin' },
+    { name: 'IKK classic' },
+    { name: 'IKK gesund plus' },
+    { name: 'IKK Südwest' },
+  ];
 
   constructor(private sharedService: SharedService) {
     this.sharedService.updateTitle('Profil');
@@ -69,6 +149,13 @@ export class ProfilPage implements OnInit {
   }
 
   /**
+   * The function editBankUser() is a function that allows the user to edit his bank
+   */
+  editBankUser() {
+    this.editBankInfo = true;
+  }
+
+  /**
    * The function saveInfo() is a function that saves the new user info in the local storage
    * @param form NgForm
    */
@@ -83,7 +170,6 @@ export class ProfilPage implements OnInit {
         stadt: this.userStadt,
       };
       this.sharedService.updateInfoLocalStorage(worker);
-      console.log(worker);
       this.editInfo = false;
       this.getInfoFromUser();
     }
@@ -100,7 +186,6 @@ export class ProfilPage implements OnInit {
         ambulanceLicense: this.userAmbulanceLicense,
       };
       this.sharedService.updateInfoLocalStorage(worker);
-      console.log(worker);
       this.editLicensesInfo = false;
       this.getInfoFromUser();
     }
@@ -117,8 +202,24 @@ export class ProfilPage implements OnInit {
         insuranceNumber: this.userInsuranceNumber,
       };
       this.sharedService.updateInfoLocalStorage(worker);
-      console.log(worker);
       this.editInsuranceInfo = false;
+      this.getInfoFromUser();
+    }
+  }
+
+  /**
+   * The function saveBank() is a function that saves the new users bank in the local storage
+   * @param form NgForm
+   */
+  saveBank(form: NgForm) {
+    if (form.valid) {
+      const worker = {
+        bankOwner: this.userBankOwner,
+        bankNumber: this.userBankNumber,
+        bankBic: this.userBankBic,
+      };
+      this.sharedService.updateInfoLocalStorage(worker);
+      this.editBankInfo = false;
       this.getInfoFromUser();
     }
   }
