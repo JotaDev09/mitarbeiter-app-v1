@@ -8,13 +8,14 @@
 
 .privacy-container {
   height: -webkit-fill-available;
-  padding: 200px 300px 50px 300px;
+  padding: 225px 300px 50px 300px;
   display: flex;
   flex-direction: column;
   gap: 45px;
   text-align: justify;
   font-family: "Poppins";
   overflow: scroll;
+  background-color: #f0f9f4;
 }
 
 .privacy-intro {

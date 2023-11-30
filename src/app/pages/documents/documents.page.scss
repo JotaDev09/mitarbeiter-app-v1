@@ -1,3 +1,7 @@
+body {
+  background-color: #f0f9f4;
+}
+
 .documents-container {
   height: -webkit-fill-available;
   padding: 225px 300px 50px 300px;
@@ -7,7 +11,6 @@
   gap: 45px;
   text-align: justify;
   font-family: "Poppins";
-  background-color: #f0f9f4;
 }
 
 .expansion-container .mat-expansion-panel-header-description {
@@ -79,6 +82,13 @@ input[type="file"] {
 
 .files-images {
   width: 200px;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: white !important;
+    color: black !important;
+  }
 }
 
 @media (width < 1500px) {

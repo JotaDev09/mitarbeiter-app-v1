@@ -64,7 +64,12 @@ body {
 .login-email-title {
   span {
     font-size: 20px;
+    color: #252525;
   }
+}
+
+mat-icon {
+  color: black !important;
 }
 
 .input-container {
@@ -80,6 +85,7 @@ body {
     width: 250px;
     border: none;
     font-family: "Poppins";
+    color: #3c8f69;
   }
 
   &:hover {
@@ -133,12 +139,21 @@ input:focus + .input-container {
 
   span {
     font-size: 16px;
+    color: #3c8f69;
   }
 }
 
 //check box remember-me styles
 .mat-accent {
   --mat-option-selected-state-label-text-color: transparent !important;
+}
+
+.mdc-checkbox
+  .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not(
+    [data-indeterminate="true"]
+  )
+  ~ .mdc-checkbox__background {
+  border-color: #3c8f69 !important;
 }
 
 .mdc-checkbox

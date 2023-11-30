@@ -18,11 +18,11 @@
 
       <div class="dienst-today">
         <div class="today-title container">
-          <h2>Dienst heute {{today}}</h2>
+          <a>Dienst heute {{today}}</a>
           <span>06:00-14:00</span>
         </div>
         <div class="today-title container">
-          <h2>Dienst morgen {{tomorrow}}</h2>
+          <a>Dienst morgen {{tomorrow}}</a>
           <span>06:00-14:00</span>
         </div>
       </div>
@@ -30,12 +30,12 @@
       <div class="driver-license ">
         <div class="car-license container" *ngIf="noCarLicense"
           [ngClass]="{'expiration-one-month': isCarLicenseExpirationOneMonth, 'expiration-three-months': isCarLicenseExpirationThreeMonths}">
-          <h2>Führerschein Ablaufsdatum</h2>
+          <a>Führerschein Ablaufsdatum</a>
           <span>{{carLicense}}</span>
         </div>
         <div class="car-license container" *ngIf="noAmbulanceLicense"
           [ngClass]="{'expiration-one-month': isAmbulanceLicenseExpirationOneMonth, 'expiration-three-months': isAmbulanceLicenseExpirationThreeMonths}">
-          <h2>P-Schein Ablaufsdatum</h2>
+          <a>P-Schein Ablaufsdatum</a>
           <span>{{ambulanceLicense}}</span>
         </div>
 

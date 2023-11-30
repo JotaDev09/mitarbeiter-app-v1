@@ -155,8 +155,6 @@
             </div>
             <div class="info-name">
               <a>Krankenkasse:</a>
-              <!-- <input placeholder="{{info?.insuranceName}}" [(ngModel)]="userInsuranceName" type="name"
-                name="userInsuranceName" class=""> -->
               <select [(ngModel)]="userInsuranceName" name="userInsuranceName" class="select-insurance">
                 <option value="" disabled selected hidden>Bitte wählen</option>
                 <option *ngFor="let kk of krankenkassen" [value]="kk.name">{{kk.name}}

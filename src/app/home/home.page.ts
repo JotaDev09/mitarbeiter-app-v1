@@ -35,12 +35,7 @@ export class HomePage implements OnInit {
     this.licenseDates();
   }
 
-  ngOnInit(): void {
-    // setTimeout(() => {
-    //   this.checkAmbulanceLicense();
-    //   this.checkDriverLicense();
-    // }, 1000);
-  }
+  ngOnInit(): void {}
 
   calendarOptions: CalendarOptions = {
     locale: 'de',
@@ -140,20 +135,20 @@ export class HomePage implements OnInit {
     carLicenseDate: moment.Moment,
     ambulanceLicenseDate: moment.Moment
   ) {
-    const oneMonthLater = today.clone().add(1, 'month');
-    const threeMonthsLater = today.clone().add(3, 'month');
+    const fourMonthsLater = today.clone().add(4, 'month');
+    const sixMonthsLater = today.clone().add(6, 'month');
 
     this.isCarLicenseExpirationOneMonth =
-      carLicenseDate.isBefore(oneMonthLater);
+      carLicenseDate.isBefore(fourMonthsLater);
     this.isCarLicenseExpirationThreeMonths = carLicenseDate.isBetween(
-      oneMonthLater,
-      threeMonthsLater
+      fourMonthsLater,
+      sixMonthsLater
     );
 
     this.isAmbulanceLicenseExpirationOneMonth =
-      ambulanceLicenseDate.isBefore(oneMonthLater);
+      ambulanceLicenseDate.isBefore(fourMonthsLater);
     this.isAmbulanceLicenseExpirationThreeMonths =
-      ambulanceLicenseDate.isBetween(oneMonthLater, threeMonthsLater);
+      ambulanceLicenseDate.isBetween(fourMonthsLater, sixMonthsLater);
   }
 
   /**
