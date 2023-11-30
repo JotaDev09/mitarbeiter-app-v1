@@ -30,6 +30,7 @@ export class HeaderComponent implements OnInit {
   toHome() {
     this.router.navigate(['/home']);
   }
+
   /**
    * The function is used to navigate to the home page
    */

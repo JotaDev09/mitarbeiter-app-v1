@@ -1,24 +1,22 @@
-<ion-header [translucent]="true">
-  <section class="toolbar">
-    <div class="logo-cont">
-      <img src="/assets/img/gorris_logo.png" alt="">
-    </div>
-    <span>Impressum</span>
-    <div class="button-login" routerLink="/login">
-      <a>Login</a>
-    </div>
-  </section>
-</ion-header>
+<section class="toolbar">
+  <div class="logo-cont">
+    <img src="/assets/img/gorris_logo.png" alt="">
+  </div>
+  <span>Impressum</span>
+  <div class="button-login" routerLink="/login">
+    <a>Login</a>
+  </div>
+</section>
 
-<ion-content [fullscreen]="true">
-  <section class="impressum-container">
-    <div class="impressum-contain" *ngFor="let contain of impressumContain; let i = index">
-      <h3>{{contain.impressumContTitle}}</h3>
-      <span>{{contain.impressumContText}}</span>
-      <span *ngIf="contain.impressumContText2">{{contain.impressumContText2}}</span>
-    </div>
-  </section>
-</ion-content>
+
+<section class="impressum-container">
+  <div class="impressum-contain" *ngFor="let contain of impressumContain; let i = index">
+    <h3>{{contain.impressumContTitle}}</h3>
+    <span>{{contain.impressumContText}}</span>
+    <span *ngIf="contain.impressumContText2">{{contain.impressumContText2}}</span>
+  </div>
+</section>
+
 
 
 

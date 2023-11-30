@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
 
 import { AlertLicenseComponent } from './alert-license.component';
 
@@ -9,8 +8,7 @@ describe('AlertLicenseComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ AlertLicenseComponent ],
-      imports: [IonicModule.forRoot()]
+      declarations: [AlertLicenseComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AlertLicenseComponent);

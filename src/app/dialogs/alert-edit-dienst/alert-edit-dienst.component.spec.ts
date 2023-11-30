@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
 
 import { AlertEditDienstComponent } from './alert-edit-dienst.component';
 
@@ -9,8 +8,7 @@ describe('AlertEditDienstComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ AlertEditDienstComponent ],
-      imports: [IonicModule.forRoot()]
+      declarations: [AlertEditDienstComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AlertEditDienstComponent);

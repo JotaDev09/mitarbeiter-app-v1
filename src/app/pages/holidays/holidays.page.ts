@@ -35,7 +35,7 @@ export class HolidaysPage implements OnInit {
   infoNextYear: boolean = false;
 
   constructor(private sharedService: SharedService, private router: Router) {
-    this.sharedService.updateTitle('UrlaubsAntrag');
+    this.sharedService.updateTitle('Urlaubsantrag');
   }
 
   ngOnInit(): void {

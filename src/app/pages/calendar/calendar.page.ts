@@ -63,7 +63,7 @@ export class CalendarPage implements OnInit {
   requested(holidays: any, endDate: Date) {
     return {
       title: 'Urlaub beantragt',
-      start: holidays.holidaysFrom,
+      start: moment(holidays.holidaysFrom).format('YYYY-MM-DD'),
       end: moment(endDate).format('YYYY-MM-DD'),
       display: 'background',
       backgroundColor: '#eef011',

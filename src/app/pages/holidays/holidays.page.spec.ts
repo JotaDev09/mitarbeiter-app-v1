@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { HolidaysPage } from './holidays.page';
 
 describe('HolidaysPage', () => {
@@ -6,9 +6,15 @@ describe('HolidaysPage', () => {
   let fixture: ComponentFixture<HolidaysPage>;
 
   beforeEach(async(() => {
-    fixture = TestBed.createComponent(HolidaysPage);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    TestBed.configureTestingModule({
+      declarations: [HolidaysPage],
+    })
+      .compileComponents()
+      .then(() => {
+        fixture = TestBed.createComponent(HolidaysPage);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+      });
   }));
 
   it('should create', () => {

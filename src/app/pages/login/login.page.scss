@@ -1,5 +1,10 @@
+body {
+  margin: 0 !important;
+  font-family: "Poppins" !important;
+}
+
 .login-content {
-  font-family: "Poppins";
+  font-family: "Poppins" !important;
 }
 /* Container for intro animation */
 .container-intro {
@@ -45,6 +50,7 @@
     font-size: 40px;
     line-height: 45px;
     font-weight: 700;
+    font-family: "Poppins";
   }
 }
 
@@ -73,6 +79,7 @@
     outline: none;
     width: 250px;
     border: none;
+    font-family: "Poppins";
   }
 
   &:hover {
@@ -92,6 +99,7 @@ input:focus + .input-container {
   span {
     color: red;
     font-size: 10px;
+    font-family: "Poppins";
   }
 }
 
@@ -103,6 +111,9 @@ input:focus + .input-container {
     background-color: #3c8f69;
     color: #eef011;
     transition: opacity 0.3s;
+    font-family: "Poppins";
+    cursor: pointer;
+    border: none;
     &:hover {
       opacity: 0.8;
     }

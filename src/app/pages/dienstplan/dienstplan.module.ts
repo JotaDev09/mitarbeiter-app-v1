@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { IonicModule } from '@ionic/angular';
-
 import { DienstplanPageRoutingModule } from './dienstplan-routing.module';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
@@ -14,7 +12,6 @@ import { DienstplanPage } from './dienstplan.page';
   imports: [
     CommonModule,
     FormsModule,
-    IonicModule,
     DienstplanPageRoutingModule,
     MatMenuModule,
     MatButtonModule,

@@ -1,6 +1,6 @@
 .documents-container {
   height: -webkit-fill-available;
-  padding: 100px 300px 50px 300px;
+  padding: 225px 300px 50px 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,15 +10,21 @@
   background-color: #f0f9f4;
 }
 
-.example-headers-align .mat-expansion-panel-header-description {
+.expansion-container .mat-expansion-panel-header-description {
   justify-content: space-between;
   align-items: center;
 }
 
-.example-headers-align .mat-mdc-form-field + .mat-mdc-form-field {
+.expansion-container .mat-mdc-form-field + .mat-mdc-form-field {
   margin-left: 8px;
 }
 
+.expansion-container {
+  width: -webkit-fill-available;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .mat-expansion-panel {
   width: 1000px;
 }
@@ -56,6 +62,7 @@ input[type="file"] {
   cursor: pointer;
   border: none;
   border-radius: 10px;
+  font-family: "Poppins";
   &:hover {
     opacity: 0.8;
   }

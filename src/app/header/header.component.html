@@ -7,14 +7,14 @@
     <button mat-button [matMenuTriggerFor]="menu" class="menu-header">Menu</button>
   </div>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item (click)="toHome()">Home</button>
-    <button mat-menu-item (click)="toDienst()">Dienstplan</button>
-    <button mat-menu-item (click)="toCalendar()">Kalender</button>
-    <button mat-menu-item (click)="toHolidays()">Urlaubsantrag</button>
-    <button mat-menu-item (click)="toHolidaysResum()">Urlaubs Übersicht</button>
-    <button mat-menu-item (click)="toInformation()">Information</button>
-    <button mat-menu-item (click)="toProfil()">Profil</button>
-    <button mat-menu-item (click)="toDocument()">Dokumente</button>
+    <button mat-menu-item (click)="toHome()"><span class="menu-button">Home</span></button>
+    <button mat-menu-item (click)="toDienst()"><span class="menu-button">Dienstplan</span></button>
+    <button mat-menu-item (click)="toCalendar()"><span class="menu-button">Kalender</span></button>
+    <button mat-menu-item (click)="toHolidays()"><span class="menu-button">Urlaubsantrag</span></button>
+    <button mat-menu-item (click)="toHolidaysResum()"><span class="menu-button">Urlaubs Übersicht</span></button>
+    <button mat-menu-item (click)="toInformation()"><span class="menu-button">Information</span></button>
+    <button mat-menu-item (click)="toProfil()"><span class="menu-button">Profil</span></button>
+    <button mat-menu-item (click)="toDocument()"><span class="menu-button">Dokumente</span></button>
     <button mat-menu-item class="button-login" (click)="signOut()"><a>Abmelden</a></button>
   </mat-menu>
 </section>

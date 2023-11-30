@@ -1,8 +1,8 @@
-<ion-header [translucent]="true">
+<header>
   <app-header></app-header>
-</ion-header>
+</header>
 
-<ion-content [fullscreen]="true">
+<div>
   <section class="holidays-resum">
     <div *ngFor="let yearGroup of getHolidaysFromLocalStorage(); let j = index" class="holidaysInYear">
       <div class="holidays-year">
@@ -63,4 +63,4 @@
       </div>
     </div>
   </section>
-</ion-content>
+</div>

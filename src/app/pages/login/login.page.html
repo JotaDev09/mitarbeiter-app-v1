@@ -1,4 +1,4 @@
-<ion-content [fullscreen]="true" class="login-content">
+<div class="login-content">
   <div class="container-intro">
     <img src="assets/img/gorris_logo.png" class="logo-transformed" [@introAnimation]="animationState">
   </div>
@@ -20,7 +20,7 @@
           <span>Falsche E-mail</span>
         </div>
         <div class="case-false" *ngIf="emailForm.controls['userEmail'].errors?.['pattern']">
-          <span>E-Mail muss "@" enthalten</span>
+          <span>E-Mail muss "&#64;" enthalten</span>
         </div>
       </div>
     </div>
@@ -62,4 +62,4 @@
       </div>
     </div>
   </form>
-</ion-content>
+</div>

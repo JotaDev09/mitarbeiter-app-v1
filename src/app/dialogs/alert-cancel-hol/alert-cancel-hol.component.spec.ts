@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
 
 import { AlertCancelHolComponent } from './alert-cancel-hol.component';
 
@@ -9,8 +8,7 @@ describe('AlertCancelHolComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ AlertCancelHolComponent ],
-      imports: [IonicModule.forRoot()]
+      declarations: [AlertCancelHolComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AlertCancelHolComponent);

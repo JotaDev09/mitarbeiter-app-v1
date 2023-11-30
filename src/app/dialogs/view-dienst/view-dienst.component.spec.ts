@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
 
 import { ViewDienstComponent } from './view-dienst.component';
 
@@ -9,8 +8,7 @@ describe('ViewDienstComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ViewDienstComponent ],
-      imports: [IonicModule.forRoot()]
+      declarations: [ViewDienstComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ViewDienstComponent);

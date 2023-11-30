@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 import { HeaderModule } from '../header/header.module';
@@ -12,7 +11,6 @@ import { FullCalendarModule } from '@fullcalendar/angular';
   imports: [
     CommonModule,
     FormsModule,
-    IonicModule,
     HomePageRoutingModule,
     HeaderModule,
     FullCalendarModule,

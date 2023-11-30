@@ -1,3 +1,5 @@
+@import "src/global.scss";
+
 .privacy-content {
   font-family: "Poppins";
 }
@@ -6,7 +8,7 @@
 
 .privacy-container {
   height: -webkit-fill-available;
-  padding: 50px 300px 50px 300px;
+  padding: 200px 300px 50px 300px;
   display: flex;
   flex-direction: column;
   gap: 45px;

@@ -1,4 +1,4 @@
-<ion-header [translucent]="true">
+<header>
   <section class="toolbar">
     <div class="logo-cont">
       <img src="/assets/img/gorris_logo.png" alt="">
@@ -8,9 +8,9 @@
       <a>Login</a>
     </div>
   </section>
-</ion-header>
+</header>
 
-<ion-content [fullscreen]="true">
+<div>
   <section class="privacy-container">
     <div class="privacy-intro">
       <span>Wir freuen uns über Ihren Besuch auf unserer Website und Ihrem Interesse an unserem Unternehmen. Der
@@ -37,9 +37,9 @@
         <a>{{daten.telefon}}</a>
         <a>{{daten.fax}}</a>
         <span *ngIf="i === 0">{{daten.mail}} &nbsp; <a class="web"
-            href="mailto:post@krankentransport-gorris.de">post@krankentransport-gorris.de</a></span>
+            href="mailto:post@krankentransport-gorris.de">post&#64;krankentransport-gorris.de</a></span>
         <span *ngIf="i === 1">{{daten.mail}} &nbsp; <a class="web"
-            href="mailto:datenschutz@krankentransport-gorris.de">datenschutz@krankentransport-gorris.de</a></span>
+            href="mailto:datenschutz@krankentransport-gorris.de">datenschutz&#64;krankentransport-gorris.de</a></span>
       </div>
     </div>
 
@@ -93,4 +93,4 @@
     </div>
   </section>
 
-</ion-content>
+</div>
