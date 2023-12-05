@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { SharedService } from 'src/app/shared.service';
 import { Router } from '@angular/router';
+import { DateAdapter } from '@angular/material/core';
 
 @Component({
   selector: 'app-holidays',
@@ -34,13 +35,26 @@ export class HolidaysPage implements OnInit {
   floatContainer: boolean = false;
   infoNextYear: boolean = false;
 
-  constructor(private sharedService: SharedService, private router: Router) {
+  constructor(
+    private sharedService: SharedService,
+    private router: Router,
+    private dateAdapter: DateAdapter<Date>
+  ) {
     this.sharedService.updateTitle('Urlaubsantrag');
   }
 
   ngOnInit(): void {
+    this.startWeekOnMonday();
     this.habilityNextYearOption();
     this.habilityCalendarOption();
+  }
+
+  /**
+   * The calendar starts on Monday
+   */
+  startWeekOnMonday() {
+    this.dateAdapter.setLocale('de');
+    this.dateAdapter.getFirstDayOfWeek = () => 1;
   }
 
   /**

@@ -28,6 +28,8 @@ export class HomePage implements OnInit {
   isCarLicenseExpirationThreeMonths: boolean = false;
   isAmbulanceLicenseExpirationOneMonth: boolean = false;
   isAmbulanceLicenseExpirationThreeMonths: boolean = false;
+  holidaysData: any[] = [];
+  eventsData: any[] = [];
 
   constructor(private dialog: MatDialog, private sharedService: SharedService) {
     this.greetings();
@@ -35,7 +37,67 @@ export class HomePage implements OnInit {
     this.licenseDates();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.loadHolidaysData();
+  }
+
+  /**
+   * The function loadHolidaysData() is a function that gets the holidays from the local storage
+   */
+  loadHolidaysData() {
+    this.holidaysData = this.sharedService.getHolidaysFromLocalStorage();
+    if (this.holidaysData && this.holidaysData.length > 0) {
+      this.eventsData = [];
+      for (let i = 0; i < this.holidaysData.length; i++) {
+        const userHolidays = this.holidaysData[i].holidays;
+        this.eventsData = this.eventsData.concat(
+          userHolidays
+            .map((holidays: any) => {
+              const endDate = new Date(holidays.holidaysTo);
+              const startDate = new Date(holidays.holidaysFrom);
+              endDate.setDate(endDate.getDate() + 1);
+              const status = holidays.status;
+              if (status === 'requested') {
+                return this.approved(holidays, endDate, startDate);
+              } else {
+                return null;
+              }
+            })
+            .filter((event: any) => event !== null)
+        );
+      }
+      this.initializeCalendar();
+    }
+  }
+
+  /**
+   * The function approved() is a function that returns the approved holidays
+   * @param holidays the data of the holidays
+   * @param endDate the end date of the holidays
+   * @returns the approved holidays
+   */
+  approved(holidays: any, endDate: Date, startDate: Date) {
+    console.log(holidays);
+    return {
+      start: moment(startDate).format('YYYY-MM-DD'),
+      end: moment(endDate).format('YYYY-MM-DD'),
+      display: 'background',
+      backgroundColor: '#8dc8aa',
+    };
+  }
+
+  /**
+   * The function initializeCalendar() is a function that initialize the calendar with the events
+   */
+  initializeCalendar() {
+    console.log('Events Data:', this.eventsData);
+
+    this.calendarOptions.eventSources = [
+      (fetchInfo, successCallback) => {
+        successCallback(this.eventsData);
+      },
+    ];
+  }
 
   calendarOptions: CalendarOptions = {
     locale: 'de',
@@ -51,6 +113,14 @@ export class HomePage implements OnInit {
     dayHeaderFormat: {
       weekday: 'short',
     },
+    events: [
+      {
+        start: '2023-12-02',
+        end: '2023-12-02',
+        display: 'background',
+        backgroundColor: '#8dc8aa',
+      },
+    ],
   };
 
   /**

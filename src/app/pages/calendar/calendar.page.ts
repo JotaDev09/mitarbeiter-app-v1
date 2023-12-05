@@ -3,6 +3,7 @@ import { CalendarOptions } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { SharedService } from 'src/app/shared.service';
 import * as moment from 'moment';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-calendar',
@@ -14,12 +15,38 @@ export class CalendarPage implements OnInit {
   holidaysData: any[] = [];
   eventsData: any[] = [];
 
-  constructor(private sharedService: SharedService) {
+  constructor(private sharedService: SharedService, private http: HttpClient) {
     this.sharedService.updateTitle('Kalender');
   }
 
   ngOnInit() {
     this.loadHolidaysData();
+    this.loadHolidaysGermany();
+  }
+
+  /**
+   * The function loadHolidaysGermany() is a function that gets the holidays in Germany from the API
+   */
+  async loadHolidaysGermany() {
+    const url = 'https://get.api-feiertage.de?states=be';
+
+    try {
+      const data: any = await this.http.get(url).toPromise();
+
+      if (data && data.feiertage) {
+        this.eventsData = [];
+
+        for (const holiday of data.feiertage) {
+          this.eventsData.push({
+            start: holiday.date,
+            title: holiday.fname,
+            backgroundColor: '#eef011',
+          });
+        }
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   /**

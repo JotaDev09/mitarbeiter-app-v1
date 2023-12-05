@@ -261,6 +261,10 @@
   background-color: #dcefe3 !important;
 }
 
+.mat-mdc-form-field-flex {
+  gap: 30px;
+}
+
 @media (width < 1500px) {
   .holidays-container {
     padding: 80px 100px 25px 100px;

@@ -10,6 +10,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import { CalendarPage } from './calendar.page';
 import { HeaderModule } from 'src/app/header/header.module';
 import { ViewDienstComponent } from 'src/app/dialogs/view-dienst/view-dienst.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { ViewDienstComponent } from 'src/app/dialogs/view-dienst/view-dienst.com
     HeaderModule,
     MatIconModule,
     FullCalendarModule,
+    HttpClientModule,
   ],
   declarations: [CalendarPage, ViewDienstComponent],
 })
