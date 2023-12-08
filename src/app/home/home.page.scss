@@ -174,3 +174,32 @@ a {
     color: #bbdfc9;
   }
 }
+
+.datum-license {
+  display: flex;
+  gap: 30px;
+}
+
+.help-renovate {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+
+  mat-icon {
+    color: white;
+  }
+
+  a {
+    font-size: 12px;
+  }
+
+  &:hover {
+    mat-icon {
+      color: rgb(175, 172, 172);
+    }
+    a {
+      color: rgb(175, 172, 172);
+    }
+  }
+}

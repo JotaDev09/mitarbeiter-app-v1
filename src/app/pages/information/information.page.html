@@ -4,34 +4,60 @@
 
 <div>
   <section class="information-container">
-    <mat-accordion>
-      <mat-expansion-panel hideToggle *ngFor="let info of information">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            {{info.informationTitle}}
-          </mat-panel-title>
-          <mat-panel-description>
-            {{info.informationSubTitle}}
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <div class="container-info">
-          <p class="description size-17" [innerHTML]="info.informationDescription"></p>
-          <div class="cont-date">
-            <p class="date">{{info.informationDate}}</p>
-            <p class="time">{{info.informationTime}}</p>
+    <div class="left-container" [style.flex]="leftContainerFlex" (mouseover)="onMouseOver('left')">
+      <mat-accordion>
+        <mat-expansion-panel hideToggle *ngFor="let info of information">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{info.informationTitle}}
+            </mat-panel-title>
+            <mat-panel-description *ngIf="panelLeftOpen">
+              {{info.informationSubTitle}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="container-info">
+            <p class="description size-17" [innerHTML]="info.informationDescription"></p>
+            <div class="cont-date">
+              <p class="date">{{info.informationDate}}</p>
+              <p class="time">{{info.informationTime}}</p>
+            </div>
+            <p class="where">{{info.informationWhere}}</p>
+            <p class="subText size-17">{{info.informationSubText}}</p>
+            <p class="finish size-17">{{info.informationFinish}}</p>
+            <p class="foot size-17" [innerHTML]="info.informationFoot"></p>
           </div>
-          <p class="where">{{info.informationWhere}}</p>
-          <p class="subText size-17">{{info.informationSubText}}</p>
-          <p class="finish size-17">{{info.informationFinish}}</p>
-          <p class="foot size-17" [innerHTML]="info.informationFoot"></p>
-        </div>
-        <div class="foto-container">
-          <img src="{{info.foto0}}" alt="">
-          <img src="{{info.foto1}}" alt="">
-          <img src="{{info.foto2}}" alt="">
-          <img src="{{info.foto3}}" alt="">
-        </div>
-      </mat-expansion-panel>
-    </mat-accordion>
+          <div class="foto-container">
+            <img src="{{info.foto0}}" alt="">
+            <img src="{{info.foto1}}" alt="">
+            <img src="{{info.foto2}}" alt="">
+            <img src="{{info.foto3}}" alt="">
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+
+    <div class="right-container" [style.flex]="rightContainerFlex" (mouseover)="onMouseOver('right')">
+      <mat-accordion [multi]="false">
+        <mat-expansion-panel hideToggle [(expanded)]="panelDriverLicenseOpen" class="gap">
+          <mat-expansion-panel-header>
+            <mat-panel-title>Führerschein</mat-panel-title>
+            <mat-panel-description *ngIf="panelRightOpen">Wie erneuert man es?
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="instructions-renovate">
+          </div>
+
+        </mat-expansion-panel>
+        <mat-expansion-panel hideToggle [(expanded)]="panelAmbulanceLicenseOpen">
+          <mat-expansion-panel-header>
+            <mat-panel-title>P-Schein</mat-panel-title>
+            <mat-panel-description *ngIf="panelRightOpen"> Wie beantragt/erneuert man es?
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="instructions-renovate">
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
   </section>
 </div>

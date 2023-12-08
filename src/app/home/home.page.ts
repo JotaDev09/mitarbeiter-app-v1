@@ -6,6 +6,7 @@ import { CalendarOptions } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import * as moment from 'moment';
 import 'moment/locale/de';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -30,8 +31,14 @@ export class HomePage implements OnInit {
   isAmbulanceLicenseExpirationThreeMonths: boolean = false;
   holidaysData: any[] = [];
   eventsData: any[] = [];
+  instructions: string = '';
+  driveLicenseAlmostExpired: boolean = false;
 
-  constructor(private dialog: MatDialog, private sharedService: SharedService) {
+  constructor(
+    private dialog: MatDialog,
+    private sharedService: SharedService,
+    private router: Router
+  ) {
     this.greetings();
     this.sharedService.updateTitle('Startseite');
     this.licenseDates();
@@ -77,7 +84,6 @@ export class HomePage implements OnInit {
    * @returns the approved holidays
    */
   approved(holidays: any, endDate: Date, startDate: Date) {
-    console.log(holidays);
     return {
       start: moment(startDate).format('YYYY-MM-DD'),
       end: moment(endDate).format('YYYY-MM-DD'),
@@ -90,8 +96,6 @@ export class HomePage implements OnInit {
    * The function initializeCalendar() is a function that initialize the calendar with the events
    */
   initializeCalendar() {
-    console.log('Events Data:', this.eventsData);
-
     this.calendarOptions.eventSources = [
       (fetchInfo, successCallback) => {
         successCallback(this.eventsData);
@@ -191,6 +195,8 @@ export class HomePage implements OnInit {
       }
 
       this.changeColorAdvice(today, carLicenseDate, ambulanceLicenseDate);
+      this.driveLicenseAlmostExpired = true;
+      this.instructions = 'Was machen?';
     }
   }
 
@@ -219,6 +225,13 @@ export class HomePage implements OnInit {
       ambulanceLicenseDate.isBefore(fourMonthsLater);
     this.isAmbulanceLicenseExpirationThreeMonths =
       ambulanceLicenseDate.isBetween(fourMonthsLater, sixMonthsLater);
+  }
+
+  /**
+   * The function is used to navigate to the instructions page
+   */
+  instructionsRenovate() {
+    this.router.navigate(['/information']);
   }
 
   /**

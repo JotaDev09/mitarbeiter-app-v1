@@ -31,12 +31,24 @@
         <div class="car-license container" *ngIf="noCarLicense"
           [ngClass]="{'expiration-one-month': isCarLicenseExpirationOneMonth, 'expiration-three-months': isCarLicenseExpirationThreeMonths}">
           <a>Führerschein Ablaufsdatum</a>
-          <span>{{carLicense}}</span>
+          <div class="datum-license">
+            <span>{{carLicense}}</span>
+            <div *ngIf="driveLicenseAlmostExpired" class="help-renovate" (click)="instructionsRenovate()">
+              <mat-icon>help</mat-icon>
+              <a>{{instructions}}</a>
+            </div>
+          </div>
         </div>
         <div class="car-license container" *ngIf="noAmbulanceLicense"
           [ngClass]="{'expiration-one-month': isAmbulanceLicenseExpirationOneMonth, 'expiration-three-months': isAmbulanceLicenseExpirationThreeMonths}">
           <a>P-Schein Ablaufsdatum</a>
-          <span>{{ambulanceLicense}}</span>
+          <div class="datum-license">
+            <span>{{ambulanceLicense}}</span>
+            <div *ngIf="driveLicenseAlmostExpired" class="help-renovate" (click)="instructionsRenovate()">
+              <mat-icon>help</mat-icon>
+              <a>{{instructions}}</a>
+            </div>
+          </div>
         </div>
 
 

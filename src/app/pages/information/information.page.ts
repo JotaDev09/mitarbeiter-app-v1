@@ -17,6 +17,11 @@ export class InformationPage implements OnInit {
   MRack = 'Matthias Rack';
   BCangiano = 'Bianca Cangiano';
   UTrispel = 'Ulrike Trispel';
+  activeContainer: 'left' | 'right' = 'left';
+  panelDriverLicenseOpen = false;
+  panelAmbulanceLicenseOpen = false;
+  panelLeftOpen: boolean = true;
+  panelRightOpen: boolean = false;
 
   information = [
     {
@@ -48,6 +53,25 @@ export class InformationPage implements OnInit {
 
   constructor(private sharedService: SharedService) {
     this.sharedService.updateTitle('Information');
+  }
+
+  get leftContainerFlex() {
+    return this.activeContainer === 'left' ? '80%' : '20%';
+  }
+
+  get rightContainerFlex() {
+    return this.activeContainer === 'right' ? '80%' : '20%';
+  }
+
+  onMouseOver(container: 'left' | 'right') {
+    this.activeContainer = container;
+    if (this.activeContainer === 'left') {
+      this.panelLeftOpen = true;
+      this.panelRightOpen = false;
+    } else {
+      this.panelLeftOpen = false;
+      this.panelRightOpen = true;
+    }
   }
 
   ngOnInit() {}
