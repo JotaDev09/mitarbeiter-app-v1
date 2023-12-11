@@ -1,5 +1,5 @@
-p {
-  color: black;
+body {
+  font-family: "Poppins";
 }
 
 .mat-mdc-dialog-container .mdc-dialog__surface {
@@ -12,7 +12,7 @@ p {
   flex-direction: column;
   text-align: center;
 
-  p {
+  span {
     font-size: 18px;
     font-weight: 500;
     color: #3c8f69;
@@ -46,7 +46,6 @@ p {
       background-color: #eef011;
       transition: 0.5s;
       border-radius: 20px;
-      padding: 10px;
       opacity: 1;
     }
   }
@@ -57,7 +56,6 @@ p {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 30px;
   text-align: justify;
   font-family: "Poppins";
   padding: 10px;
@@ -72,17 +70,29 @@ p {
 }
 
 .edit-date {
-  background-color: #3c8f69;
-  color: white;
+  color: #3c8f69;
   outline: none;
+  border: 1px solid #3c8f69;
   font-size: 16px;
+  font-family: "Poppins";
+  cursor: pointer;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+}
+
+.gap15 {
+  gap: 15px;
 }
 
 .edit-time {
-  background-color: #3c8f69;
-  color: white;
+  color: #3c8f69;
   outline: none;
+  border: 1px solid #3c8f69;
   font-size: 16px;
+  font-family: "Poppins";
+  cursor: pointer;
 }
 
 .today {
@@ -109,7 +119,6 @@ p {
   gap: 15px;
   span {
     font-size: 20px;
-    font-weight: 600;
   }
 }
 

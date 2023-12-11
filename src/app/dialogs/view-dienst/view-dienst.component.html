@@ -3,7 +3,7 @@
     <div></div>
   </div>
   <div class="edit-dienst-info" *ngIf="editTag">
-    <p>Bei Bedarf Zeitänderung vom Dienstplaner anfordern.</p>
+    <span>Bei Bedarf Zeitänderung vom Dienstplaner anfordern.</span>
   </div>
 
   <div class="info" [ngClass]="{'today': isToday}" *ngIf="!editTag">
@@ -16,7 +16,7 @@
     <!-- <span>{{data.relax}}</span> -->
   </div>
 
-  <div class="info" [ngClass]="{'today': isToday}" *ngIf="editTag">
+  <div class="info gap15" [ngClass]="{'today': isToday}" *ngIf="editTag">
     <div class="info-cont">
       <span>Aktuell: {{data.day}}</span>
       <input class="edit-date" type="date" [min]="minDate" [(ngModel)]="selectedDay">
