@@ -45,10 +45,6 @@
   font-family: "Poppins";
 }
 
-.gap {
-  margin-bottom: 20px !important;
-}
-
 .mat-expansion-panel-body {
   padding: 24px !important;
   display: flex;
@@ -113,6 +109,44 @@
   font-size: 20px;
   color: rgba(243, 230, 21, 1);
   -webkit-text-stroke: 0.5px rgba(23, 66, 139, 1);
+}
+
+.instructions-renovate {
+  padding: 1px;
+  width: -webkit-fill-available;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.instructions {
+  span {
+    font-size: 18px;
+  }
+}
+
+.link {
+  display: flex;
+  gap: 5px;
+  a {
+    font-size: 17px;
+    color: #3c8f69;
+  }
+}
+
+.instructions-service {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.instructionsImg {
+  width: 100%;
+  padding: 1px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
 }
 
 @media (width < 1500px) {

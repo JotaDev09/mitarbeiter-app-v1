@@ -20,6 +20,7 @@ export class InformationPage implements OnInit {
   activeContainer: 'left' | 'right' = 'left';
   panelDriverLicenseOpen = false;
   panelAmbulanceLicenseOpen = false;
+  panelNewAmbulanceLicenseOpen: boolean = false;
   panelLeftOpen: boolean = true;
   panelRightOpen: boolean = false;
 
@@ -63,6 +64,12 @@ export class InformationPage implements OnInit {
     return this.activeContainer === 'right' ? '80%' : '20%';
   }
 
+  ngOnInit() {}
+
+  /**
+   * Change the active container
+   * @param container the active container
+   */
   onMouseOver(container: 'left' | 'right') {
     this.activeContainer = container;
     if (this.activeContainer === 'left') {
@@ -74,5 +81,37 @@ export class InformationPage implements OnInit {
     }
   }
 
-  ngOnInit() {}
+  /**
+   * The instructions for use
+   * @returns instructions for use
+   */
+  instructionsForUse() {
+    return `
+      <div class="instructionsImg">
+        <span>- Click auf "Berlinweite Terminbuchung"</span>
+        <img src="/assets/img/termin.png" alt="" class="">
+      </div>
+      <div class="instructionsImg">
+        <span>- Datum in blau wählen</span>
+        <img src="/assets/img/datum.png" alt="">
+      </div>
+      <div class="instructionsImg">
+        <span>- Standort und Uhrzeit wählen</span>
+        <img src="/assets/img/verfugbarkeit.png" alt="">
+      </div>
+      <div class="instructionsImg">
+        <span>- Persönliche Daten hinzufügen</span>
+        <img src="/assets/img/daten.png" alt="">
+      </div>`;
+  }
+
+  /**
+   * Scroll to top of the page
+   */
+  scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }
 }
