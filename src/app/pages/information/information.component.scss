@@ -1,0 +1,162 @@
+.information-container {
+  height: -webkit-fill-available;
+  padding: 225px 300px 50px 300px;
+  display: flex;
+  align-items: flex-start;
+  gap: 45px;
+  text-align: justify;
+  font-family: "Poppins";
+  background-color: #f0f9f4;
+}
+
+.left-container,
+.right-container {
+  transition: flex 0.3s ease;
+}
+
+.left-container {
+  flex: 70%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.right-container {
+  flex: 30%;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 20px;
+}
+
+.mat-accordion {
+  width: -webkit-fill-available;
+}
+
+.mat-expansion-panel-header-title {
+  color: #3c8f69 !important;
+  font-size: 20px;
+  font-family: "Poppins";
+}
+
+.mat-expansion-panel-header-description {
+  color: #225a43 !important;
+  font-size: 18px;
+  font-family: "Poppins";
+}
+
+.mat-expansion-panel-body {
+  padding: 24px !important;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.container-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  font-family: "Poppins";
+}
+
+.cont-date {
+  font-size: 18px;
+  display: flex;
+  gap: 10px;
+  .date {
+    color: red !important;
+  }
+
+  .time {
+    color: #3c8f69 !important;
+  }
+}
+
+.where {
+  font-size: 18px;
+  color: blue !important;
+}
+
+.size-17 {
+  font-size: 17px;
+}
+
+.foto-container {
+  width: -webkit-fill-available;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+
+  img {
+    width: 300px;
+  }
+}
+
+.style-gorris {
+  font-size: 20px;
+  color: #3c8f69;
+}
+
+.style-atb {
+  font-size: 20px;
+  color: rgba(40, 22, 111, 1);
+}
+
+.style-adg {
+  font-size: 20px;
+  color: rgba(243, 230, 21, 1);
+  -webkit-text-stroke: 0.5px rgba(23, 66, 139, 1);
+}
+
+.instructions-renovate {
+  padding: 1px;
+  width: -webkit-fill-available;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.instructions {
+  span {
+    font-size: 18px;
+  }
+}
+
+.link {
+  display: flex;
+  gap: 5px;
+  a {
+    font-size: 17px;
+    color: #3c8f69;
+  }
+}
+
+.instructions-service {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.instructionsImg {
+  width: 100%;
+  padding: 1px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+@media (width < 1500px) {
+  .information-container {
+    padding: 180px 100px 50px 100px;
+  }
+
+  .foto-container {
+    img {
+      width: 280px;
+    }
+  }
+}

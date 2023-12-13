@@ -1,11 +1,21 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './home/home.component';
+import { ProfilComponent } from './pages/profil/profil.component';
+import { LoginComponent } from './pages/login/login.component';
+import { InformationComponent } from './pages/information/information.component';
+import { ImpressumComponent } from './pages/impressum/impressum.component';
+import { PrivacyComponent } from './pages/privacy/privacy.component';
+import { HolidaysResumComponent } from './pages/holidays-resum/holidays-resum.component';
+import { HolidaysComponent } from './pages/holidays/holidays.component';
+import { DocumentsComponent } from './pages/documents/documents.component';
+import { ServiceScheduleComponent } from './pages/service-schedule/service-schedule.component';
+import { CalendarComponent } from './pages/calendar/calendar.component';
 
 const routes: Routes = [
   {
     path: 'home',
-    loadChildren: () =>
-      import('./home/home.module').then((m) => m.HomePageModule),
+    component: HomeComponent,
   },
   {
     path: '',
@@ -14,66 +24,43 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () =>
-      import('./pages/login/login.module').then((m) => m.LoginPageModule),
+    component: LoginComponent,
   },
   {
     path: 'impressum',
-    loadChildren: () =>
-      import('./pages/impressum/impressum.module').then(
-        (m) => m.ImpressumPageModule
-      ),
+    component: ImpressumComponent,
   },
   {
     path: 'datenschutz',
-    loadChildren: () =>
-      import('./pages/datenschutz/datenschutz.module').then(
-        (m) => m.DatenschutzPageModule
-      ),
+    component: PrivacyComponent,
   },
   {
     path: 'holidays',
-    loadChildren: () =>
-      import('./pages/holidays/holidays.module').then(
-        (m) => m.HolidaysPageModule
-      ),
+    component: HolidaysComponent,
   },
   {
     path: 'holidays-resum',
-    loadChildren: () =>
-      import('./pages/holidays-resum/holidays-resum.module').then(
-        (m) => m.HolidaysResumPageModule
-      ),
+    component: HolidaysResumComponent,
   },
   {
     path: 'information',
-    loadChildren: () =>
-      import('./pages/information/information.module').then(
-        (m) => m.InformationPageModule
-      ),
+    component: InformationComponent,
   },
   {
     path: 'calendar',
-    loadChildren: () =>
-      import('./pages/calendar/calendar.module').then(
-        (m) => m.CalendarPageModule
-      ),
+    component: CalendarComponent,
   },
   {
     path: 'profil',
-    loadChildren: () =>
-      import('./pages/profil/profil.module').then((m) => m.ProfilPageModule),
+    component: ProfilComponent,
   },
   {
     path: 'documents',
-    loadChildren: () =>
-      import('./pages/documents/documents.module').then(
-        (m) => m.DocumentsPageModule
-      ),
+    component: DocumentsComponent,
   },
   {
     path: 'dienstplan',
-    loadChildren: () => import('./pages/dienstplan/dienstplan.module').then( m => m.DienstplanPageModule)
+    component: ServiceScheduleComponent,
   },
 ];
 

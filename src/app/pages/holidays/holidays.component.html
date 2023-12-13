@@ -1,0 +1,85 @@
+<header>
+  <app-header></app-header>
+</header>
+
+<section class="holidays-container">
+  <form #holidaysForm="ngForm" (ngSubmit)="sendHolidays(holidaysForm)" class="form-container">
+
+    <div class="info-container">
+      <div class="info">
+        <span>Name:</span>
+        <input class="green" type="text" name="lastNameWorker" [(ngModel)]="lastNameWorker" placeholder="{{lastname}}"
+          disabled="">
+      </div>
+      <div class="info">
+        <span>Vorname:</span>
+        <input class="green" type="text" name="nameWorker" [(ngModel)]="nameWorker" placeholder="{{name}}" disabled="">
+      </div>
+    </div>
+
+    <div class="info-container">
+      <mat-form-field class="example-form-field info">
+        <mat-label>Datumsbereich auswählen</mat-label>
+        <mat-date-range-input [rangePicker]="rangePicker" [min]="optHolidays" [max]="maxOptionHolidays">
+          <input matStartDate placeholder="Startdatum" [(ngModel)]="holidaysFrom" name="holidaysFrom"
+            (change)="calculateRemainingHolidays()" [disabled]="stillHolidays === 0">
+          <input matEndDate placeholder="Enddatum" [(ngModel)]="holidaysTo" name="holidaysTo"
+            (change)="calculateRemainingHolidays()" [disabled]="stillHolidays === 0">
+        </mat-date-range-input>
+
+        <mat-datepicker-toggle matIconSuffix [for]="rangePicker"></mat-datepicker-toggle>
+        <mat-date-range-picker #rangePicker>
+          <mat-date-range-picker-actions>
+            <button mat-button matDateRangePickerCancel>Abbrechen</button>
+            <button mat-raised-button class="primary" matDateRangePickerApply>Einsetzen</button>
+          </mat-date-range-picker-actions>
+        </mat-date-range-picker>
+      </mat-form-field>
+    </div>
+
+    <div class="info-container">
+      <div class="info">
+        <span>Resturlaub:</span>
+        <input type="text" name="stillHolidays" [(ngModel)]="stillHolidays" placeholder="{{stillHolidays}}"
+          class="inputStillHol green" disabled="" [style.color]="stillHolidays <= 5 ? 'red' : '#3c8f69'"> Tage
+      </div>
+    </div>
+
+    <div class="info-container">
+      <div class="info-notizen">
+        <span>Notizen:</span>
+        <textarea class="grey" placeholder="Hier kannst Du Urlaubsinformationen schreiben." [(ngModel)]="notes"
+          name="notes" (ngModelChange)="setNotes($event)"></textarea>
+      </div>
+    </div>
+
+    <div class="attention">
+      <span>*Jeder Arbeitnehmer hat sich <a>am letzten Urlaubstag</a> nach seinem aktuellen Dienstplan zu
+        erkundigen!</span>
+      <span>**Um Urlaub in den nächsten <a>10 Tagen</a> zu beantragen, muss DU direkt mit Frau Richter
+        sprechen.</span>
+    </div>
+
+    <div class="info-container self">
+      <div class="info">
+        <span>Datum:</span>
+        <input disabled="" type="text" [(ngModel)]="dateRequest" name="dateRequest" placeholder="{{minDate}}"
+          class="inputDays grey">
+      </div>
+      <button class="button-holidays" type="submit" [disabled]="stillHolidays <= 0">
+        Beantragen
+      </button>
+    </div>
+
+  </form>
+
+  <div class="infoNextYear" *ngIf="infoNextYear">
+    <span>Ab dem 1. Oktober kannst Du Urlaub für das Jahr <a>{{nextYear}}</a> beantragen</span>
+  </div>
+
+</section>
+<div class="float-container" *ngIf="floatContainer">
+  <div class="float-container-holidays">
+    Anfrage für den Urlaub gesendet
+  </div>
+</div>
