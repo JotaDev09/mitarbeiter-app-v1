@@ -10,6 +10,7 @@ import { ServiceScheduleComponent } from './pages/service-schedule/service-sched
 import { CalendarComponent } from './pages/calendar/calendar.component';
 import { HolidaysComponent } from './pages/holidays/holidays.component';
 import { HolidaysResumComponent } from './pages/holidays-resum/holidays-resum.component';
+import { WorkshopRequestComponent } from './pages/workshop-request/workshop-request.component';
 import { InformationComponent } from 'src/app/pages/information/information.component';
 import { DocumentsComponent } from './pages/documents/documents.component';
 import { ProfilComponent } from './pages/profil/profil.component';
@@ -51,6 +52,7 @@ import { HttpClientModule } from '@angular/common/http';
     CalendarComponent,
     HolidaysComponent,
     HolidaysResumComponent,
+    WorkshopRequestComponent,
     InformationComponent,
     DocumentsComponent,
     ProfilComponent,

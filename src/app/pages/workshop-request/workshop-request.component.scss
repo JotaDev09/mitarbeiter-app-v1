@@ -1,0 +1,12 @@
+@import "src/global.scss";
+
+.workshop-request-container {
+  height: -webkit-fill-available;
+  padding: 200px 300px 50px 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  text-align: justify;
+  font-family: "Poppins";
+  background-color: #f0f9f4;
+}

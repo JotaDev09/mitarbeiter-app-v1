@@ -113,6 +113,7 @@ export class LoginComponent implements OnInit {
             bankOwner: '',
             bankNumber: '',
             bankBic: '',
+            reparatur: [],
           };
           this.sharedService.saveUserLocalStorage(worker);
           this.router.navigate(['/home']);

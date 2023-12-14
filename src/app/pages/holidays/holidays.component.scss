@@ -12,18 +12,6 @@
   background-color: #f0f9f4;
 }
 
-.form-container {
-  border: 1px solid #3c8f69;
-  border-radius: 30px;
-  padding: 30px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  width: -webkit-fill-available;
-  height: fit-content;
-  background-color: white;
-}
-
 .form-year {
   width: 100%;
   display: flex;
@@ -50,86 +38,8 @@
   }
 }
 
-.info-container {
-  display: flex;
-  gap: 30px;
-
-  a {
-    color: #3c8f69;
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: 600;
-  }
-}
-
-.info {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 18px;
-  padding: 5px;
-  border-radius: 10px;
-  border: 1px solid #3c8f69;
-
-  .grey {
-    outline: none;
-    background-color: white;
-    color: grey;
-    font-size: 18px;
-    border: none;
-  }
-
-  ::-webkit-calendar-picker-indicator {
-    filter: invert(1);
-    cursor: pointer;
-  }
-
-  .green {
-    outline: none;
-    background-color: white;
-    font-size: 18px;
-    border: none;
-    font-family: "Poppins";
-  }
-}
-
-.inputStillHol {
-  width: 25px;
-}
-
 .inputDays {
   width: 110px;
-}
-
-.info-notizen {
-  display: flex;
-  align-items: flex-start;
-  flex-direction: column;
-  gap: 10px;
-  font-size: 18px;
-  padding: 10px;
-  border-radius: 10px;
-  border: 1px solid #3c8f69;
-  width: -webkit-fill-available;
-  height: 200px;
-
-  textarea {
-    background-color: transparent;
-    font-family: "Poppins";
-    font-size: 18px;
-    width: 100%;
-    height: 100%;
-    border: none;
-    resize: none;
-    outline: none;
-  }
-}
-
-.self {
-  margin-top: 40px;
-  align-self: flex-end;
-  display: flex;
-  flex-direction: column;
 }
 
 .attention {
@@ -146,44 +56,6 @@
     font-size: 16px;
     font-weight: 600;
   }
-}
-
-.button-holidays {
-  align-self: flex-end;
-  cursor: pointer;
-  font-size: 20px;
-  color: #eef011;
-  padding: 12px 17px;
-  background-color: #3c8f69;
-  border-radius: 10px;
-  transition: opacity 0.3s;
-  font-family: "Poppins";
-  border: none;
-
-  &:hover {
-    opacity: 0.8;
-  }
-}
-
-.float-container {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: 200px;
-  bottom: 200px;
-}
-
-.float-container-holidays {
-  width: 250px;
-  align-self: center;
-  font-size: 23px;
-  color: #eef011;
-  padding: 20px 20px;
-  background-color: #3c8f69;
-  border-radius: 10px;
-  text-align: center;
 }
 
 .infoNextYear {

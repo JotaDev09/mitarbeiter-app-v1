@@ -11,6 +11,7 @@ import { HolidaysComponent } from './pages/holidays/holidays.component';
 import { DocumentsComponent } from './pages/documents/documents.component';
 import { ServiceScheduleComponent } from './pages/service-schedule/service-schedule.component';
 import { CalendarComponent } from './pages/calendar/calendar.component';
+import { WorkshopRequestComponent } from './pages/workshop-request/workshop-request.component';
 
 const routes: Routes = [
   {
@@ -41,6 +42,10 @@ const routes: Routes = [
   {
     path: 'holidays-resum',
     component: HolidaysResumComponent,
+  },
+  {
+    path: 'werkstattanfrage',
+    component: WorkshopRequestComponent,
   },
   {
     path: 'information',

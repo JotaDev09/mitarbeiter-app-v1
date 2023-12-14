@@ -127,15 +127,15 @@ export class HolidaysComponent implements OnInit {
 
       this.sharedService.updateStillHolidaysLocalStorage(this.stillHolidays);
       this.sharedService.saveHolidaysLocalStorage(holidayData);
-      this.holidaysFrom = '';
-      this.holidaysTo = '';
-      this.notes = '';
       setTimeout(() => {
         this.floatContainer = true;
       }, 300);
       setTimeout(() => {
         this.floatContainer = false;
         this.router.navigate(['/holidays-resum']);
+        this.holidaysFrom = '';
+        this.holidaysTo = '';
+        this.notes = '';
       }, 1300);
     }
   }
@@ -182,16 +182,6 @@ export class HolidaysComponent implements OnInit {
    * The function set settings in notes
    */
   setNotes(notes: string) {
-    this.notes = this.capitalizeFirstLetter(notes);
-  }
-
-  /**
-   * The function set the text in capital letter
-   */
-  capitalizeFirstLetter(text: string): string {
-    if (text.length === 0) {
-      return text;
-    }
-    return text.charAt(0).toUpperCase() + text.slice(1);
+    this.notes = this.sharedService.capitalizeFirstLetter(notes);
   }
 }
