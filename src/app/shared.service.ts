@@ -80,14 +80,6 @@ export class SharedService {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
 
     const propertiesToUpdate = [
-      'name',
-      'lastname',
-      'phone',
-      'email',
-      'address',
-      'stadt',
-      'driverLicense',
-      'ambulanceLicense',
       'insuranceName',
       'insuranceNumber',
       'bankOwner',
@@ -214,6 +206,24 @@ export class SharedService {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     user.reparatur = user.reparatur || [];
     user.reparatur.push(reaparaturData);
+    localStorage.setItem('user', JSON.stringify(user));
+  }
+
+  /**
+   * The function saveLicensesLS() is a function that saves the licenses in the local storage
+   */
+  saveLicensesLS(datesLicensesData: any) {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    user.datesLicenses = datesLicensesData;
+    localStorage.setItem('user', JSON.stringify(user));
+  }
+
+  /**
+   * The function savePrivateDatenLS() is a function that saves the private daten in the local storage
+   */
+  savePrivateDatenLS(privateDatenData: any) {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    user.privateDaten = privateDatenData;
     localStorage.setItem('user', JSON.stringify(user));
   }
 
