@@ -203,13 +203,13 @@ export class ProfilComponent implements OnInit {
    * The function saveLicenses() is a function that saves the new user his licenses in the local storage
    * @param form NgForm
    */
-  saveInsurance(form: NgForm) {
-    if (form.valid) {
-      const worker = {
+  saveInsurance(insuranceForm: any) {
+    if (insuranceForm.valid) {
+      const insuranceData = {
         insuranceName: this.userInsuranceName,
         insuranceNumber: this.userInsuranceNumber,
       };
-      this.sharedService.updateInfoLocalStorage(worker);
+      this.sharedService.saveInsuranceLS(insuranceData);
       this.editInsuranceInfo = false;
       this.getInfoFromUser();
     }
@@ -219,14 +219,14 @@ export class ProfilComponent implements OnInit {
    * The function saveBank() is a function that saves the new users bank in the local storage
    * @param form NgForm
    */
-  saveBank(form: NgForm) {
-    if (form.valid) {
-      const worker = {
+  saveBank(bankForm: NgForm) {
+    if (bankForm.valid) {
+      const bankData = {
         bankOwner: this.userBankOwner,
         bankNumber: this.userBankNumber,
         bankBic: this.userBankBic,
       };
-      this.sharedService.updateInfoLocalStorage(worker);
+      this.sharedService.saveBankLS(bankData);
       this.editBankInfo = false;
       this.getInfoFromUser();
     }

@@ -21,10 +21,14 @@ export interface User {
   carLicenses: [];
   payrolls: [];
   sickCertificate: [];
-  insuranceName: string;
-  insuranceNumber: string;
-  bankOwner: string;
-  bankNumber: string;
-  bankBic: string;
+  insurance: {
+    insuranceName: string;
+    insuranceNumber: string;
+  };
+  bank: {
+    bankOwner: string;
+    bankNumber: string;
+    bankBic: string;
+  };
   reparatur: [];
 }

@@ -142,11 +142,11 @@
         </div>
         <div class="info-name">
           <a>Krankenkasse:</a>
-          <span>{{info?.insuranceName}}</span>
+          <span>{{user[0].insurance.insuranceName}}</span>
         </div>
         <div class="info-name">
           <a>Versicherungsnummer:</a>
-          <span>{{info?.insuranceNumber}}</span>
+          <span>{{user[0].insurance.insuranceNumber}}</span>
         </div>
       </div>
 
@@ -170,7 +170,7 @@
           </div>
           <div class="info-name">
             <a>Versicherungsnummer:</a>
-            <input placeholder="{{info?.insuranceNumber}}" [(ngModel)]="userInsuranceNumber" type="string"
+            <input placeholder="{{user[0].insurance.insuranceNumber}}" [(ngModel)]="userInsuranceNumber" type="string"
               name="userInsuranceNumber" class="">
           </div>
         </div>
@@ -189,15 +189,15 @@
         </div>
         <div class="info-name">
           <a>Kontoinhaber:</a>
-          <span>{{info?.bankOwner}}</span>
+          <span>{{user[0].bank.bankOwner}}</span>
         </div>
         <div class="info-name">
           <a>IBAN:</a>
-          <span>{{info?.bankNumber}}</span>
+          <span>{{user[0].bank.bankNumber}}</span>
         </div>
         <div class="info-name">
           <a>BIC:</a>
-          <span>{{info?.bankBic}}</span>
+          <span>{{user[0].bank.bankBic}}</span>
         </div>
       </div>
 
@@ -213,18 +213,18 @@
           </div>
           <div class="info-name">
             <a>Kontoinhaber:</a>
-            <input placeholder="{{info?.bankOwner}}" [(ngModel)]="userBankOwner" type="name" name="userInsuranceName"
-              class="">
+            <input placeholder="{{user[0].bank.bankOwner}}" [(ngModel)]="userBankOwner" type="name"
+              name="userInsuranceName" class="">
           </div>
           <div class="info-name">
             <a>IBAN:</a>
-            <input placeholder="{{info?.bankNumber}}" [(ngModel)]="userBankNumber" type="string"
+            <input placeholder="{{user[0].bank.bankNumber}}" [(ngModel)]="userBankNumber" type="string"
               name="userInsuranceNumber" class="">
           </div>
           <div class="info-name">
             <a>BIC:</a>
-            <input placeholder="{{info?.bankBic}}" [(ngModel)]="userBankBic" type="string" name="userInsuranceNumber"
-              class="">
+            <input placeholder="{{user[0].bank.bankBic}}" [(ngModel)]="userBankBic" type="string"
+              name="userInsuranceNumber" class="">
           </div>
         </div>
       </form>

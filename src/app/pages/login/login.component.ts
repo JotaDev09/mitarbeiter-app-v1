@@ -102,11 +102,8 @@ export class LoginComponent implements OnInit {
             carLicenses: [],
             payrolls: [],
             sickCertificate: [],
-            insuranceName: '',
-            insuranceNumber: '',
-            bankOwner: '',
-            bankNumber: '',
-            bankBic: '',
+            insurance: {},
+            bank: {},
             reparatur: [],
           };
           this.sharedService.saveUserLocalStorage(worker);

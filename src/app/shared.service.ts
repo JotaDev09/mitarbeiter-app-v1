@@ -228,6 +228,24 @@ export class SharedService {
   }
 
   /**
+   * The function saveInsuranceLS() is a function that saves the insurance in the local storage
+   */
+  saveInsuranceLS(insuranceData: any) {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    user.insurance = insuranceData;
+    localStorage.setItem('user', JSON.stringify(user));
+  }
+
+  /**
+   * The function saveBankLS() is a function that saves the bank in the local storage
+   */
+  saveBankLS(bankData: any) {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    user.bank = bankData;
+    localStorage.setItem('user', JSON.stringify(user));
+  }
+
+  /**
    * The function set the text in capital letter
    */
   capitalizeFirstLetter(text: string): string {
