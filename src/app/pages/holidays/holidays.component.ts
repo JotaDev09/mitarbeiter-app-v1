@@ -16,8 +16,9 @@ export class HolidaysComponent implements OnInit {
   nextYear = this.sharedService.year + 1;
   currentMonth = new Date().getMonth() + 1;
   showNextYearOption: boolean = false;
-  name: string = this.sharedService.getUserLocalStorage().name;
-  lastname: string = this.sharedService.getUserLocalStorage().lastname;
+  name: string = this.sharedService.getUserLocalStorage().privateDaten.name;
+  lastname: string =
+    this.sharedService.getUserLocalStorage().privateDaten.lastname;
   optHolidays: string = '';
   maxOptionHolidays: string = '';
   actualYear = this.sharedService.year;

@@ -1,11 +1,10 @@
 .holidays-resum {
-  height: -webkit-fill-available;
+  max-height: 100vh;
   padding: 200px 300px 50px 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 40px;
-  overflow: scroll;
   background-color: #f0f9f4;
 }
 
@@ -13,8 +12,8 @@
   width: -webkit-fill-available;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  overflow: auto;
   gap: 20px;
   width: 80%;
 }
@@ -211,7 +210,9 @@
 
 @media (width < 1500px) {
   .holidays-resum {
-    padding: 50px 100px 50px 100px;
+    padding: 160px 100px 10px 100px;
+    max-height: 580px;
+    gap: 20px;
   }
 
   .holidays-cont {

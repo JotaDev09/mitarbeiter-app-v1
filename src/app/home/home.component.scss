@@ -12,7 +12,6 @@
 .name-container {
   display: flex;
   align-items: center;
-  flex-direction: column;
   width: fit-content;
   height: 50px;
   margin-top: 25px;
@@ -35,8 +34,9 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
   width: 100%;
+  max-height: 500px;
+  overflow: auto;
 }
 
 .container {
@@ -201,5 +201,11 @@ a {
     a {
       color: rgb(175, 172, 172);
     }
+  }
+}
+
+@media (width < 1500px) {
+  .home-container {
+    padding: 80px 100px 50px 100px;
   }
 }

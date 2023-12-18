@@ -108,5 +108,22 @@
 @media (width < 1500px) {
   .calendar-container {
     padding: 160px 100px 25px 100px;
+    height: 569px;
+  }
+
+  .wrapper-calendar {
+    height: 560px !important;
+  }
+
+  .fc-theme-standard td,
+  .fc-theme-standard th {
+    width: 20px;
+    height: 67px;
+  }
+
+  .fc .fc-scrollgrid-section-body table,
+  .fc .fc-scrollgrid-section-footer table {
+    width: webkit-fill-available !important;
+    height: 250px !important;
   }
 }

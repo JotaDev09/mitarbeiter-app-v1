@@ -10,3 +10,15 @@
   font-family: "Poppins";
   background-color: #f0f9f4;
 }
+
+.info-car {
+  display: flex;
+  gap: 30px;
+}
+
+@media (width < 1500px) {
+  .self {
+    margin-top: 10px !important;
+    gap: 20px;
+  }
+}

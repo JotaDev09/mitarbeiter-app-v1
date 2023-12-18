@@ -5,9 +5,6 @@
 <div>
   <section class="holidays-resum">
     <div *ngFor="let yearGroup of getHolidaysFromLocalStorage(); let j = index" class="holidaysInYear">
-      <div class="holidays-year">
-        <span>Urlaub Jahr {{yearGroup.year}}</span>
-      </div>
       <div class="holidays-cont" *ngFor="let holidays of yearGroup.holidays; let i = index">
         <div class="holidays-info-cont">
           <div class="holidays-name">

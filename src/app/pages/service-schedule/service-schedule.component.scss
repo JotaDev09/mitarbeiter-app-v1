@@ -20,6 +20,7 @@ body {
   border-radius: 10px;
   border: 1px solid #3c8f69;
   justify-content: center;
+  margin: 1rem;
 }
 
 .day-container {
@@ -60,7 +61,7 @@ body {
 }
 
 @media (width < 1500px) {
-  .home-container {
+  .dienst-container {
     padding: 160px 100px 25px 100px;
   }
 }

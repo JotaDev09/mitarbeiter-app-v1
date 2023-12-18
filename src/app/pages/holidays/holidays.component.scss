@@ -38,8 +38,20 @@
   }
 }
 
+.still-holidays {
+  width: 200px;
+  input {
+    width: 30px;
+  }
+}
+
 .inputDays {
   width: 110px;
+}
+
+.choose-dates {
+  display: flex;
+  gap: 20px;
 }
 
 .attention {
@@ -140,26 +152,32 @@
 @media (width < 1500px) {
   .holidays-container {
     padding: 160px 100px 25px 100px;
+    gap: 0;
   }
 
   .form-container {
-    padding: 20px;
-    gap: 15px;
+    padding: 20px !important;
+    gap: 15px !important;
   }
 
   .form-year {
-    margin-bottom: 0px;
+    margin-bottom: 0px !important;
   }
 
   .info-notizen {
-    height: 150px;
+    gap: 0 !important;
+    height: 140px !important;
   }
 
   .info-container {
-    gap: 10px;
+    gap: 10px !important;
   }
 
   .self {
-    margin-top: 10px;
+    margin-top: 0px !important;
+  }
+
+  .attention {
+    gap: 0;
   }
 }

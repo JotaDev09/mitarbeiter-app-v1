@@ -1,5 +1,6 @@
 .profil-container {
   height: -webkit-fill-available;
+  width: -webkit-fill-available;
   padding: 200px 300px 50px 300px;
   display: flex;
   flex-direction: column;
@@ -11,8 +12,10 @@
 }
 
 .profil {
+  width: -webkit-fill-available;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 25px;
   padding-bottom: 30px;
 }
@@ -22,6 +25,7 @@
   border-radius: 15px;
   padding: 20px;
   background-color: white;
+  margin: 1rem;
 }
 
 .profil-info-name {
@@ -123,4 +127,10 @@ select:focus-visible {
 
 mat-icon {
   color: #3c8f69;
+}
+
+@media (width < 1500px) {
+  .profil-container {
+    padding: 160px 100px 50px 100px;
+  }
 }
