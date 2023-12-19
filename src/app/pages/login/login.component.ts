@@ -92,7 +92,7 @@ export class LoginComponent implements OnInit {
       } else {
         if (form.valid) {
           const worker = {
-            id: this.sharedService.getId(),
+            $id: this.sharedService.getId(),
             privateDaten: {},
             password: this.userPassword,
             holidays: [],

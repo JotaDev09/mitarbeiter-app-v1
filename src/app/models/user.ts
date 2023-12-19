@@ -12,7 +12,7 @@ export interface User {
   password: string;
   holidays: Holidays[];
   dienst: [];
-  id: string;
+  $id: string;
   stillHolidays: number;
   datesLicenses: {
     driverLicense?: string;
