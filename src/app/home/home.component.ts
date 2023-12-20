@@ -42,6 +42,7 @@ export class HomeComponent implements OnInit {
     this.greetings();
     this.sharedService.updateTitle('Startseite');
     this.licenseDates();
+    moment.locale('de');
   }
 
   ngOnInit(): void {
