@@ -4,9 +4,8 @@ import { AlertLicenseComponent } from 'src/app/dialogs/alert-license/alert-licen
 import { MatDialog } from '@angular/material/dialog';
 import { CalendarOptions } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import * as moment from 'moment';
-import 'moment/locale/de';
 import { Router } from '@angular/router';
+import { format } from 'date-fns';
 
 @Component({
   selector: 'app-home',
@@ -42,7 +41,6 @@ export class HomeComponent implements OnInit {
     this.greetings();
     this.sharedService.updateTitle('Startseite');
     this.licenseDates();
-    moment.locale('de');
   }
 
   ngOnInit(): void {
@@ -86,8 +84,8 @@ export class HomeComponent implements OnInit {
    */
   approved(holidays: any, endDate: Date, startDate: Date) {
     return {
-      start: moment(startDate).format('YYYY-MM-DD'),
-      end: moment(endDate).format('YYYY-MM-DD'),
+      start: format(startDate, 'yyyy-MM-dd'),
+      end: format(endDate, 'yyyy-MM-dd'),
       display: 'background',
       backgroundColor: '#8dc8aa',
     };
@@ -178,14 +176,13 @@ export class HomeComponent implements OnInit {
    */
   licenseDates() {
     const userData = this.sharedService.getUserLocalStorage();
-    moment.locale('de');
 
     if (userData && userData.datesLicenses) {
-      const today = moment();
+      const today = new Date();
 
       if (userData.datesLicenses.driverLicense) {
-        const carLicenseDate = moment(userData.datesLicenses.driverLicense);
-        this.driverLicense = carLicenseDate.format('LL');
+        const carLicenseDate = new Date(userData.datesLicenses.driverLicense);
+        this.driverLicense = format(carLicenseDate, 'PP');
 
         if (this.driverLicense === 'Invalid date') {
           this.noCarLicense = false;
@@ -195,10 +192,10 @@ export class HomeComponent implements OnInit {
       }
 
       if (userData.datesLicenses.ambulanceLicense) {
-        const ambulanceLicenseDate = moment(
+        const ambulanceLicenseDate = new Date(
           userData.datesLicenses.ambulanceLicense
         );
-        this.ambulanceLicense = ambulanceLicenseDate.format('LL');
+        this.ambulanceLicense = format(ambulanceLicenseDate, 'PP');
 
         if (this.ambulanceLicense === 'Invalid date') {
           this.noAmbulanceLicense = false;
@@ -209,8 +206,8 @@ export class HomeComponent implements OnInit {
 
       this.changeColorAdvice(
         today,
-        moment(userData.datesLicenses.driverLicense),
-        moment(userData.datesLicenses.ambulanceLicense)
+        new Date(userData.datesLicenses.driverLicense),
+        new Date(userData.datesLicenses.ambulanceLicense)
       );
       this.driveLicenseAlmostExpired = true;
       this.instructions = 'Was machen?';
@@ -224,24 +221,25 @@ export class HomeComponent implements OnInit {
    * @param ambulanceLicenseDate The date of the ambulance license
    */
   changeColorAdvice(
-    today: moment.Moment,
-    carLicenseDate: moment.Moment,
-    ambulanceLicenseDate: moment.Moment
+    today: Date,
+    carLicenseDate: Date,
+    ambulanceLicenseDate: Date
   ) {
-    const fourMonthsLater = today.clone().add(4, 'month');
-    const sixMonthsLater = today.clone().add(6, 'month');
+    const fourMonthsLater = new Date(today);
+    fourMonthsLater.setMonth(fourMonthsLater.getMonth() + 4);
 
-    this.isCarLicenseExpirationOneMonth =
-      carLicenseDate.isBefore(fourMonthsLater);
-    this.isCarLicenseExpirationThreeMonths = carLicenseDate.isBetween(
-      fourMonthsLater,
-      sixMonthsLater
-    );
+    const sixMonthsLater = new Date(today);
+    sixMonthsLater.setMonth(sixMonthsLater.getMonth() + 6);
+
+    this.isCarLicenseExpirationOneMonth = carLicenseDate < fourMonthsLater;
+    this.isCarLicenseExpirationThreeMonths =
+      carLicenseDate >= fourMonthsLater && carLicenseDate <= sixMonthsLater;
 
     this.isAmbulanceLicenseExpirationOneMonth =
-      ambulanceLicenseDate.isBefore(fourMonthsLater);
+      ambulanceLicenseDate < fourMonthsLater;
     this.isAmbulanceLicenseExpirationThreeMonths =
-      ambulanceLicenseDate.isBetween(fourMonthsLater, sixMonthsLater);
+      ambulanceLicenseDate >= fourMonthsLater &&
+      ambulanceLicenseDate <= sixMonthsLater;
   }
 
   /**
@@ -298,11 +296,11 @@ export class HomeComponent implements OnInit {
       'Dezember',
     ];
 
-    const day = date.getDate().toString().padStart(2, '0');
-    const month = date.getMonth();
-    const monthName = months[month];
-    const year = date.getFullYear().toString();
-
-    return `${day}, ${monthName} ${year}`;
+    const options: Intl.DateTimeFormatOptions = {
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric',
+    };
+    return new Intl.DateTimeFormat('de-DE', options).format(date);
   }
 }
