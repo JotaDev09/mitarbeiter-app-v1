@@ -39,8 +39,8 @@ export class SharedService {
    * @param worker The worker to be saved
    */
   saveUserLocalStorage(worker: any) {
-    const user = JSON.parse(localStorage.getItem('user') || '[]');
-    user.push(worker);
+    // const user = JSON.parse(localStorage.getItem('user') || '[]');
+    // user.push(worker);
     localStorage.setItem('user', JSON.stringify(worker));
   }
 

@@ -75,42 +75,42 @@ export class LoginComponent implements OnInit {
    * @param form
    */
   submitForm(form: any) {
-    const user = this.sharedService.getUserLocalStorage();
-    if (user) {
-      if (
-        user.email === this.userEmail &&
-        user.password === this.userPassword
-      ) {
-        this.router.navigate(['/home']);
-        // } else if (user.email !== this.userEmail) {
-        //   this.errorEmail = true;
-      } else if (
-        user.email === this.userEmail &&
-        user.password !== this.userPassword
-      ) {
-        this.errorPassword = true;
-      } else {
-        if (form.valid) {
-          const worker = {
-            $id: this.sharedService.getId(),
-            privateDaten: {},
-            password: this.userPassword,
-            holidays: [],
-            dienst: [],
-            stillHolidays: 28,
-            datesLicenses: {},
-            carLicenses: [],
-            payrolls: [],
-            sickCertificate: [],
-            insurance: {},
-            bank: {},
-            reparatur: [],
-          };
-          this.sharedService.saveUserLocalStorage(worker);
-          this.router.navigate(['/home']);
-        }
-      }
+    // const user = this.sharedService.getUserLocalStorage();
+    // if (user) {
+    //   if (
+    //     user.email === this.userEmail &&
+    //     user.password === this.userPassword
+    //   ) {
+    //     this.router.navigate(['/home']);
+    // } else if (user.email !== this.userEmail) {
+    //   this.errorEmail = true;
+    // } else if (
+    //   user.email === this.userEmail &&
+    //   user.password !== this.userPassword
+    // ) {
+    //   this.errorPassword = true;
+    // } else {
+    if (form.valid) {
+      const worker = {
+        $id: this.sharedService.getId(),
+        privateDaten: {},
+        password: this.userPassword,
+        holidays: [],
+        dienst: [],
+        stillHolidays: 28,
+        datesLicenses: {},
+        carLicenses: [],
+        payrolls: [],
+        sickCertificate: [],
+        insurance: {},
+        bank: {},
+        reparatur: [],
+      };
+      this.sharedService.saveUserLocalStorage(worker);
+      this.router.navigate(['/home']);
     }
+    // }
+    //   }
   }
 
   /**

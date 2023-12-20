@@ -45,10 +45,10 @@ export class InformationComponent implements OnInit {
         <span class="style-atb">${this.MRack}</span>,
         <span class="style-adg">${this.BCangiano}</span> &
         <span class="style-adg">${this.UTrispel}</span>.`,
-      foto0: '/assets/img/bowling.jpeg',
-      foto1: '/assets/img/brewdog.jpeg',
-      foto2: '/assets/img/shuffleBoard.jpeg',
-      foto3: '/assets/img/tischen.jpeg',
+      foto0: 'assets/img/bowling.jpeg',
+      foto1: 'assets/img/brewdog.jpeg',
+      foto2: 'assets/img/shuffleBoard.jpeg',
+      foto3: 'assets/img/tischen.jpeg',
     },
   ];
 
@@ -89,19 +89,19 @@ export class InformationComponent implements OnInit {
     return `
       <div class="instructionsImg">
         <span>- Click auf "Berlinweite Terminbuchung"</span>
-        <img src="/assets/img/termin.png" alt="" class="">
+        <img src="assets/img/termin.png" alt="" class="">
       </div>
       <div class="instructionsImg">
         <span>- Datum in blau wählen</span>
-        <img src="/assets/img/datum.png" alt="">
+        <img src="assets/img/datum.png" alt="">
       </div>
       <div class="instructionsImg">
         <span>- Standort und Uhrzeit wählen</span>
-        <img src="/assets/img/verfugbarkeit.png" alt="">
+        <img src="assets/img/verfugbarkeit.png" alt="">
       </div>
       <div class="instructionsImg">
         <span>- Persönliche Daten hinzufügen</span>
-        <img src="/assets/img/daten.png" alt="">
+        <img src="assets/img/daten.png" alt="">
       </div>`;
   }
 
